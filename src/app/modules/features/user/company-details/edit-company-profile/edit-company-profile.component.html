@@ -1,0 +1,233 @@
+<form [formGroup]="firstStepForm">
+  <div class="popup_main_wrapper">
+    <div class="heading">
+      <h3>Edit company address</h3>
+    </div>
+    <div class="inner_content_wrapper">
+      <div class="flex-wrap">
+        <div class="company-logo">
+          <div class="form_group">
+            <mat-label>Add company logo</mat-label>
+            <div class="upload-wrapper">
+              <ng-container *ngIf="!companyLogoUrl">
+                <input
+                  #logoInput
+                  hidden
+                  accept="image/jpeg,image/png"
+                  (change)="onLogoChange($event, docType.LOGO)"
+                  type="file"
+                />
+                <span (click)="logoInput.click()">
+                  <img
+                    src="assets/icons/upload-ic.svg"
+                    alt=""
+                    class="upload_icon"
+                  />
+                  <strong class="upload-files-text">Upload Files</strong>
+                  <strong class="note-info">File Size: 1MB</strong>
+                </span>
+              </ng-container>
+              <div *ngIf="companyLogoUrl" class="log-img">
+                <img [src]="companyLogoUrl" alt="" />
+                <div (click)="deleteCompanyLogo()" class="delete">
+                  <img src="assets/images/RecycleBin.svg" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="company-image">
+          <div class="form_group">
+            <mat-label
+              >Add company image (optional)
+              <img src="assets/images/Info_new.svg" alt="" class="info_icon"
+            /></mat-label>
+            <div class="upload-wrapper">
+              <ng-container *ngIf="!companyPhotoUrl">
+                <input
+                  hidden
+                  #companyPhotoInput
+                  accept="image/jpeg,image/png"
+                  (change)="onCompanyPhotoChange($event, docType.LOGO)"
+                  type="file"
+                />
+                <span (click)="companyPhotoInput.click()">
+                  <img
+                    src="assets/icons/upload-ic.svg"
+                    alt=""
+                    class="upload_icon"
+                  />
+                  <strong class="upload-files-text">Upload Files</strong>
+                  <strong class="note-info"
+                    >File Size: 400 X 280 , 2MB Max Format JPG, PNG</strong
+                  >
+                </span>
+              </ng-container>
+
+              <div *ngIf="companyPhotoUrl" class="log-img">
+                <img [src]="companyPhotoUrl" alt="" />
+                <div (click)="deleteCompanyPhoto()" class="delete">
+                  <img src="assets/images/RecycleBin.svg" alt="" />
+                </div>
+              </div>
+            </div>
+            <span class="hint"
+              >This image will be used during job post as a company
+              thambnail.</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="flex">
+        <div class="col-6">
+          <div class="form_group">
+            <mat-label
+              >Company Name
+              <img
+                [matTooltip]="infoType.COMPANY_NAME"
+                src="assets/images/Info_new.svg"
+                alt=""
+                class="info_icon"
+                preventStartingSpace
+              />
+            </mat-label>
+            <mat-form-field [class.low-opacity] = "profile?.profileStatus == clientStatus.VERIFIED" class="example-full-width" appearance="outline">
+              <input 
+                [readonly]="profile?.profileStatus == clientStatus.VERIFIED"
+                formControlName="companyName"
+                appTrim
+                matInput
+                type="text"
+                placeholder="Enter Company"
+                preventStartingSpace
+              />
+              <mat-error>{{
+                firstStepForm
+                  | getControl: ["companyName"]
+                  | validate: "COMPANY_NAME"
+              }}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="form_group">
+            <mat-label
+              >Trading Name &nbsp;
+              <img
+                [matTooltip]="infoType.TRADE_NAME"
+                src="assets/images/Info_new.svg"
+                alt=""
+                class="info_icon"
+                preventStartingSpace
+              />
+            </mat-label>
+            <mat-form-field [class.low-opacity] = "profile?.profileStatus == clientStatus.VERIFIED" class="example-full-width" appearance="outline">
+              <input
+                [readonly]="profile?.profileStatus == clientStatus.VERIFIED"
+                matInput
+                type="text"
+                formControlName="tradingName"
+                appTrim
+                placeholder="Enter Trading"
+                preventStartingSpace
+              />
+              <mat-error>{{
+                firstStepForm
+                  | getControl: ["tradingName"]
+                  | validate: "TRADING"
+              }}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="form_group">
+            <mat-label>UEN number</mat-label>
+            <mat-form-field [class.low-opacity] = "profile?.profileStatus == clientStatus.VERIFIED" class="example-full-width" appearance="outline">
+              <input
+                [readonly]="profile?.profileStatus == clientStatus.VERIFIED"
+                matInput
+                type="text"
+                formControlName="uenNumber"
+                appTrim
+                placeholder="Enter UEN Number"
+                preventStartingSpace
+              />
+              <mat-error>{{
+                firstStepForm | getControl: ["uenNumber"] | validate: "UEN"
+              }}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form_group">
+            <mat-label>Company’s website (optional)</mat-label>
+            <mat-form-field class="example-full-width" appearance="outline">
+              <input
+                matInput
+                formControlName="companyWebsite"
+                appTrim
+                type="text"
+                placeholder="Enter website address"
+                preventStartingSpace
+              />
+              <mat-error>{{
+                firstStepForm
+                  | getControl: ["companyWebsite"]
+                  | validate: "COMPANY_WEBSITE"
+              }}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="flex">
+        <div class="col-sm-12">
+          <div class="form_group textarea-wrap">
+            <mat-label>Company’s description</mat-label>
+            <mat-form-field
+              class="example-full-width"
+              appearance="outline"
+              class="textarea_autosize"
+            >
+              <textarea
+                #description
+                matInput
+                formControlName="companyDescription"
+                appTrim
+                type="text"
+                placeholder="Enter small brief about your company"
+                preventStartingSpace
+              ></textarea>
+              <mat-error>{{
+                firstStepForm
+                  | getControl: ["companyDescription"]
+                  | validate: "DESCRIPTION"
+              }}</mat-error>
+              <mat-hint align="end"
+                >{{ description.value.length }} /
+                {{ LIMIT?.descriptionMaxLength400 }}</mat-hint
+              >
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--========= Bottom section start here ======-->
+    <div class="btn_wrap">
+      <button type="button" class="btn_secondry" (click)="closeDialog()">
+        Cancel
+      </button>
+      <button
+        (click)="updateDetails()"
+        [disabled]="!firstStepStatus"
+        type="submit"
+        class="primary-btn"
+      >
+        Save & submit
+      </button>
+    </div>
+  </div>
+</form>

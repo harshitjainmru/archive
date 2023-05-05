@@ -1,0 +1,91 @@
+.popup_main_wrapper {
+  margin: -23px;
+}
+
+.popup_main_wrapper .heading {
+  background: #f3f3f3;
+  padding: 15px;
+}
+
+.popup_main_wrapper .heading h3 {
+  color: #14B1BD;
+  font-size: 20px;
+  margin-bottom: 0;
+}
+
+.popup_main_wrapper .form_group_wrapper {
+  padding: 15px;
+}
+
+.popup_main_wrapper .form_group_wrapper .form_group:last-of-type {
+  margin-bottom: 30px;
+}
+
+.popup_main_wrapper .form_group_wrapper .btn_wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.popup_main_wrapper .form_group_wrapper .btn_wrap button {
+  min-width: 100px;
+  margin-right: 15px;
+}
+
+@media (max-width: 375px) {
+  .popup_main_wrapper .form_group_wrapper .btn_wrap button {
+    min-width: auto;
+    margin-right: 15px;
+    font-size: 13px;
+  }
+}
+
+.popup_main_wrapper .form_group_wrapper .btn_wrap button:last-of-type {
+  margin-right: 0;
+}
+
+.popup_main_wrapper .form_group_wrapper .btn_wrap button .btn_secondry {
+  color: #14B1BD;
+  border: 1px solid #14B1BD;
+  padding: 10px;
+}
+
+.append_row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.append_row .inner_row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.append_row .inner_row app-time-picker {
+  width: calc(100% - 39px);
+}
+
+.append_row .inner_row img {
+  margin-top: 7px;
+}
+/*# sourceMappingURL=schedule-interview.component.css.map */

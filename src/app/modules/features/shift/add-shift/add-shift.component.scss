@@ -1,0 +1,138 @@
+.page_main_wrapper {
+  .top_head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    @media(max-width: 480px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 0;
+    }
+    .btn_wrapper {
+      @media(max-width: 480px) {
+        margin-left: auto;
+      }
+      button {
+        margin-left: 15px;
+      }
+    }
+  }
+  .inner_content_wrapper {
+    border: 1px solid #dbe2ea;
+    background: #fff;
+    padding: 0 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    @media(max-width: 1280px) {
+      width: 100%;
+      flex-direction: column;
+    }
+    .left_col {
+      width: 49%;
+      padding: 20px 0;
+      @media(max-width: 1280px) {
+        width: 100%;
+      }
+      .sec_wrapper {
+        .sec_title {
+          color: #000;
+          font-weight: 600;
+        }
+      }
+    }
+    .right_col {
+      width: 49%;
+      @media(max-width: 1280px) {
+        width: 100%;
+      }
+      .suggetion_box_wrapper {
+        width: 478px;
+        height: 346px;
+        background: #ff98000d;
+        border-radius: 2px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 30px;
+        position: relative;
+        @media(max-width: 1280px) {
+          width: 100%;
+        }
+        h3 {
+          font-size: 20px;
+          font-weight: 600;
+          @media(max-width: 480px) {
+            margin-top: 30px;
+          }
+        }
+        .box_icon{
+            position: absolute;
+            right: 30px;
+            top: 0;
+            @media(max-width: 991px) {
+              width: 50px;
+            }
+        }
+        .list {
+            line-height: 22px;
+            color: #6E6B6B;
+            padding: 5px 0;
+        }
+      }
+    }
+  }
+}
+
+:host ::ng-deep {
+  .slection_wrapper {
+    .mat-checkbox-inner-container {
+      display: none;
+    }
+    .mat-checkbox-label {
+      line-height: 24px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #96a5b8;
+      border: 1px solid #96a5b8;
+      border-radius: 100%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+    .mat-checkbox {
+      margin-right: 15px;
+      margin-bottom: 15px;
+    }
+    .mat-checkbox-checked {
+      .mat-checkbox-label {
+        background-color: #14B1BD;
+        color: #fff;
+        border: 1px solid #14B1BD;
+      }
+    }
+    .day{
+      text-transform: uppercase;
+    }
+  }
+}
+
+
+:host ::ng-deep{
+  .inner_content_wrapper{
+    .mat-input-element::first-letter {
+      text-transform: capitalize;
+     }
+  }
+}
+

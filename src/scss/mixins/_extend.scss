@@ -1,0 +1,9 @@
+%shadow {
+    box-shadow: 0px 8px 25.7px 1.4px rgba(240, 89, 34, 0.2);
+}
+
+%ellipsis {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

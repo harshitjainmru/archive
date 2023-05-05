@@ -1,0 +1,33 @@
+<mat-label *ngIf="isLabel" class="form-label"> {{label|translate:'TITLE'}} &nbsp;<span class="mandatory_field">*</span>
+</mat-label>
+
+<div class="cstm_input_wrapper">
+  <div class="left-dropdown">
+    <mat-form-field class="example-full-width cstm_dropdwn" appearance="outline">
+      <mat-select #select class="country-code" [formControl]="phoneForm.controls.countryCode"
+        (openedChange)="panelToggled($event)">
+        <app-select-search (search)="search=$event">
+        </app-select-search>
+        <ng-container *ngFor="let country of countryList|countryFilter:'name,code':search">
+          <p class="notFound" *ngIf="country?.found">No result found</p>
+          <mat-option *ngIf="!country.found" [value]="country.code">
+            <div class="country-info">
+              <strong>{{country.code}} {{country.name}}</strong>
+            </div>
+          </mat-option>
+        </ng-container>
+        <!-- ................................................................................................ -->
+        <mat-select-trigger>{{phoneForm.controls.countryCode.value}}</mat-select-trigger>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="right-input">
+    <mat-form-field class="example-full-width cstm_number_input" checkMaxLength="phoneMaxLength" appearance="outline">
+      <input  (keydown)="hideBackendError.emit(true)" matInput type="text" numberOnly name="phone"
+        [formControl]="phoneForm.controls.phoneNo">
+      <mat-error>{{ phoneForm | getControl : ['phoneNo']|validate:label}}</mat-error>
+    </mat-form-field>
+  </div>
+</div>
+
+<!-- [placeholder]="('ENTER_'+label)|translate" -->

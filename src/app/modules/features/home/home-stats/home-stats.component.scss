@@ -1,0 +1,101 @@
+.recent-activity-column {
+  width: 390px;
+  padding: 0 10px;
+  @media (max-width: 1024px) {
+    width: 370px;
+  }
+  @media (max-width: 767px) {
+    width: 100%;
+    padding: 0 5px;
+  }
+}
+.info-card {
+  cursor: pointer;
+  padding: 16px 24px;
+  width: 100%;
+  height: 142px;
+  background: #ffffff;
+  border: 1.5px solid #dbe2ea;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  &.active-staffs {
+    strong {
+      color: #4caf50;
+    }
+  }
+  &.average-staff-ratting {
+    strong {
+      color: #ff9800;
+    }
+  }
+  &.jobs-open {
+    strong {
+      color: #14B1BD;
+    }
+  }
+  &.new-applicants {
+    strong {
+      color: #aa71f3;
+    }
+  }
+  p {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #231e1e;
+    margin-bottom: 0;
+  }
+  .info-card-row {
+    width: 100%;
+    margin: 0 -15px;
+    display: flex;
+    align-items: center;
+    .info-card-col {
+      max-width: 50%;
+      flex: 0 50%;
+      padding: 0 15px;
+      position: relative;
+      &:first-child::before {
+        width: 2px;
+        height: 90px;
+        background: #dbe2ea;
+        position: absolute;
+        content: "";
+        right: 15px;
+        top: 50%;
+        transform: rotate(15deg) translateY(-50%);
+      }
+      strong {
+        font-family: 'Lato', sans-serif;
+        font-weight: 600;
+        font-size: 64px;
+        line-height: 77px;
+        display: flex;
+        align-items: center;
+        color: #14B1BD;
+        @media (max-width: 1024px) {
+          font-size: 54px;
+          line-height: 1.2;
+        }
+        @media (max-width: 767px) {
+          font-size: 44px;
+        }
+      }
+      p {
+        font-family: 'Lato', sans-serif;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 18px;
+        display: flex;
+        align-items: center;
+        color: #231e1e;
+        text-transform: uppercase;
+      }
+    }
+  }
+}

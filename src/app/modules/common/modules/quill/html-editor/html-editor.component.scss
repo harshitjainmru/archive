@@ -1,0 +1,44 @@
+.page_main_wrapper {
+    .heading {
+        margin: -24px;
+        padding: 20px;
+        margin-bottom: 20px;
+        background: #EEE;
+        position: relative;
+
+        .close_btn {
+            position: absolute;
+            right: 12px;
+            bottom: 37px;
+            cursor: pointer;
+        }
+    }
+
+    .action_wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        button {
+            margin-right: 20px;
+
+            &:last-of-type {
+                margin-right: 0;
+            }
+        }
+    }
+
+    textarea {
+        min-height: calc(100vh - 300px);
+    }
+
+    .contrule-textarea {
+        ::ng-deep {
+            .mat-form-field-infix {
+                height: auto !important;
+                padding: 7px 2px !important;
+                width: 100%;
+            }
+        }
+    }
+}

@@ -1,0 +1,62 @@
+<div class="popup-wrapper">
+  <div class="popup-inner">
+    <h1 mat-dialog-title>Shifts & allowances</h1>
+    <button mat-icon-button mat-dialog-close type="button" [autofocus]="false">
+      <img src="../../../../../../assets/icons/Close_ic.svg" alt="" />
+    </button>
+  </div>
+
+  <mat-dialog-content>
+    <div class="table-wrap">
+      <table class="location-info" summary="timeslot details" >
+        <tr>
+          <th scope="title" >Title</th>
+          <th scope="start time" >Start time</th>
+          <th scope="end time" >End time</th>
+          <th scope="base time">Base salary</th>
+          <th scope="additional allowances" >Additional allowances</th>
+        </tr>
+        <ng-container *ngIf="data.timeslots.length">
+          <tr *ngFor="let timeslot of data.timeslots">
+            <td>{{ timeslot?.title }}</td>
+            <td>
+              {{
+                timeslot?.startTime | customDate: dFormat?.ONLY_TIME | checkNull
+              }}
+            </td>
+            <td>
+              {{
+                timeslot?.endTime | customDate: dFormat?.ONLY_TIME | checkNull
+              }}
+            </td>
+            <td>
+              {{
+                data.baseSalary.salary
+                  | customCurrency
+                    : (timeslot?.additionalAllowance?.currency == 2
+                        ? "MALAYSIA"
+                        : "SINGAPORE")
+              }}
+              /hr
+            </td>
+            <td class="allowances">
+              <span class="curr_ico"
+                >{{
+                  timeslot?.additionalAllowance?.salary
+                    | customCurrency
+                      : (timeslot?.additionalAllowance?.currency == 2
+                          ? "MALAYSIA"
+                          : "SINGAPORE")
+                }}
+                /hr
+              </span>
+            </td>
+          </tr>
+        </ng-container>
+        <ng-template #noTimeslot>
+          <div class="no-timeslot">No time slot found</div>
+        </ng-template>
+      </table>
+    </div>
+  </mat-dialog-content>
+</div>

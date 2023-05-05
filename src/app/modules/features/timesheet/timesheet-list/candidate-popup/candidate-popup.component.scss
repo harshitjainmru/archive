@@ -1,0 +1,183 @@
+.candidate-popup-content {
+    margin: -24px;
+    .candidate-popup-header {
+        background-color: #f4f8ff;
+        padding: 16px;
+        border-radius: 10px 10px 0 0;
+        display: flex;
+        align-items: center;
+        position: relative;
+        @media (max-width: 1024px) {
+            padding: 15px;
+        }
+        @media (max-width: 767px) {
+            padding: 15px;
+        }
+        .image-area {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 16px 0 0;
+            @media (max-width: 767px) {
+                width: 60px;
+                height: 60px;
+                margin-right: 15px;
+            }
+            @media (max-width: 767px) {
+                width: 55px;
+                height: 55px;
+                margin-right: 10px;
+            }
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center center;
+            }
+        }
+        .candidate-popup-header-content {
+            h3 {
+                font-size: 20px;
+                font-weight: 600;
+                color: #000000;
+                line-height: 1.4;
+                margin: 0 0 4px 0;
+                @media (max-width: 1024px) {
+                    font-size: 18px;
+                }
+                @media (max-width: 767px) {
+                    font-size: 16px;
+                    line-height: 1.3;
+                }
+            }
+            p {
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 1.57;
+                color: #6e6b6b;
+                margin: 0;
+                @media (max-width: 767px) {
+                    font-size: 13px;
+                    line-height: 1.3;
+                }
+            }
+        }
+        .close-icon {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 16px;
+            height: 16px;
+            background-color: #96a5b8;
+            border-radius: 50%;
+            overflow: hidden;
+            a {
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center center;
+                }
+            }
+        }
+    }
+    .candidate-popup-body {
+        padding: 0 16px;
+        @media (max-width: 1024px) {
+            padding: 0 15px;
+        }
+        @media (max-width: 767px) {
+            padding: 0 15px;
+        }
+        ul {
+            margin: 24px 0 0 0;
+            @media (max-width: 1024px) {
+                margin: 15px 0 0 0;
+            }
+            @media (max-width: 767px) {
+                margin: 15px 0 0 0;
+            }
+            li {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                label {
+                    margin-left: 4px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: #96a5b8;
+                    @media (max-width: 767px) {
+                        font-size: 13px;
+                    }
+                }
+                span,
+                strong {
+                    font-size: 16px;
+                    color: #231e1e;
+                    @media (max-width: 767px) {
+                        font-size: 14px;
+                    }
+                }
+                &.event-text {
+                    margin-top: 8px;
+                    margin-bottom: 24px;
+                    @media (max-width: 1024px) {
+                        margin-top: 5px;
+                        margin-bottom: 15px;
+                    }
+                    @media (max-width: 767px) {
+                        margin-top: 5px;
+                        margin-bottom: 15px;
+                    }
+                    a {
+                        font-size: 16px;
+                        line-height: 1.5;
+                        text-decoration: underline;
+                        color: #14B1BD;
+                        @media (max-width: 767px) {
+                            font-size: 14px;
+                            line-height: 1.3;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .candidate-popup-footer {
+        padding: 16px;
+        border-top: 2px solid rgba(#6e6b6b, 0.1);
+        display: flex;
+        justify-content: flex-end;
+        @media (max-width: 1024px) {
+            padding: 15px;
+        }
+        @media (max-width: 767px) {
+            padding: 15px;
+        }
+        button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 6px;
+            border: 1px solid #14B1BD;
+            font-size: 13px;
+            font-weight: 500;
+            height: 36px;
+            @media (max-width: 767px) {
+                font-size: 12px;
+            }
+            &.view-profile-btn {
+                width: 101px;
+                margin-right: 8px;
+                color: #14B1BD;
+                background-color: transparent;
+            }
+            &.view-timesheet-btn {
+                width: 122px;
+                background-color: #14B1BD;
+                color: #ffffff;
+            }
+        }
+    }
+}

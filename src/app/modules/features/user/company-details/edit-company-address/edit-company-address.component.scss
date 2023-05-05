@@ -1,0 +1,31 @@
+.popup_main_wrapper {
+  margin: -24px;
+  .heading {
+    padding: 15px;
+    background: #f3f3f380;
+    h3 {
+      color: #14B1BD;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 0;
+    }
+  }
+  .inner_content_wrapper {
+    padding: 20px 15px;
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+  }
+  .btn_wrap {
+    padding: 15px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    button {
+      margin-left: 15px;
+      &:first-of-type {
+        margin-left: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+.popup-wrapper .image-wrap {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.popup-wrapper h3 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #231E1E;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.popup-wrapper p {
+  font-size: 14px;
+  line-height: 22px;
+  color: #231E1E;
+  text-align: center;
+}
+
+.popup-wrapper .btn-wrap {
+  padding-top: 15px;
+  text-align: center;
+}
+
+.popup-wrapper .btn-wrap .primary-btn {
+  min-width: 160px;
+}
+/*# sourceMappingURL=success-popup.component.css.map */

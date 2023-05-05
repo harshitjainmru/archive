@@ -1,0 +1,15 @@
+<!-- <div class="btn_wrap">
+    <button (click)="insertHtml()" mat-flat-button color="primary" >Insert HTML</button>
+    <button mat-flat-button color="primary" (click)="saveContent()" type="button">
+        Save
+    </button>
+    <button  mat-flat-button color="primary" type="button" (click)="onCancel()">
+        Cancel
+    </button>
+</div> -->
+<quill-editor [modules]="modules"  [formControl]="quillConfig?.control" (onContentChanged)="onContentChanged($event)" [style]="{ minHeight: '350px' }">
+</quill-editor>
+<mat-error *ngIf="quillConfig?.control.touched && quillConfig?.control.invalid">
+    {{ quillConfig?.control | validate: quillConfig?.label }}</mat-error>
+
+<!-- <quill-view-html [content]="htmlString" theme="snow"></quill-view-html> -->

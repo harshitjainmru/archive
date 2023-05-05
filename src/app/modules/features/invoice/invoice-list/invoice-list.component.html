@@ -1,0 +1,81 @@
+<div class="page_main_wrapper">
+  <div class="breadcrumbs">
+    <ul>
+      <li><a>Staffing</a></li>
+      <li>Invoices</li>
+    </ul>
+  </div>
+  <div class="page-header">
+    <h3 class="page-title">Invoices</h3>
+    <div class="top-info">
+      <div class="left-calendar">
+        <div class="left-inner">
+          <div class="date_picker">
+            <div class="input-field-wrap">
+              <app-date-range-selection 
+              (_emitdateRangechanged)="listenFormValueChanges($event)" 
+              [searchSortFilter]="filterForm" [dateRangeConfig]="dateRangeConfig"></app-date-range-selection>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="list_view_wrapper">
+    <div class="list_view_wrapper">
+      <div class="cstm_table_wrapper">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" summary="invoice table listing" >
+          <ng-container matColumnDef="employName">
+            <th mat-header-cell *matHeaderCellDef scope="employee name" >Employee Name</th>
+            <td  mat-cell *matCellDef="let element">
+              <span class="max-width" [matTooltip]="element?.employee_name" >
+                {{element?.employee_name}}
+              </span>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="startDate">
+            <th mat-header-cell *matHeaderCellDef scope="start date" >Start Date</th>
+            <td  mat-cell *matCellDef="let element">{{element?.start_date | customDate}}</td>
+           
+          </ng-container>
+          <ng-container matColumnDef="endDate">
+            <th mat-header-cell *matHeaderCellDef scope="end date" >End Date</th>
+            <td  mat-cell *matCellDef="let element">{{element?.end_date | customDate}}</td>
+           
+          </ng-container>
+          <ng-container matColumnDef="billAmount">
+            <th mat-header-cell *matHeaderCellDef scope="bill amount" >Bill Amount</th>
+            <td  mat-cell *matCellDef="let element">{{element?.bill_amount | number : '1.2-2'}}</td>
+           
+          </ng-container>
+         
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef scope="action" >Action</th>
+            <!-- <td  mat-cell *matCellDef="let element">nnn</td> -->
+            <td mat-cell *matCellDef="let element">
+              <ul class="action-list">              
+                <!-- <li>
+                  <mat-icon (click)="downloadInvoice(element)" class="action-icon" matTooltip="Download Invoice">
+                    <span class="material-icons">
+                      receipt
+                      </span>
+                  </mat-icon>
+                </li> -->
+                <li (click)="downloadInvoice(element)">
+                    <a class="edit-icon"  matTooltip="Download Invoice" matTooltipPosition="above"><img
+                        src="assets/images/invoiceDownload.svg" alt="Check Icon" /></a>
+                  </li>
+              </ul>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        <div *ngIf="!invoiceList?.length">
+          <app-no-record [message]="'No Invoices To Show For This Time Frame.'"></app-no-record>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

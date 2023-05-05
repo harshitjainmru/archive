@@ -1,0 +1,19 @@
+<div class="setting-wrapper">
+  <div class="breadcrumbs">
+    <ul>
+      <li><a>Home</a></li>
+      <li>Settings</li>
+    </ul>
+  </div>
+  <div class="setting-wrap">
+    <div class="header-tabs">
+      <div class="tabs-wrap">
+        <app-tabs [tabs]="navLinks" ></app-tabs>
+        <div class="white-container">
+            <router-outlet></router-outlet>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+</div>

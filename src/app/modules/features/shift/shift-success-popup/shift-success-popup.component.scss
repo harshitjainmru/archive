@@ -1,0 +1,43 @@
+.popup_main_wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    .title {
+        font-family: 'Lato', sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 1.4;
+        color: #231e1e;
+    }
+    p {
+        color: #6e6b6b;
+        font-size: 14px;
+        text-align: center;
+        font-weight: 600;
+        margin-bottom: 20px;
+        span {
+            color: #3a3a3a;
+            margin: 3px 0;
+            display: inline-block;
+        }
+    }
+    .btn_wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        a {
+            width: auto;
+            height: 39px;
+            flex-grow: 0;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #14B1BD;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    }
+}

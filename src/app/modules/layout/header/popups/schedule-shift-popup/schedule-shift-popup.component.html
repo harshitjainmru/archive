@@ -1,0 +1,20 @@
+<div class="popup-wrapper">
+    <div class="popup-inner">
+        <div class="header">
+            <div class="left-section">
+                <h3>{{notificationDetail?.title}}</h3>
+                <span class="date-time">{{notificationDetail?.createdAt|dateAgo}}</span>
+            </div>
+            <div class="right-section"><a class="close-icon" (click)="onNoClick()"><img src="assets/icons/cross-icon.svg" alt="Icon"/></a></div>
+        </div>
+        <div class="popup-body">
+            <p [innerHtml]='message'></p>
+        </div>
+        <div class="btn-wrap">
+            <button type="button" (click)="checkSchedule()"   class="schedule-shift-btn">Check Schedule</button>
+            <button type="button" (click)="navigateToSchedule()"   class="schedule-shift-btn">Edit Schedule</button>
+        </div>
+    </div>
+</div>
+
+

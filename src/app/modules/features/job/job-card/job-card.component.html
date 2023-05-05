@@ -1,0 +1,214 @@
+<div class="card_main_wrapper">
+  <div class="card-header">
+    <div class="card-row">
+      <div class="left-col">
+        <div class="left-card-row">
+          <div class="card-col">
+            <h3 class="jobtitle" (click)="goTojobDetail(currentJob?._id)">
+              {{ currentJob?.title }}
+            </h3>
+            <div class="status-id-wrap">
+              <strong>Job Id: {{ currentJob?.jobId | checkNull: "NA" }}</strong>
+              <!-- <span class="status red">{{ currentJob?.jobStatus }}</span> -->
+              <app-job-status-chip [status]="currentJob?.jobStatus"></app-job-status-chip>
+            </div>
+          </div>
+          <div class="card-col">
+            <div class="icon-text">
+              <em class="ic-timeline"></em><strong>Duration of Employment</strong>
+            </div>
+            <p>
+              {{ currentJob?.timeline?.startDate | customDate }}
+              -
+              {{ currentJob?.timeline?.endDate | customDate }}
+            </p>
+          </div>
+          <div class="card-col">
+            <div class="icon-text">
+              <em class="ic-dollar"></em>
+              <strong>Base pay</strong>
+            </div>
+            <!-- <p>S$ {{currentJob?.baseSalary?.salary}} /hr</p> -->
+
+            <p class="">
+              {{
+                currentJob?.baseSalary?.salary
+                  | customCurrency
+                    : (currentJob?.baseSalary?.currency == 2
+                        ? "MALAYSIA"
+                        : "SINGAPORE")
+              }}
+              /hr
+            </p>
+          </div>
+          <div *ngIf="currentJob?.jobStatus != jobStatus.DRAFT" class="card-col">
+            <div class="icon-text hover" style="cursor: pointer" (click)="jobApplicant(currentJob?._id)">
+              <img src="assets/icons/Union.svg" alt="" />
+              <strong>New applicants </strong>
+            </div>
+
+            <p class="newApplicant" style="cursor: pointer" (click)="jobApplicant(currentJob?._id)"> 
+              {{ currentJob?.totalUnprocessedCount }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="right-col">
+        <div class="right-inner">
+          <div class="toll-top"></div>
+          <div class="selectJob">
+            <ng-content></ng-content>
+          </div>
+          <ng-container *ngIf="!copyJobStatus">
+            <button class="more-btn" [matMenuTriggerFor]="beforeMenu2" mat-icon-button
+              aria-label="Example icon button with a vertical three dot icon">
+              <mat-icon>more_horiz</mat-icon>
+            </button>
+            <mat-menu #beforeMenu2="matMenu" xPosition="before">
+              <button type="button" *ngIf="
+                  (currentJob?.totalAppliedCount <= 0 &&
+                    currentJob?.jobStatus == jobStatus.PUBLISHED) ||
+                  currentJob?.jobStatus == jobStatus?.DRAFT
+                " mat-menu-item (click)="editJobDetail()">
+                <img src="assets/images/edit_new.svg" alt="" />
+                <span>Edit job details</span>
+              </button>
+
+              <button type="button" *ngIf="
+                  currentJob?.jobStatus == jobStatus?.DRAFT &&
+                  currentJob?.jobStep==jobStep.STEP_3 &&
+                  this.enablePublishbtn
+                " mat-menu-item (click)="publishJob()">
+                <img style="width: 20px;margin-right: 4px;
+                margin-left: 1px;" src="assets/images/Publish.svg" alt="" />
+                <span>Publish Job</span>
+              </button>
+
+              <button *ngIf="currentJob?.jobStatus !== jobStatus?.DRAFT" type="buttemon" mat-menu-item
+                (click)="jobApplicant(currentJob?._id)">
+                <img src="assets/images/Applicant.svg" alt="" />
+                <span>Job applications</span>
+              </button>
+
+              <button *ngIf="currentJob?.jobStatus === jobStatus?.PUBLISHED || (currentJob?.jobStatus === jobStatus?.ONGOING && (currentJob?.timeline?.endDate|dateDiff)>=1)" type="button" mat-menu-item
+                (click)="searchCandidate(currentJob?._id)">
+                <img src="assets/images/user_new.svg" alt="" />
+                <span>Search candidate</span>
+              </button>
+              <button mat-menu-item (click)="goTojobDetail(currentJob?._id)">
+                <img src="assets/icons/ic_work-field.svg" alt="Delete Icon" /><span>View job details</span>
+              </button>
+
+              <!-- <button
+                *ngIf="currentJob?.jobStatus == jobStatus?.DRAFT"
+                (click)="editJobDetail(currentJob?._id)"
+                mat-menu-item
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="#231E1E"
+                    fill-rule="evenodd"
+                    d="M17.674 3.532l2.263 2.263c.625.624.625 1.637 0 2.262L9.19 18.805c-.3.3-.707.469-1.131.469H5.795c-.884 0-1.6-.716-1.6-1.6V15.41c0-.424.169-.831.469-1.131L15.412 3.532c.624-.625 1.637-.625 2.262 0zm-3.636 3.637L5.795 15.41v2.263h2.263L16.3 9.43 14.038 7.17zm1.131-1.132L17.432 8.3l1.374-1.374-2.263-2.263-1.374 1.374z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span> Edit job details </span>
+              </button> -->
+              <button mat-menu-item (click)="copyJob(currentJob?._id)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path fill="#231E1E"
+                    d="M17.701 6.415h-1.23v-1.24c0-.683-.553-1.242-1.23-1.242h-8.61c-.677 0-1.23.559-1.23 1.241v11.17c0 .682.553 1.24 1.23 1.24h1.23v1.242c0 .682.553 1.24 1.23 1.24h8.61c.677 0 1.23-.558 1.23-1.24V7.656c0-.682-.553-1.24-1.23-1.24zm-9.84 1.241v8.688H6.63V5.174h8.61v1.241h-6.15c-.677 0-1.23.559-1.23 1.241zm9.84 11.17h-8.61V7.656h8.61v11.17z" />
+                </svg>
+                <span> Copy job </span>
+              </button>
+              <button *ngIf="currentJob?.jobStatus == jobStatus?.DRAFT" mat-menu-item (click)="deleteJob(currentJob)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path fill="#231E1E" fill-rule="evenodd"
+                    d="M14.381 7.252h3.703c.135.004.264.06.36.155.095.096.15.224.154.36 0 .135-.054.266-.15.363-.097.096-.227.15-.364.15h-.891v8.023c.002.361-.067.719-.204 1.053-.137.333-.34.637-.595.892-.255.255-.558.457-.892.594-.334.137-.691.206-1.052.204H9.564c-.727 0-1.425-.289-1.94-.803-.514-.515-.803-1.212-.803-1.94V8.28h-.908c-.137 0-.267-.054-.364-.15-.096-.097-.15-.228-.15-.364.004-.135.06-.263.155-.359.095-.095.224-.15.359-.155h3.703v-.48c0-.364.144-.713.401-.97.258-.257.606-.402.97-.402h2.023c.364 0 .712.145.97.402.257.257.401.606.401.97v.48zm-3.636-.723c-.065.065-.1.152-.1.243v.48h2.708v-.48c0-.091-.036-.178-.1-.243-.065-.064-.152-.1-.243-.1h-2.023c-.09 0-.178.036-.242.1zm5.289 10.43c.086-.208.13-.43.13-.656V8.28H7.85v8.023c0 .225.044.448.13.656.087.208.213.397.372.556.16.16.348.286.556.372.208.086.431.13.656.13h4.886c.225 0 .448-.044.656-.13.208-.086.397-.212.556-.372.16-.159.285-.348.372-.556zm-6.02-.72c-.097.096-.228.15-.364.15-.135-.004-.263-.06-.359-.155-.096-.096-.151-.224-.155-.36v-5.828c0-.136.054-.267.15-.364.097-.096.227-.15.364-.15.068-.003.136.01.2.034.063.025.12.063.169.111.048.048.086.106.11.17.026.063.038.13.035.2v5.828c0 .136-.054.267-.15.363zm1.984.15c.137 0 .268-.054.364-.15.097-.097.15-.228.15-.364v-5.829c0-.136-.053-.267-.15-.364-.096-.096-.227-.15-.364-.15-.136 0-.267.054-.363.15-.097.097-.15.228-.15.364v5.829c0 .136.053.267.15.363.096.097.227.151.363.151zm2.708-.155c-.096.095-.224.15-.359.155-.136 0-.267-.054-.364-.15-.096-.097-.15-.228-.15-.364v-5.829c-.003-.068.009-.136.034-.2.025-.063.063-.12.111-.169.048-.048.106-.086.17-.11.063-.026.13-.038.199-.035.136 0 .267.054.364.15.096.097.15.228.15.364v5.829c-.004.135-.06.263-.155.359z"
+                    clip-rule="evenodd" />
+                </svg>
+                <span> Delete job </span>
+              </button>
+              <button *ngIf="currentJob?.jobStatus === jobStatus.PUBLISHED" mat-menu-item (click)="
+                  updateCancelPause(
+                    currentJob?._id,
+                    currentJob?.totalHiredCount === 0
+                      ? pauseCanelEnum.CANCEL
+                      : pauseCanelEnum.PAUSE
+                  )
+                ">
+                <img style="margin: 0" src="assets/icons/Close_ic.svg" alt="Delete Icon" />
+
+                <span>{{
+                  currentJob?.totalHiredCount === 0 ? "Cancel job" : "Pause job"
+                }}</span>
+              </button>
+            </mat-menu>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-info" *ngIf="currentJob?.jobSite">
+   
+     <div (click)="toggleList()" class="info-header">
+      <div class="info-col"><strong>#</strong></div>
+      <div class="info-col"><strong>Job site</strong></div>
+
+      <div class="info-col spacing"><strong>Position status</strong><a *ngIf="currentJob?.jobSite?.length>2" [ngClass]="{'active':listItemToggle}"  class="arrow-ic"></a></div>
+    </div>
+    <div class="info-body transition">
+      <ng-container *ngIf="currentJob?.jobSite?.length; else nojobsite">
+        <div *ngFor="let item of jobSites; let i = index" class="info-row">
+          <div class="info-col">
+            <strong>{{ i + 1 }}</strong>
+          </div>
+          <div class="info-col">
+            <div class="info-inner">
+              <div class="ic-text-wrap">
+                <em class="ic-location"></em>
+                <span>
+                  {{ item?.address?.title ? item?.address?.title : "" }}
+                </span>
+              </div>
+              <div class="link-wrap">
+                <a class="link" (click)="openShiftPopup(item?.timeSlots)">Shifts & allowances</a>
+              </div>
+            </div>
+          </div>
+          <div class="info-col">
+            <div class="progress-wrap">
+              <div class="progress-value">
+                {{ item?.noOfWorkersHired }} / {{ item?.noOfWorkers }}
+              </div>
+              <div class="progress-bar">
+                <div class="progress-inner" [ngStyle]="{
+                    width:
+                      item?.noOfWorkersHired >= 0
+                        ? (item?.noOfWorkersHired / item?.noOfWorkers) * 100 +
+                          '%'
+                        : '0%'
+                  }"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #nojobsite>
+        <p class="no-jobsite">No job site available</p>
+      </ng-template>
+    </div> 
+  </div>
+  <div class="bottom-info">
+    <ul>
+      <li>Posted by: {{ currentJob?.user?.fullName | titlecase }}</li>
+      <li>{{ currentJob?.postedOn | customDate }}</li>
+    </ul>
+  </div>
+</div>

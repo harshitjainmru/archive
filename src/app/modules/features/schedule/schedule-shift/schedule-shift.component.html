@@ -1,0 +1,340 @@
+<div class="page_main_wrapper">
+  <div class="breadcrumbs">
+    <ul>
+      <li><a>Staffing </a></li>
+      <li>Schedule shift</li>
+    </ul>
+    <h3 class="page-title">Schedule Shift</h3>
+  </div>
+  <mat-menu #menu="matMenu">
+    <button
+      mat-menu-item
+      *ngFor="let item of shiftMatMenu"
+      (click)="selectMenu(item)"
+    >
+      <span>{{ item?.name }}</span>
+    </button>
+  </mat-menu>
+  <ng-container>
+    <div class="filter_row">
+      <div class="date-selector">
+        <a type="button" (click)="backWeek()"
+          ><img src="assets/images/arrow-left.svg" alt="Back Icon"
+        /></a>
+        <div class="calendar-wrap">
+          <div class="left-calendar">
+            <p>
+              {{ searchSortFilter?.value | displayMonth }}
+            </p>
+            <!-- <mat-form-field appearance="none">
+              <input matInput placeholder="Jun - Jul 2021">
+            </mat-form-field> -->
+          </div>
+          <div class="right-calendar">
+            <app-weekly-calendar-selector
+              [dateRangeConfig]="dateRangeConfig"
+              (_emitDateChanged)="listenFormValueChanges($event)"
+              #weeklyCalendarRef
+            ></app-weekly-calendar-selector>
+            <!-- <mat-form-field appearance="none">
+              <input matInput placeholder="30 Jun - 6 Jul ">
+            </mat-form-field> -->
+          </div>
+        </div>
+        <a type="button" (click)="nextWeek()"
+          ><img
+            src="assets/images/arrow-left.svg"
+            alt="Next Icon"
+            class="next-icon"
+        /></a>
+      </div>
+      <div class="right-col-wrap" *ngIf="!workerId">
+        <div class="left_col">
+          <app-common-search
+            class="app-common-search"
+            [placeholder]="'Search by employee name & job id'"
+            (setSearch)="searchEvent($event)"
+          ></app-common-search>
+        </div>
+        <div class="right_col">
+          <div class="sort_by_wrapper">
+            <button mat-button [matMenuTriggerFor]="menu" class="sortby_btn">
+              <img src="assets/images/Sort.svg" alt="" />
+              <span class="selected_value">
+                {{ sorting }}
+              </span>
+              <img src="assets/images/Arrow_Bottom.svg" alt="" />
+            </button>
+          </div>
+          <button class="filter_btn" (click)="onFilterHandler()">
+            <div style="position: relative">
+              <img src="assets/images/Filter.svg" alt="" />
+              <span *ngIf="filterCount" class="applied_icon">
+                {{ filterCount }}
+              </span>
+            </div>
+            Filter
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <div class="schedule-shift-wrapper">
+    <div [formGroup]="scheduleGroup" class="cstm_table_wrapper">
+      <div class="top-header">
+        <button
+          [disabled]="
+            !dateRangeConfig?.iSaveAllowed.value || !scheduleList.length
+          "
+          [ngClass]="{
+            'disable-btn':
+              !dateRangeConfig?.iSaveAllowed.value || !scheduleList.length
+          }"
+          (click)="importLastWeek()"
+          type="button"
+          class="download-btn"
+        >
+          <em class="download-icon"></em
+          ><span>Import shift details from previous week</span>
+        </button>
+        <button
+          [disabled]="
+            !dateRangeConfig?.iSaveAllowed.value || !scheduleList.length
+          "
+          (click)="saveSchedule()"
+          type="button"
+          class="primary-btn save-btn"
+        >
+          Send schedule
+        </button>
+      </div>
+      <div class="table-scroll">
+        <table
+          *ngIf="scheduleFormArray.length"
+          formArrayName="scheduleInfoArray"
+          summary="shift schedule table"
+        >
+          <thead>
+            <th scope="worker name">Worker name</th>
+            <th
+              scope="current week date"
+              *ngFor="let date of currentWeekDatArray"
+            >
+              {{ date | customDate: "d MMM" }} ({{
+                date | customDate: customDateFormats.DAY_OF_MONTH
+              }})
+            </th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of scheduleFormArray.controls; let i = index">
+              <td>
+                <div class="worker-info">
+                  <div class="ic-wrap">
+                    <a class="name">
+                      <span
+                        [matTooltip]="'Action pending'"
+                        *ngIf="
+                          !(
+                            scheduleGroup
+                            | getControl
+                              : ['scheduleInfoArray', i, 'isActionedByUser']
+                          ).value &&
+                          (
+                            scheduleGroup
+                            | getControl
+                              : ['scheduleInfoArray', i, 'isActionedByUser']
+                          ).value !== ''
+                        "
+                        class="bubble"
+                      ></span>
+
+                      {{
+                        (
+                          scheduleGroup
+                          | getControl
+                            : ["scheduleInfoArray", i, "applicant", "fullName"]
+                        ).value &&
+                        (
+                          scheduleGroup
+                          | getControl
+                            : ["scheduleInfoArray", i, "applicant", "fullName"]
+                        ).value != "deleted"
+                          ? ((
+                              scheduleGroup
+                              | getControl
+                                : [
+                                    "scheduleInfoArray",
+                                    i,
+                                    "applicant",
+                                    "fullName"
+                                  ]
+                            ).value | checkNull)
+                          : "This user does not exist"
+                      }}
+                    </a>
+
+                    <img
+                      (click)="openScheduleInfo(i)"
+                      class="info_icon"
+                      src="assets/icons/ic-info-blue.svg"
+                      alt="Info Icon"
+                    />
+                    <!-- <p>
+                      {{ log(scheduleGroup) }}
+
+                      (
+                        scheduleGroup
+                        | getControl: ['scheduleInfoArray', i, 'timeline']
+                      ).value?.endDate
+                    </p> -->
+                    <img
+                      (click)="editSchedule(i)"
+                      *ngIf="
+                        (
+                          scheduleGroup
+                          | getControl: ['scheduleInfoArray', i, 'isEdit']
+                        ).value
+                      "
+                      src="assets/images/edit.svg"
+                      alt="edit"
+                    />
+                    <img
+                      (click)="editSchedule(i)"
+                      *ngIf="
+                        (
+                          scheduleGroup
+                          | getControl: ['scheduleInfoArray', i, 'isSave']
+                        ).value
+                      "
+                      src="assets/images/Save_Blue color.svg"
+                      alt="edit"
+                    />
+                    <img
+                      (click)="cancelAction(i)"
+                      *ngIf="
+                        (
+                          scheduleGroup
+                          | getControl: ['scheduleInfoArray', i, 'isSave']
+                        ).value
+                      "
+                      src="assets/images/close.svg"
+                      alt="edit"
+                    />
+                  </div>
+                </div>
+                <div class="job-type-location-wrap">
+                  <div class="info-wrap">
+                    <img src="assets/images/AddJob_black.svg" alt="Icon" /><span
+                      >{{ scheduleList[i]?.job?.jobRole?.name }}-
+                      {{
+                        scheduleList[i]?.job?.jobRole?.jobCategory?.name
+                      }}</span
+                    >
+                  </div>
+                  <div class="info-wrap">
+                    <img src="assets/icons/Location.svg" alt="Icon" /><span>
+                      {{ scheduleList[i]?.job?.jobSite[0]?.address?.title }}
+                    </span>
+                  </div>
+                </div>
+              </td>
+              <!-- .get('scheduleInfoArray').at(i).get('shiftData')?.controls -->
+              <ng-container
+                *ngFor="
+                  let shiftItem of scheduleGroup
+                    .get('scheduleInfoArray')
+                    ['at'](i)
+                    .get('shiftData')?.controls;
+                  let shift = index
+                "
+              >
+                <td>
+                  <ng-container
+                    *ngIf="
+                      (
+                        scheduleGroup
+                        | getControl
+                          : [
+                              'scheduleInfoArray',
+                              i,
+                              'shiftData',
+                              shift,
+                              'control'
+                            ]
+                      ).value.status != scheduleJobStatus.NON_WORKING;
+                      else noShiftTemplate
+                    "
+                  >
+                    <ng-container
+                      *ngIf="
+                        (
+                          scheduleGroup
+                          | getControl
+                            : [
+                                'scheduleInfoArray',
+                                i,
+                                'shiftData',
+                                shift,
+                                'control'
+                              ]
+                        ).value.isApprovedByWorker === false &&
+                          (
+                            scheduleGroup
+                            | getControl
+                              : ['scheduleInfoArray', i, 'isActionedByUser']
+                          ).value;
+                        else dropTemplate
+                      "
+                    >
+                      <div class="grey-dropdown leave">
+                        <p>Shift declined</p>
+                      </div>
+                    </ng-container>
+                    <ng-template #dropTemplate>
+                      <app-select-schedule-dropdown
+                        class="app-select-schedule-dropdown"
+                        [dropdownConfig]="
+                          scheduleGroup
+                            | getControl
+                              : ['scheduleInfoArray', i, 'shiftData', shift]
+                        "
+                      >
+                      </app-select-schedule-dropdown>
+                    </ng-template>
+                  </ng-container>
+                  <ng-template #noShiftTemplate>
+                    <div class="grey-dropdown shift">
+                      <p>No shift</p>
+                    </div>
+                  </ng-template>
+                </td>
+              </ng-container>
+            </tr>
+          </tbody>
+        </table>
+        <div class="col-sm-12" *ngIf="!firstTimeLoading && total === 0">
+          <app-no-record
+            [message]="'No Schedules Or Shifts To Show For This Time Frame.'"
+          ></app-no-record>
+        </div>
+      </div>
+      <div class="job_list_paginator_wrapper">
+        <div class="data_count_wrapper">
+          <span *ngIf="scheduleList && scheduleList.length">
+            Showing {{ scheduleList.length }} from {{ total }} schedules
+          </span>
+        </div>
+        <div class="list_paginator_wrapper">
+          <mat-paginator
+            [length]="total"
+            [pageIndex]="page - 1"
+            [pageSize]="limit"
+            [pageSizeOptions]="pageOptions"
+            (page)="changePage($event)"
+          >
+          </mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

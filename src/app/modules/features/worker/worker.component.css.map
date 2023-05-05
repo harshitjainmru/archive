@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "worker.component.scss"
+    ],
+    "names": [],
+    "file": "worker.component.css"
+}

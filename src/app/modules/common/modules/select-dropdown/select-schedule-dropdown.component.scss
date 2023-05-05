@@ -1,0 +1,66 @@
+// .option-value{
+//     a{
+//       color:#14B1BD;
+//     }
+//   }
+
+:host ::ng-deep{
+  .mat-select-value-text  {
+    span{
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .blue-text{
+      color:#14B1BD;
+    }
+    .first-line{
+      color: #6e6b6b !important;
+    }
+    .second-line{
+      color: #231e1e !important;
+    }
+  }
+  .mat-option-text{
+    p{
+      margin-bottom:0;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.29;
+      color: #6e6b6b;
+    }
+    strong{
+      p{
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.29;
+        margin:0;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        
+        color: #231e1e;
+      }
+    }
+  }
+  .disabled-drop{
+    background-color: #eeeeee;
+    cursor: no-drop !important;
+  }
+  
+}
+.status {
+  flex-grow: 0;
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  padding: 0px 10px;
+  border-radius: 4px;
+  background-color: #fdf5f7;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #ef5279;
+  margin-left: 10px;
+}

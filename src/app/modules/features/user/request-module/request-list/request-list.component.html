@@ -1,0 +1,76 @@
+<div class="sec_main_wrapper">
+  <div class="setting-wrapper qr-section">
+    <div class="help-header">
+      <div class="help-title">Help</div>
+      <div class="filter-add-wrap">
+        <div class="select-wrap">
+          <mat-form-field appearance="outline">
+            <mat-select
+              [(value)]="applyStatus"
+              (selectionChange)="handleStatusChange($event)"
+            >
+              <mat-option value="">All</mat-option>
+              <mat-option value="OPEN">Open</mat-option>
+              <mat-option value="CLOSED">Closed</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <button type="button" class="create-btn" (click)="openRequest()">
+          Create new request
+        </button>
+      </div>
+    </div>
+    <div class="request-listing">
+      <div *ngFor="let request of requestList" class="list-row">
+        <div class="list-info">
+          <h3>
+            {{ request?.subject }}
+            <span
+              class="request-status"
+              [ngClass]="{
+                closed: request?.applyStatus == 'CLOSED',
+                open: request?.applyStatus == 'OPEN'
+              }"
+              >{{ request?.applyStatus }}</span
+            >
+          </h3>
+          <p>
+            {{ request?.requestId ? "#" + request?.requestId : "N/A" }}
+            <span></span>
+            {{ request?.createdAt | dateAgo }}
+          </p>
+        </div>
+        <div class="view-details">
+          <button
+            type="button"
+            class="view-details"
+            (click)="openRequestDetails(request)"
+          >
+            View details
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12" *ngIf="!firstTimeLoading && total === 0">
+    <app-no-record></app-no-record>
+  </div>
+</div>
+<div class="job_list_paginator_wrapper">
+  <div class="data_count_wrapper">
+    <span *ngIf="requestList && requestList.length">
+      Showing {{ requestList.length + (this.page - 1) * this.limit }} from
+      {{ total }} total request (s)
+    </span>
+  </div>
+  <div class="list_paginator_wrapper">
+    <mat-paginator
+      [length]="total"
+      [pageIndex]="page - 1"
+      [pageSize]="limit"
+      [pageSizeOptions]="pageOptions"
+      (page)="changePage($event)"
+    >
+    </mat-paginator>
+  </div>
+</div>

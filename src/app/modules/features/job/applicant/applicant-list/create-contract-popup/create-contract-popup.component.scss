@@ -1,0 +1,241 @@
+.create-contract-popup-content {
+  .create-contract-popup-heading {
+    background-color: rgba(243, 243, 243, 0.5);
+    padding: 14px 0 14px 24px;
+    h3 {
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 1.8;
+      color: #14B1BD;
+      margin: 0;
+    }
+  }
+  .job-site-content {
+    padding: 32px 24px 30px;
+    overflow-y: auto;
+    max-height: 55vh;
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.29;
+      color: #6e6b6b;
+    }
+    .expansion-content {
+      margin-top: 8px;
+      input {
+        margin-top: 8px;
+        padding: 14px 12px 14px 16px;
+        border-radius: 6px;
+        border: solid 1px #dbe2ea;
+        background-color: #ffffff;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #231e1e;
+        font-weight: 500;
+      }
+      .expansion-header {
+        padding: 9px 16px;
+        .expansion-title {
+          h4 {
+            font-size: 16px;
+            line-height: 1.75;
+            color: #231e1e;
+            margin: 0;
+            span {
+              padding: 4px 8px;
+              border-radius: 4px;
+              background-color: #fcf6f9;
+              height: 18px;
+              font-size: 12px;
+              font-weight: 500;
+              line-height: 1.5;
+              color: #cf4f95;
+              margin-left: 4px;
+            }
+          }
+          p {
+            font-size: 16px;
+            line-height: 1.75;
+            color: #6e6b6b;
+            margin: 0;
+          }
+        }
+      }
+    }
+    .available-position-content {
+      padding: 6px 0px 6px 8px;
+      border-radius: 6px;
+      background-color: #edf4ff;
+      h5 {
+        font-size: 14px;
+        color: #14B1BD;
+        margin: 0;
+        span {
+          font-weight: bold;
+          margin-left: 8px;
+        }
+      }
+    }
+    .basic-salary {
+      margin: 32px 0;
+      input {
+        width: 315px;
+      }
+    }
+    .time-slot-table {
+      table {
+        width: 100%;
+        margin: 8px 0 15px;
+        border-radius: 6px;
+        border: solid 1px #dbe2ea;
+        padding: 0 16px 16px 16px;
+        th {
+          &:first-child {
+            text-align: left;
+          }
+          &:last-child {
+            text-align: right;
+          }
+          font-size: 14px;
+          font-weight: 500;
+          color: #96a5b8;
+          padding: 16px 0 11px 0;
+          border-bottom: 1px solid #edf2f6;
+          width: 127px;
+        }
+        td {
+          &:first-child {
+            text-align: left;
+          }
+          padding: 22px 0;
+          text-align: center;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 1.29;
+          color: #231e1e;
+          width: 127px;
+          &.border {
+            border-bottom: 1px solid #edf2f6;
+          }
+        }
+      }
+    }
+    .date-box {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 32px;
+      padding-bottom: 14px;
+      .date {
+        input {
+          width: 235px;
+          &.start-date {
+            font-weight: normal;
+          }
+        }
+      }
+    }
+  }
+  .popup-footer {
+    border-top: 2px solid rgba(0, 0, 0, 0.09);
+    padding: 16px 24px;
+    display: flex;
+    justify-content: flex-end;
+    button {
+      padding: 12px 0;
+      height: 42px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 500;
+      &.later-button {
+        border-radius: 6px;
+        border: 1px solid #14B1BD;
+        color: #14B1BD;
+        background-color: #ffffff;
+        margin-right: 16px;
+        width: 96px;
+      }
+      &.view-contact-button {
+        border-radius: 6px;
+        background-color: #14B1BD;
+        color: #ffffff;
+        width: 153px;
+      }
+    }
+  }
+}
+
+:host ::ng-deep {
+  .mat-expansion-panel:not(.mat-expanded):not([aria-disabled="true"])
+    .mat-expansion-panel-header:hover {
+    background: transparent;
+  }
+}
+
+.address-item {
+  height: 60px !important;
+  border-top: 1px solid #f2f2f2;
+}
+.address-blk {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  .title {
+    color: #231e1e;
+    display: flex;
+    span {
+      height: 20px;
+    }
+  }
+  .address {
+    font-size: 14px;
+    color: #6e6b6b;
+    margin-top: 5px;
+  }
+}
+
+:host ::ng-deep {
+  .address-select {
+    .mat-form-field .mat-form-field-infix {
+      height: 60px !important;
+      .mat-select.mat-select-empty {
+        position: relative;
+        top: 8px;
+      }
+    }
+  }
+}
+:host ::ng-deep {
+  .mat-form-field-appearance-outline .mat-form-field-prefix {
+    top: 0;
+    left: 10px;
+  }
+}
+
+.status {
+  flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 8px;
+  border-radius: 4px;
+  background-color: #fdf5f7;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #ef5279;
+  margin-left: 5px;
+}
+
+.psuffix {
+  text-align: center;
+  line-height: 1.29;
+  color: #231e1e;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: 'Lato', sans-serif;
+  letter-spacing: normal;
+  margin-right: 10px;
+}

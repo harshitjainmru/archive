@@ -1,0 +1,106 @@
+.filter_main_wrapper {
+       
+    .heading {
+        background: #eeee;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        h3 {
+            font-size: 18px;
+            margin-bottom: 0;
+            font-weight: 600;
+        }
+        .close_btn{
+            cursor: pointer;
+          }
+    }
+    .filter_body{
+        max-height: calc(100vh - 137px);
+        overflow-y: auto;
+        padding: 15px;
+        
+    }
+    .btn_wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px 0;
+        button {
+            margin-left: 15px;
+            &:first-of-type{
+                margin-left: 0;
+            }
+        }
+    }
+}
+:host ::ng-deep{
+    .filter_body{
+        .app-chip-search-form{
+            width: 100%;
+            .add_skill_wrapper {
+                width: 100%;
+            }
+        }
+        .mat-checkbox {
+            margin-bottom: 20px;
+            display: block;
+        }
+        mat-label {
+            padding: 0 15px;
+            margin-bottom: 20px;
+            display: block;
+            width: 100%;
+        }
+        .mat-checkbox-layout .mat-checkbox-label {
+            line-height: 24px;
+            display: flex;
+            align-items: center;
+            img {
+                margin: 0 4px;
+            }
+        }
+        .app-date-filter{
+            mat-label{
+                padding: 0;
+                margin-bottom: 5px;
+            }
+        }
+       
+        .ngx-slider .ngx-slider-pointer {
+            background-color: #14B1BD;
+        }
+        .ngx-slider .ngx-slider-selection {
+           
+            background: #14B1BD;
+           
+        }
+        .ngx-slider .ngx-slider-bubble {
+           
+            color: #fff;
+            background: #6e6b6b;
+            font-size: 12px;
+            font-family: 'Lato', sans-serif;
+            margin-bottom: 6px;
+            border-radius: 4px;
+        }
+        .ngx-slider .ngx-slider-bubble.ngx-slider-limit {
+            color: #fff;
+        }
+    }
+}
+
+.row {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    &:last-of-type{
+        margin-bottom: 0;
+        border-bottom: 0;
+    }
+    .filter_col {
+        padding: 0 15px;
+        width: 100%;
+    }
+    
+}

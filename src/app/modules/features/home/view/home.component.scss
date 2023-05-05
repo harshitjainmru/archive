@@ -1,0 +1,182 @@
+.flex-row {
+  display: flex;
+  margin: 0 -10px;
+  // @media(max-width: 1024px) {
+  //     flex-direction: column;
+  // }
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
+  .col-4 {
+    width: 33.33%;
+    padding: 0 10px;
+    @media (max-width: 1024px) {
+      width: 38.33%;
+      flex: 0 0 38.33%;
+      max-width: 38.33%;
+    }
+    @media (max-width: 767px) {
+      width: 100%;
+      flex: 0 0 100%;
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+    .app-recent-activity {
+      height: 100%;
+    }
+  }
+  .col-8 {
+    width: 66.66%;
+    padding: 0 10px;
+    @media (max-width: 1024px) {
+      width: 61.66%;
+      flex: 0 0 61.66%;
+      max-width: 61.66%;
+    }
+    @media (max-width: 767px) {
+      width: 100%;
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+    .app-home-graph-view {
+      height: 100%;
+    }
+  }
+}
+
+.chart-section {
+  margin-bottom: 20px;
+  .cart-column {
+    padding: 15px;
+    background: #ffffff;
+    border: 1px solid #dbe2ea;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .header-section {
+      margin-bottom: 20px;
+      .inner-header-section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .date-filter {
+          padding: 8px;
+          min-width: 143px;
+          height: 40px;
+          border: 1px solid #ebdcff;
+          border-radius: 100px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .prev-icon,
+          .next-icon {
+            width: 24px;
+            height: 24px;
+          }
+          .prev-icon {
+            background: url("../../../../../assets/icons/Arrow_Left_Blue.png");
+            background-size: 100%;
+            &.disabled {
+              background: url("../../../../../assets/icons/Arrow_Left_Grey.png");
+              background-size: 100%;
+              cursor: default;
+            }
+          }
+          .next-icon {
+            background: url("../../../../../assets/icons/Arrow_Right_Blue.png");
+            background-size: 100%;
+            &.disabled {
+              background: url("../../../../../assets/icons/Arrow_Left_Grey.png");
+              background-size: 100%;
+              cursor: default;
+            }
+          }
+          span {
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 18px;
+            color: #231e1e;
+          }
+        }
+      }
+      h3 {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        color: #231e1e;
+        margin: 0;
+        white-space: nowrap;
+      }
+    }
+  }
+  .productivity-col,
+  .succesful-hiring {
+    max-width: 50%;
+    flex: 0 50%;
+    padding: 0 10px;
+  }
+}
+.calendar-view {
+  margin-top: 15px;
+  min-height: 445px;
+  padding: 15px;
+  border-radius: 10px;
+  border: solid 1px #ffffff;
+  background-color: #ffffff;
+  @media (max-width: 1024px) {
+    margin-top: 35px;
+  }
+  @media (max-width: 767px) {
+    min-height: 400px;
+    margin-top: 15px;
+    padding: 10px 12px;
+  }
+}
+
+.shift-schedule {
+  width: calc(100% - 390px);
+  padding: 0 10px;
+  margin-bottom: 20px;
+  @media (max-width: 1024px) {
+    width: calc(100% - 370px);
+  }
+  @media (max-width: 767px) {
+    width: 100%;
+    padding: 0 5px;
+  }
+}
+
+.hiring-statistics-status {
+  ul {
+    display: flex;
+    align-items: center;
+    margin: 0 -10px;
+    li {
+      display: flex;
+      padding: 0 10px;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 18px;
+      color: #6e6b6b;
+      span {
+        width: 17px;
+        height: 17px;
+        margin-right: 5px;
+        border-radius: 50%;
+        &.grey-circle {
+          background: #bfc9d4;
+        }
+        &.yellow-circle {
+          background: #ff9800;
+        }
+        &.green-circle {
+          background: #4caf50;
+        }
+        &.ic-circle {
+          background: #8676ff;
+        }
+      }
+    }
+  }
+}

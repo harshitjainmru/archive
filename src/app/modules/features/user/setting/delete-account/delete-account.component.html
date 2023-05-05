@@ -1,0 +1,61 @@
+<div class="page_main_wrapper">
+  <h2>
+    Before you delete your account, Please enter your password to confirm
+    account deletion.
+  </h2>
+  <form [formGroup]="deletionForm" class="row" (ngSubmit)="submitForm()">
+    <div class="col-6">
+      <mat-label>Reason to delete your account </mat-label>
+      <mat-form-field appearance="outline" class="textarea_autosize">
+        <textarea
+          matInput
+          formControlName="reason"
+          appTrim
+          type="text"
+          preventStartingSpace
+          placeholder="Describe briefly"
+        ></textarea>
+        <mat-error>
+          {{
+            deletionForm | getControl: ["reason"] | validate: "DELETE_REASON"
+          }}
+        </mat-error>
+        <span *ngIf="errorType" class="mat-error custom-validation">
+          {{ errormsg }}
+        </span>
+      </mat-form-field>
+    </div>
+
+    <div class="col-2"></div>
+
+    <div class="col-6">
+      <mat-label>Current Password</mat-label>
+      <mat-form-field
+        checkMaxLength="passwordMaxLength"
+        class="example-full-width"
+        appearance="outline"
+      >
+        <input
+          matInput
+          formControlName="password"
+          [type]="currentHidePassword ? 'password' : 'text'"
+          placeholder="Current Password"
+        />
+        <mat-icon
+          class="pointer"
+          matSuffix
+          (click)="currentHidePassword = !currentHidePassword"
+        >
+          {{ currentHidePassword ? "visibility_off" : "visibility" }}
+        </mat-icon>
+        <mat-error>
+          {{ deletionForm | getControl: ["password"] | validate: "PASSWORD" }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="btn-wrap col-12">
+      <button type="submit" class="primary-btn">Delete My Account</button>
+    </div>
+  </form>
+</div>

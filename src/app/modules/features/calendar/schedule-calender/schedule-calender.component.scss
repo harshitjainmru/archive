@@ -1,0 +1,156 @@
+.calender_paginator_wrapper {
+    width: 183px;
+    height: 36px;
+    border-radius: 6px;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    margin-left: auto;
+    @media (max-width: 1024px) {
+        margin: 0;
+        justify-content: center;
+    }
+    @media (max-width: 767px) {
+        width: 135px;
+        margin: 0;
+        justify-content: center;
+    }
+    h3 {
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.21;
+        color: #3c4043;
+        @media (max-width: 767px) {
+            font-size: 13px;
+        }
+    }
+}
+
+:host ::ng-deep {
+    
+
+    .cal-month-view .cal-day-badge,
+    .holiday-badge,
+    .holiday_span {
+        display: inline-block;
+        color:#6E6B6B !important;
+        background-color: transparent !important;
+        font-size: 12px;
+        font-weight: 700;
+        font-family: 'Lato', sans-serif;
+        line-height: 1;
+        vertical-align: middle;
+        border-radius: 5px;
+        width: 94%;
+        margin: 0px 5px;
+        text-align: left;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 100px;
+    }
+    .timesheet-wrap{
+        .cal-day-badge{
+            font-size: 12px;
+            line-height: 14px;
+            color: #6E6B6B!important;
+        }
+    }
+    .left-out{
+        height:21px;
+        display:inline-block;
+        background: #F8FAFF;
+        color: #6E6B6B;
+        padding: 4px 8px;
+        margin-top:10px;
+        a{
+            font-size: 11px;
+            line-height: 13px;
+            display: flex;
+            align-items: center;
+            color: #6E6B6B;
+        }
+    }
+    .timesheet-wrap{
+        border-left: 2px solid #4CAF50;
+    }
+    .count {
+        display: inline-block;
+        margin-left: auto;
+        // float: right;
+    }
+    .cal-month-view .cal-days {
+        border: 1px solid #eee;
+        border-bottom: 0;
+        // width: 848px;
+        @media (max-width: 848px) {
+            width: 848px;
+        }
+    }
+    .cal-month-view .cal-header .cal-cell {
+        padding: 5px 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+        white-space: nowrap;
+        @media (max-width: 848px) {
+            min-width: 121px;
+        }
+    }
+    .cal-month-view {
+        background-color: #fff;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    .cal-month-view .cal-day-cell {
+        min-height: 100px;
+        // background: red;
+        &.holiday {
+            background: red;
+        }
+    }
+}
+
+.wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    padding: 0 20px;
+    @media (max-width: 1024px) {
+        justify-content: flex-start;
+        margin-bottom: 15px;
+        padding: 0;
+    }
+    @media (max-width: 767px) {
+        justify-content: flex-start;
+        margin-bottom: 15px;
+        padding: 0;
+    }
+    button {
+        padding: 0px 10px;
+        width: fit-content;
+        min-width: 100px;
+    }
+}
+
+
+button.btn_secondry {
+    background: #fff !important;
+    margin-left: 15px;
+}
+.date-selector{
+    display: flex;
+    align-items: center;
+    padding:0 20px;
+    a{
+        position: relative;
+    }
+}
+
+.next-icon{
+    transform: rotate(-180deg);
+}

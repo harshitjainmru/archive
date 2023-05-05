@@ -1,0 +1,68 @@
+<div class="home-graph">
+  <div class="header">
+    <div class="left-area">
+      <h3>Shift Schedule</h3>
+      <p>{{ date | customDate: "MMMM d, EEEE" }}</p>
+    </div>
+    <div class="right-area">
+      <div class="calendar-filter">
+        <a (click)="previousDay()" class="prev-icon"></a>
+        <div class="calendar-input">
+          <input
+            style="cursor: pointer"
+            [formControl]="dateControl"
+            matInput
+            readonly
+            [matDatepicker]="picker"
+            (click)="picker.open()"
+          />
+          <mat-datepicker #picker></mat-datepicker>
+        </div>
+        <a (click)="nextDay()" class="next-icon"></a>
+      </div>
+    </div>
+  </div>
+  <div [@fadeInUp] class="graph-view" *ngIf="shifts && shifts?.length">
+    <div class="shift-schedule-listing">
+      <div
+        *ngFor="let shift of shifts"
+        class="shift-schedule-item"
+        (click)="viewTimeSheet(shift)"
+      >
+        <div class="header-wrap">
+          <div class="left-header">
+            <h3>
+              <span class="name">{{ shift?.jobTitle }}</span>
+              <span class="wcount"
+                ><img src="assets/icons/user_shift.svg" alt="icon" /><strong
+                  > {{ shift?.totalWorkerCount }}</strong
+                ></span
+              >
+            </h3>
+            
+          </div>
+          <div class="right-header" >
+            <p>
+              {{ shift?.title | titlecase }} &nbsp; <span class="circle"></span> 
+              {{ shift?.startTime | customDate: dFormat?.ONLY_TIME }}-
+              {{ shift?.endTime | customDate: dFormat?.ONLY_TIME }}
+            </p>
+          </div>
+        </div>
+        <div class="location-wrap">
+          <figure>
+            <img src="assets/icons/location_ic.svg" alt="Location icon" />
+          </figure>
+          <p>{{ shift?.allocatedJobSite?.address?.title | titlecase }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!shifts" class="graph-view loader-wrapper">
+    <mat-progress-spinner [mode]="'indeterminate'"></mat-progress-spinner>
+  </div>
+
+  <div *ngIf="shifts?.length == 0" class="graph-view loader-wrapper">
+    <h5>No data</h5>
+  </div>
+</div>

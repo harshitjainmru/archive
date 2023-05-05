@@ -1,0 +1,35 @@
+.popup-wrapper {
+  .image-wrap {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 28px;
+    color: #231e1e;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  p {
+    font-size: 14px;
+    line-height: 22px;
+    color: #231e1e;
+    text-align: center;
+  }
+  .btn-wrap {
+    padding-top: 15px;
+    text-align: center;
+    .primary-btn {
+      min-width: 160px;
+    }
+    .btn_secondry{
+      padding:10px 25px;
+      margin-left:5px;
+      color: #14B1BD
+    }
+  }
+}

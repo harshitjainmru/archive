@@ -1,0 +1,338 @@
+.popup-wrapper {
+  margin: -24px;
+  .popup-header {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    background: rgba(243, 243, 243, 0.5);
+    border-radius: 8px 8px 0px 0px;
+    h3 {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 36px;
+      color: #14B1BD;
+      margin-bottom: 0;
+    }
+  }
+  .popup-main {
+    padding: 20px 15px 0;
+    .tell-us {
+      font-size: 16px;
+      line-height: 24px;
+      color: #333333;
+    }
+    .user-section {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      .user-img {
+        width: 40px;
+        height: 40px;
+        figure {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          overflow: hidden;
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center center;
+          }
+        }
+      }
+      .basic-info {
+        width: calc(100% - 40px);
+        padding-left: 10px;
+        p {
+          margin-bottom: 0;
+          font-size: 16px;
+          line-height: 24px;
+          color: #666666;
+          strong {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 18px;
+            color: #231e1e;
+          }
+        }
+      }
+    }
+    .select-option {
+      font-size: 16px;
+      line-height: 24px;
+      color: #333333;
+      strong {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 18px;
+        color: #231e1e;
+      }
+    }
+  }
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 15px;
+    border-top: solid 2px #f0f0f0;
+  }
+  .rating-wrap-area {
+    padding: 15px 0;
+  }
+}
+
+:host ::ng-deep {
+  .option-listing {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    li {
+      margin: 0 10px 10px 0;
+      .mat-checkbox {
+        position: relative;
+        &.mat-checkbox-checked {
+          .mat-checkbox-layout {
+            .mat-checkbox-label {
+              background: #14B1BD;
+              color: #fff;
+            }
+          }
+        }
+        .mat-checkbox-inner-container {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          left: 0;
+          top: 0;
+          opacity: 0;
+        }
+        .mat-checkbox-layout {
+          .mat-checkbox-label {
+            padding: 6px 8px;
+            height: 32px;
+            background: #edf4ff;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 18px;
+            color: #14B1BD;
+            transition: 0.3s ease-in;
+          }
+        }
+      }
+    }
+  }
+}
+:host ::ng-deep {
+  .star-listing {
+    .choose-star {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+
+      .star-item {
+        position: relative;
+        width: 55px;
+        margin-left: 20px;
+        &.first {
+          margin-left: 0px !important;
+        }
+      }
+    }
+
+    .mat-radio-container {
+      opacity: 0;
+    }
+
+    .mat-checkbox-inner-container {
+      opacity: 0;
+    }
+
+    .mat-radio-button {
+      margin-left: 0;
+
+      .mat-radio-label-content {
+        padding-left: 0;
+      }
+
+      .mat-radio-label {
+        width: 44px;
+        height: 44px;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: -0.28px;
+        text-align: center;
+        color: #333333;
+
+        .mat-radio-label-content {
+          display: none;
+          position: absolute;
+          bottom: -30px;
+          left: 50%;
+          width: 55px;
+          transition: 0.3s ease-in;
+          transform: translateX(-50%) scale(0);
+        }
+      }
+
+      &.bad {
+        &.mat-radio-checked {
+          background: url("../../../../../assets/images/star-bad.svg");
+          background-repeat: no-repeat;
+          background-position: center center;
+          position: relative;
+          transform: scale(1);
+          animation-name: example;
+        }
+
+        background: url("../../../../../assets/images/star-inactive.svg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        transition: 0.3s ease-in;
+        transform: scale(1);
+
+        &.fill {
+          background: url("../../../../../assets/images/star-active.svg");
+          background-repeat: no-repeat;
+          background-position: center center;
+          transform: scale(1);
+        }
+      }
+
+      &.fair {
+        &.mat-radio-checked {
+          background: url("../../../../../assets/images/star-fair.svg");
+          background-repeat: no-repeat;
+          background-position: center center;
+          position: relative;
+          transform: scale(1);
+          animation-name: example;
+        }
+
+        background: url("../../../../../assets/images/star-inactive.svg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        transition: 0.3s ease-in;
+        transform: scale(1);
+
+        &.fill {
+          background: url("../../../../../assets/images/star-active.svg");
+          background-repeat: no-repeat;
+          background-position: center center;
+          transform: scale(1);
+        }
+      }
+
+      &.average {
+        &.mat-radio-checked {
+          background: url("../../../../../assets/images/star-average.svg");
+          background-repeat: no-repeat;
+          background-position: center center;
+          position: relative;
+          transform: scale(1);
+          animation-name: example;
+        }
+
+        background: url("../../../../../assets/images/star-inactive.svg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        transition: 0.3s ease-in;
+        transform: scale(1);
+
+        &.fill {
+          background: url("../../../../../assets/images/star-active.svg");
+          background-repeat: no-repeat;
+          background-position: center center;
+          transform: scale(1);
+        }
+      }
+
+      &.good {
+        &.mat-radio-checked {
+          background: url("../../../../../assets/images/star-good.svg");
+          background-repeat: no-repeat;
+          background-position: center center;
+          position: relative;
+          transform: scale(1);
+          animation-name: example;
+        }
+
+        background: url("../../../../../assets/images/star-inactive.svg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        transition: 0.3s ease-in;
+        transform: scale(1);
+
+        &.fill {
+          background: url("../../../../../assets/images/star-active.svg");
+          background-repeat: no-repeat;
+          background-position: center center;
+          transform: scale(1);
+        }
+      }
+
+      &.excellent {
+        &.mat-radio-checked {
+          background: url("../../../../../assets/images/star-excellent.svg");
+          // background: url("../../../../../../../assets/images/star_excellent.png");
+
+          background-repeat: no-repeat;
+          background-position: center center;
+          position: relative;
+          transform: scale(1);
+          animation-name: example;
+        }
+
+        background: url("../../../../../assets/images/star-inactive.svg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        transition: 0.3s ease-in;
+        transform: scale(1);
+
+        &.fill {
+          background: url("../../../../../assets/images/star-active.svg");
+          background-repeat: no-repeat;
+          background-position: center center;
+          transform: scale(1);
+        }
+      }
+
+      &.mat-radio-checked {
+        .mat-radio-label {
+          color: #333333;
+
+          .mat-radio-label-content {
+            transform: translateX(-50%) scale(1);
+            line-height: 16.8px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes example {
+  0% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(1.1);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  75% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

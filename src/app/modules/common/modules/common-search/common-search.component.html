@@ -1,0 +1,32 @@
+<div class="common_search_wrapper">
+  <mat-form-field class="search_filter" appearance="none">
+    <input
+      [formControl]="searchControl"
+      type="text"
+      matInput
+      placeholder="{{ placeholder || 'Search by name' }}"
+      (keyup.enter)="searchResult()"
+    />
+
+    <button
+      type="button"
+      mat-button
+      *ngIf="searchControl.value.trim()"
+      matPrefix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="resetSearch()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <span style="cursor: pointer" matSuffix (click)="searchResult()">
+      <mat-icon>search</mat-icon>
+    </span>
+    <!-- <button type="button" mat-button (click)="searchResult()" class="search-btn" matSuffix>      
+        <mat-icon>search</mat-icon>    
+      </button> -->
+  </mat-form-field>
+</div>
+
+<!-- 
+<span matPrefix> </span> -->

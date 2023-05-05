@@ -1,0 +1,25 @@
+<mat-form-field style="cursor: pointer" appearance="outline">
+  <!-- <mat-label>Enter a date range</mat-label> -->
+  <mat-date-range-input style="cursor: pointer" [rangePicker]="picker">
+    <input
+      style="cursor: pointer"
+      readonly
+      (click)="picker.open()"
+      (dateChange)="dateChange($event)"
+      [formControl]="dateRangeConfig?.startDate"
+      matStartDate
+      placeholder="Start date"
+    />
+    <input
+      style="cursor: pointer"
+      readonly
+      (click)="picker.open()"
+      (dateChange)="dateChange($event)"
+      [formControl]="dateRangeConfig?.endDate"
+      matEndDate
+      placeholder="End date"
+    />
+  </mat-date-range-input>
+  <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle> -->
+  <mat-date-range-picker #picker></mat-date-range-picker>
+</mat-form-field>

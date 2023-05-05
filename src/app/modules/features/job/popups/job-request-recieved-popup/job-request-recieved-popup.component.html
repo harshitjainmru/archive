@@ -1,0 +1,49 @@
+<div class="popup-wrapper">
+  <div class="popup-inner">
+    <div class="icon-wrap">
+      <img src="assets/icons/ic-info-big.svg" alt="Info icon" />
+    </div>
+    <div class="popup-content">
+      <p>Hey! We have received your job post request.</p>
+      <!-- <p>
+        As per the provided job information, the calculated
+        <a>Estimated total invoice</a> would be between approx.
+        {{ this.minRange | customCurrency }} -
+        {{ this.maxRange | customCurrency }}
+      </p> -->
+      <div class="info-row" style="margin-left: 5px;">
+        <p style="background-color: rgb(237, 244, 255); color: rgb(20, 177, 189); font-style: italic;">
+          The estimated total invoice will be provided to you by our consultants.
+        </p>
+    </div>
+      <div class="notes-wrap">
+        <mat-checkbox [(ngModel)]="agreeTnC"> </mat-checkbox>
+        <p>
+          I agree with all the charges,
+          <a target="_blank" href="{{links.TERMSANDCONDITIONSURL}}"
+           >terms & conditions</a> .
+        </p>
+      </div>
+      <div class="agree">
+        <!-- <mat-checkbox [(ngModel)]="agreeTnC"
+          >I agree with all charges, terms & conditions
+        </mat-checkbox> -->
+      </div>
+    </div>
+    <div class="footer">
+      <div class="btn-wrap">
+        <button type="button" (click)="openRequest()" class="contact-us-btn">
+          Contact us
+        </button>
+        <button
+          [disabled]="!agreeTnC"
+          type="button"
+          (click)="onClick(true)"
+          class="primary-btn"
+        >
+          Proceed
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

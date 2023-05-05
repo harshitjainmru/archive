@@ -1,0 +1,199 @@
+.account-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100vh;
+}
+
+@media (max-width: 767px) {
+  .account-wrapper {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.account-wrapper .left-section {
+  width: 400px;
+  padding: 15px 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: url("../../../assets/images//ic-image.png") no-repeat;
+  background-size: cover;
+  position: relative;
+  -webkit-transition: 0.3s ease-in;
+  transition: 0.3s ease-in;
+}
+
+@media (max-width: 1024px) {
+  .account-wrapper .left-section {
+    width: 340px;
+  }
+}
+
+@media (max-width: 767px) {
+  .account-wrapper .left-section {
+    width: 100%;
+    background-position: center center;
+  }
+}
+
+.account-wrapper .left-section .logo-wrap {
+  width: 100%;
+}
+
+.account-wrapper .left-section .inner-wrap {
+  height: calc(100% - 100px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.account-wrapper .left-section .inner-wrap .title-description {
+  margin-bottom: 30px;
+}
+
+@media (max-width: 1024px) {
+  .account-wrapper .left-section .inner-wrap .title-description {
+    margin-bottom: 25px;
+  }
+}
+
+@media (max-width: 767px) {
+  .account-wrapper .left-section .inner-wrap .title-description {
+    margin-bottom: 20px;
+  }
+}
+
+.account-wrapper .left-section .inner-wrap .title-description h3 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 36px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+@media (max-width: 1024px) {
+  .account-wrapper .left-section .inner-wrap .title-description h3 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .account-wrapper .left-section .inner-wrap .title-description h3 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+
+.account-wrapper .left-section .inner-wrap .title-description p {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  text-align: center;
+  color: #FFFFFF;
+  opacity: 0.87;
+}
+
+.account-wrapper .left-section .inner-wrap .white-btn {
+  width: 178px;
+  height: 50px;
+  margin: 0 auto;
+  background: #FFFFFF;
+  border-radius: 6px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+  text-align: center;
+  text-transform: capitalize;
+  color: #14B1BD;
+}
+
+.account-wrapper .right-section {
+  width: calc(100% - 400px);
+  background: #F3F3F3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 25px;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  .account-wrapper .right-section {
+    width: calc(100% - 340px);
+  }
+}
+
+@media (max-width: 767px) {
+  .account-wrapper .right-section {
+    width: 100%;
+    padding-top: 80px;
+    min-height: 100%;
+    height: calc(100vh - 234px);
+  }
+}
+
+.lang_btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 7px 20px;
+  border-radius: 4px;
+  border: 2px solid #14B1BD;
+  background: transparent;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.lang_btn .select_counrty {
+  width: 25px;
+  margin-right: 15px;
+}
+/*# sourceMappingURL=account.component.css.map */

@@ -1,0 +1,385 @@
+<div class="page_main_wrapper">
+  <div class="breadcrumbs">
+    <ul>
+      <li><a> Staffing </a></li>
+
+      <li
+        [routerLink]="['USER_JOB' | absolutePath]"
+        [queryParams]="{ page: 1, limit: 10 }"
+      >
+        <a>Jobs </a>
+      </li>
+      <li>Job details</li>
+    </ul>
+  </div>
+  <div class="top_haed">
+    <div class="left_col">
+      <!-- <h3 class="title">{{ activeJob?.title }}</h3> -->
+      <p class="id">
+        Job Id: {{ activeJob?.jobId }}
+        <app-job-status-chip
+          [status]="activeJob?.jobStatus"
+        ></app-job-status-chip>
+      </p>
+    </div>
+    <div class="right_col">
+      <div class="list_wrapper">
+        <div class="inner_col">
+          <img src="assets/images/pass.svg" alt="" />
+          <p class="label">Views</p>
+          <h3 class="count">
+            {{ activeJob?.totalVisitedCount || 0 }}
+          </h3>
+        </div>
+
+        <div class="inner_col">
+          <img src="assets/images/app_user.svg" alt="" />
+          <p class="label">Applications</p>
+          <h3 class="count">
+            {{ activeJob?.totalAppliedCount || 0 }}
+          </h3>
+        </div>
+
+        <div class="inner_col">
+          <img src="assets/images/hired.svg" alt="" />
+          <p class="label">Hired</p>
+          <h3 class="count">
+            {{ activeJob?.totalHiredCount || 0 }}
+          </h3>
+        </div>
+      </div>
+      <figure class="morebtn" [matMenuTriggerFor]="menu">
+        <img src="assets/images/More.svg" alt="" />
+      </figure>
+    </div>
+  </div>
+
+  <div class="inner_wrapper">
+    <div class="section-header">
+      <h3 class="title">Job details</h3>
+    </div>
+    <h4 class="sec-title">{{ activeJob?.title }}</h4>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info">
+          <p class="key">
+            <img src="assets/images/Addjob_new.svg" alt="" />
+            Job role
+          </p>
+          <h3 class="value">
+            {{ activeJob?.jobRole?.name }}
+          </h3>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="info">
+          <p class="key">
+            <img src="assets/images/Building_Sector.svg" alt="" />
+            Business category
+          </p>
+          <h3 class="value">
+            {{ activeJob?.businessCategory?.name }}
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info">
+          <p class="key">
+            <img src="assets/images/Vacancy_new.svg" alt="" />
+            Position (s)
+          </p>
+          <h3 class="value">{{ activeJob?.vacancies }}</h3>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="info">
+          <p class="key">
+            <img src="assets/icons/currency_icon.svg" alt="" />
+            Base pay
+          </p>
+          <h3 class="value">
+            {{
+              activeJob?.baseSalary?.salary
+                | customCurrency
+                  : (activeJob?.baseSalary?.currency == 2
+                      ? "MALAYSIA"
+                      : "SINGAPORE")
+            }}
+            /hr
+          </h3>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="info">
+          <p class="key">
+            <img src="assets/images/Clock.svg" alt="" />
+            Duration of Employment
+          </p>
+          <h3 class="value">
+            {{
+              activeJob?.timeline?.startDate | customDate: dFormat?.ONLY_DATE
+            }}
+            to
+            {{ activeJob?.timeline?.endDate | customDate: dFormat?.ONLY_DATE }}
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="info">
+          <p class="key">
+            <img src="assets/images/Skills.svg" alt="" />
+            Skills
+          </p>
+          <div class="skill_wrapper">
+            <span class="skill" *ngFor="let skill of activeJob?.skills">
+              {{ skill?.name }}
+            </span>
+            <span class="skill" *ngIf="!activeJob?.skills?.length"> NA </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info">
+          <p class="key">
+            <img src="assets/icons/Work_Experience.svg" alt="" />
+            Experience
+          </p>
+          <div
+            *ngIf="activeJob?.experience?.type; else noExp"
+            class="skill_wrapper"
+          >
+            <span class="skill">{{
+              activeJob?.experience?.type[0] == experienceType?.NO_EXP
+                ? "No experience"
+                : "Experienced"
+            }}</span>
+          </div>
+          <ng-template #noExp>
+            <p>No data</p>
+          </ng-template>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="info">
+          <p class="key">
+            <img src="assets/icons/Add_shift.svg" alt="" />
+            Minimum engagement
+          </p>
+          <h3 class="value">
+            {{ activeJob?.workingHours?.hours }} hrs &
+            {{ activeJob?.workingHours?.days }} days /person in week
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="inner_wrapper">
+    <h3 class="title-sec">Job description</h3>
+    <div class="info-card content-description mb-15">
+      <p>{{ activeJob?.description }}</p>
+
+      <!-- <p>Role & Responsibilities:</p>
+        <p>As a User Experience designer, you will be involved at every stage of product design and development and help define early concepts, ideate with product folks and flesh out the high-level workflow</p>
+        <ul>
+          <li>You will be a part of early user research that involves talking to users and stakeholders</li>
+          <li>You will create user stories, personas and storyboards keeping the user at the center of the conversation at all times.</li>
+          <li>You will create high fidelity prototypes and wireframes for different user journeys. </li>
+          <li>You will strive to design and launch new features under ambitious deadlines. </li>
+        </ul> -->
+    </div>
+    <h3 *ngIf="activeJob?.requirment" class="title-sec">Custom requirements</h3>
+    <div *ngIf="activeJob?.requirment" class="info-card content-description">
+      <!-- <p>Here are few important requirements for this job</p>
+      <ul>
+        <li>No visible tatoos</li>
+        <li>Not allergic to dust</li>
+        <li>Able to stand long hours.</li>
+      </ul> -->
+
+      <p>{{ activeJob?.requirment }}</p>
+    </div>
+  </div>
+  <div class="inner_wrapper">
+    <div class="section-header">
+      <h3 class="title">Salary & Schedule</h3>
+    </div>
+    <h3 class="title-sec">Location & shifts</h3>
+    <div class="accordion-wrap">
+      <mat-accordion>
+        <ng-container *ngIf="activeJob?.jobSite; else noJobsite">
+          <mat-expansion-panel
+            *ngFor="
+              let jobsite of activeJob?.jobSite;
+              let jobsiteIndex = index;
+              let isFirst = first
+            "
+            [expanded]="isFirst"
+          >
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <h3>
+                  Location {{ jobsiteIndex + 1 }} : ({{
+                    jobsite?.address?.title
+                  }})
+                </h3>
+                <p>
+                  {{
+                    jobsite?.address?.addressLine && jobsite?.address?.cityName
+                      ? jobsite?.address?.jobArea?.name +
+                        ", " +
+                        jobsite?.address?.addressLine +
+                        ", "
+                      : jobsite?.address?.jobArea?.name +
+                        ", " +
+                        jobsite?.address?.addressLine
+                  }}
+                  {{
+                    jobsite?.address &&
+                    jobsite?.address?.cityName &&
+                    jobsite?.address?.zipcode
+                      ? jobsite?.address?.cityName + ", "
+                      : jobsite?.address?.cityName
+                  }}
+                  {{ jobsite?.address?.zipcode }}
+                </p>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="table-wrap">
+              <table summary="timeslot table" >
+                <tr>
+                  <th scope="title" >Title</th>
+                  <th scope="start time" >Start time</th>
+                  <th scope="end time" >End time</th>
+                  <th scope="base time">Base salary</th>
+                  <th scope="additional allowances" >Additional allowances</th>
+                </tr>
+
+                <ng-container *ngIf="jobsite?.timeSlots; else noTimeslot">
+                  <tr *ngFor="let timeslot of jobsite?.timeSlots">
+                    <td>{{ timeslot?.title }}</td>
+                    <td>
+                      {{ timeslot?.startTime | customDate: dFormat?.ONLY_TIME }}
+                    </td>
+                    <td>
+                      {{ timeslot?.endTime | customDate: dFormat?.ONLY_TIME }}
+                    </td>
+                    <td>
+                      {{ activeJob?.baseSalary?.salary | customCurrency }} /hr
+                    </td>
+                    <td>
+                      {{
+                        timeslot?.additionalAllowance?.salary
+                          | customCurrency
+                            : (timeslot.additionalAllowance.currency == 2
+                                ? "MALAYSIA"
+                                : "SINGAPORE")
+                      }}
+                      /hr
+                    </td>
+                  </tr>
+                </ng-container>
+                <ng-template #noTimeslot>
+                  <div class="no-timeslot">No time slot found</div>
+                </ng-template>
+              </table>
+            </div>
+          </mat-expansion-panel>
+        </ng-container>
+        <ng-template #noJobsite>
+          <div class="no-jobsite">No job site found</div>
+        </ng-template>
+      </mat-accordion>
+    </div>
+
+    <!-- @TODO -->
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info">
+          <p class="key">
+            <img src="assets/icons/Service_Charge.png" alt="" />
+            Estimated invoice
+          </p>
+          <!-- <p class="value">
+            {{ this.minEstimate | customCurrency }} -
+            {{ this.maxEstimate | customCurrency }}
+          </p> -->
+          <div class="info-row" style="margin-left: 5px;">
+            <p style="background-color: rgb(237, 244, 255); color: rgb(20, 177, 189); font-style: italic;">
+              The estimated total invoice will be provided to you by our consultants.
+            </p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <mat-menu #menu="matMenu">
+    <button
+      type="button"
+      *ngIf="
+        (activeJob?.totalAppliedCount <= 0 &&
+          activeJob?.jobStatus == jobStatus.PUBLISHED) ||
+        activeJob?.jobStatus == jobStatus?.DRAFT
+      "
+      mat-menu-item
+      (click)="editJobDetail()"
+    >
+      <img src="assets/images/edit_new.svg" alt="" />
+      <span>Edit job details</span>
+    </button>
+
+    <button
+      *ngIf="activeJob?.jobStatus !== jobStatus.DRAFT"
+      type="button"
+      mat-menu-item
+      (click)="jobApplicant(activeJob?._id)"
+    >
+      <img src="assets/images/Applicant.svg" alt="" />
+      <span>Job applications</span>
+    </button>
+
+    <button
+      *ngIf="activeJob?.jobStatus == jobStatus.PUBLISHED"
+      type="button"
+      mat-menu-item
+      [routerLink]="['SEARCH_APPLICANT_LIST' | absolutePath: activeJob?._id]"
+    >
+      <img src="assets/images/user_new.svg" alt="" />
+      <span>Search candidate</span>
+    </button>
+
+    <button type="button" mat-menu-item (click)="copyJob(activeJob?._id)">
+      <img src="assets/images/copy.svg" alt="" />
+      <span>Copy job</span>
+    </button>
+
+    <button
+      *ngIf="activeJob?.jobStatus === jobStatus.PUBLISHED"
+      mat-menu-item
+      (click)="
+        updateCancelPause(
+          activeJob?._id,
+          activeJob?.totalSignedContract === 0
+            ? pauseCanelEnum.CANCEL
+            : pauseCanelEnum.PAUSE
+        )
+      "
+    >
+      <img
+        style="margin: 0"
+        src="assets/icons/Close_ic.svg"
+        alt="Delete Icon"
+      />
+
+      <span>{{
+        activeJob?.totalHiredCount === 0 ? "Cancel job" : "Pause job"
+      }}</span>
+    </button>
+  </mat-menu>
+</div>

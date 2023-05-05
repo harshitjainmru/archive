@@ -1,0 +1,50 @@
+<div class="search-wrap">
+    <app-common-search
+    [placeholder]="'Search shift by name'"
+    (setSearch)="searchEvent($event)"
+  ></app-common-search>
+    <!-- <mat-form-field class="example-full-width" appearance="outline">
+      <input matInput placeholder="Search shift by name">
+      <mat-icon matSuffix><img src="assets/images/Search.svg" alt="Search Icon"/></mat-icon>
+    </mat-form-field> -->
+  </div>
+  <div 
+  (scroll)="!loading&&nextPageStatus&&getShiftsList()" infiniteScroll
+    [infiniteScrollDistance]="2" [infiniteScrollThrottle]="100"
+  class="sub-options">
+
+    <app-data-loader *ngIf="loading"></app-data-loader>
+    <app-no-record
+       *ngIf="!loading && !shiftsList.length" 
+    ></app-no-record>
+
+
+
+
+        <app-custom-checkbox
+          (_emitSelectionChanged)="shiftIdChanged($event)"
+        *ngIf="shiftsList?.length && !loading"
+        [checkBoxConfigect]="shiftsCheckboxObject"
+        
+        ></app-custom-checkbox>
+        
+    <!-- <app-custom-checkbox></app-custom-checkbox> -->
+
+    <!-- <ul>
+      <li>
+        <mat-checkbox>All Shifts</mat-checkbox>
+      </li>
+      <li>
+        <mat-checkbox><p>Concert event assistant</p><span class="time">6:30 AM to 2:30 PM</span></mat-checkbox>
+      </li>
+      <li>
+        <mat-checkbox><p>Retail sales staff</p><span class="time">11 AM to 6:30 PM</span></mat-checkbox>
+      </li>
+      <li>
+        <mat-checkbox><p>Concert event assistant</p><span class="time">3:30 PM to 10:30 PM</span></mat-checkbox>
+      </li>
+      <li>
+        <mat-checkbox><p>Retail sales staff</p><span class="time">7 PM to 12:30 AM</span></mat-checkbox>
+      </li>
+    </ul> -->
+  </div>

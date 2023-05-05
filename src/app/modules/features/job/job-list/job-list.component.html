@@ -1,0 +1,126 @@
+<div class="page_main_wrapper">
+  <div class="breadcrumbs">
+    <ul>
+      <li><a>Staffing </a></li>
+      <li>Jobs</li>
+    </ul>
+  </div>
+  <div class="page-header">
+    <h3 class="page-title">Jobs</h3>
+    <div class="btn-wrap" *ngIf="isCopyJob">
+      <button class="cancel-btn" (click)="cancelToAddJOb()">Cancel</button>
+      <button
+        class="primary-btn"
+        (click)="backToAddJob()"
+        [disabled]="jobCopyId == ''"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+
+  <div class="job_tabs_wrapper">
+    <div class="filter_row">
+      <div class="left_col">
+        <!-- <div class="show_entry_wrapper">
+          <mat-form-field appearance="none">
+            <mat-label>Show Entries</mat-label>
+            <mat-select [(value)]="limit" (selectionChange)="onSelect($event?.value)">
+              <ng-container *ngFor="let entry of entries">
+                <mat-option [value]="entry">{{entry}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+        </div> -->
+
+        <app-common-search
+          class="app-common-search"
+          [placeholder]="'Search by job title & job role'"
+          (setSearch)="searchEvent($event)"
+        >
+        </app-common-search>
+      </div>
+      <div class="right_col">
+        <div class="sort_by_wrapper">
+          <button mat-button [matMenuTriggerFor]="menu" class="sortby_btn">
+            <img src="assets/images/Sort.svg" alt="" />
+            <span class="selected_value">
+              {{ sorting }}
+            </span>
+            <img src="assets/images/Arrow_Bottom.svg" alt="" />
+          </button>
+        </div>
+        <button class="filter_btn" (click)="onFilterHandler()">
+          <div style="position: relative">
+            <img src="assets/images/Filter.svg" alt="" />
+            <span *ngIf="filterCount" class="applied_icon">
+              {{ filterCount }}
+            </span>
+          </div>
+          Filter
+        </button>
+      </div>
+    </div>
+
+    <app-tabs [tabs]="navLinks" (tabClicked)="routeHandling($event)"></app-tabs>
+
+    <div class="col-sm-12">
+      <mat-radio-group
+        aria-label="Select an job"
+        (change)="onSelectJob($event)"
+      >
+        <ng-container *ngFor="let job of jobsList">
+          <app-job-card
+            (deletJobEvent)="fetchUpdatedList()"
+            (copyJobEvent)="copyJob($event)"
+            [currentJob]="job"
+            [copyJobStatus]="isCopyJob"
+          >
+            <mat-radio-button
+              matTooltip="Select job to copy"
+              matTooltipPosition="left"
+              *ngIf="isCopyJob"
+              class="copy-jobid"
+              [value]="job?._id"
+            ></mat-radio-button>
+          </app-job-card>
+        </ng-container>
+      </mat-radio-group>
+    </div>
+    <div class="col-sm-12" *ngIf="!firstTimeLoading && total === 0">
+      <app-no-record [message]="status|emptyStatePipe : JOB_EMPTY_STATE_MESSAGE"></app-no-record>
+    </div>
+
+    <div class="job_list_paginator_wrapper">
+      <div class="data_count_wrapper">
+        <span *ngIf="jobsList && jobsList.length">
+          Showing {{ jobsList.length + (this.page - 1) * this.limit }} from
+          {{ total }} jobs
+        </span>
+      </div>
+      <div class="list_paginator_wrapper">
+        <mat-paginator
+          appStylePagination
+          [length]="total"
+          [pageIndex]="page - 1"
+          [pageSize]="limit"
+          [pageSizeOptions]="pageOptions"
+          (page)="changePage($event)"
+        >
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>
+
+<mat-menu #menu="matMenu">
+  <button
+    mat-menu-item
+    *ngFor="let item of jobMatMenu"
+    (click)="selectMenu(item)"
+  >
+    <span>{{ item?.name }}</span>
+  </button>
+</mat-menu>
+
+<ng-template #filterRow> </ng-template>

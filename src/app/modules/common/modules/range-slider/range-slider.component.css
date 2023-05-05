@@ -1,0 +1,98 @@
+.filter-value-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 15px;
+}
+
+.filter-value-wrap .left-value {
+  width: 88px;
+  border-radius: 100px;
+  position: relative;
+  margin-right: 25px;
+}
+
+.filter-value-wrap .left-value input {
+  width: 88px;
+  border: solid 1px #a4a4a4;
+  display: inline-block;
+  height: 24px;
+  border-radius: 100px;
+  padding: 5px 30px 5px 5px;
+}
+
+.filter-value-wrap .left-value span {
+  display: inline-block;
+  font-size: 13px;
+  line-height: 1.23;
+  color: #444444;
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.filter-value-wrap .right-value {
+  width: 100px;
+  border-radius: 100px;
+  position: relative;
+  margin-left: auto;
+}
+
+.filter-value-wrap .right-value input {
+  width: 100px;
+  display: inline-block;
+  height: 24px;
+  padding: 5px 30px 5px 5px;
+  border-radius: 100px;
+  border: solid 1px #bababa;
+}
+
+.filter-value-wrap .right-value span {
+  display: inline-block;
+  font-size: 13px;
+  line-height: 1.23;
+  color: #444444;
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.slider_wrapper {
+  border: 1px solid #eee;
+  border-radius: 7px;
+  padding: 20px 15px;
+  width: 100%;
+}
+
+:host {
+  width: 100%;
+}
+
+:host ::ng-deep .filter_body .ngx-slider .ngx-slider-pointer {
+  background-color: #14B1BD;
+}
+
+:host ::ng-deep .filter_body .ngx-slider .ngx-slider-selection {
+  background: #14B1BD;
+}
+
+:host ::ng-deep .filter_body .ngx-slider .ngx-slider-bubble {
+  color: #fff;
+  background: #6e6b6b;
+  font-size: 12px;
+  font-family: 'Lato', sans-serif;
+  margin-bottom: 6px;
+  border-radius: 4px;
+}
+
+:host ::ng-deep .filter_body .ngx-slider .ngx-slider-bubble.ngx-slider-limit {
+  color: #fff;
+}
+/*# sourceMappingURL=range-slider.component.css.map */

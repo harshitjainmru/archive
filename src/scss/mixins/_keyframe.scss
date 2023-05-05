@@ -1,0 +1,14 @@
+@mixin keyframes($property) {
+    @-webkit-keyframes #{$property} {
+        @content;
+    }
+    @-moz-keyframes #{$property} {
+        @content;
+    }
+    @-ms-keyframes #{$property} {
+        @content;
+    }
+    @keyframes #{$property} {
+        @content;
+    }
+}

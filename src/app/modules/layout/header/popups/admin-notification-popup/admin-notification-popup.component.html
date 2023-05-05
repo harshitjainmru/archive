@@ -1,0 +1,23 @@
+<div class="popup-wrapper">
+    <div class="popup-inner">
+        <div class="header">
+            <div class="left-section">
+                <h3>{{notificationDetail?.title}}</h3>
+                <span class="date-time">{{notificationDetail?.createdAt|dateAgo}}</span>
+            </div>
+            <div class="right-section"><a class="close-icon" (click)="onNoClick()"><img src="assets/icons/cross-icon.svg" alt="Icon"/></a></div>
+        </div>
+        <div class="popup-body">
+            <figure *ngIf="notificationDetail?.mediaImage">
+                <img [src]="notificationDetail?.mediaImage" alt="Image"/>
+            </figure>
+            <p [innerHtml]='message'></p>
+        </div>
+        <div class="btn-wrap">
+            <button type="button" *ngIf="notificationDetail?.type == 'CONTRACT_SIGNED' ; else default" (click)="checkSchedule()" class="schedule-shift-btn">Create Schedule</button>
+            <ng-template #default>
+            <button type="button" (click)="onNoClick()" class="schedule-shift-btn">OK</button>
+        </ng-template>
+        </div>
+    </div>
+</div>

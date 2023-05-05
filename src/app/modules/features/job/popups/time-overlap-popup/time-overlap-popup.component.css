@@ -1,0 +1,66 @@
+.popup_main_wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.popup_main_wrapper .popup_icon {
+  margin-bottom: 15px;
+}
+
+.popup_main_wrapper .title {
+  color: #231e1e;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.popup_main_wrapper .desc {
+  color: #6e6b6b;
+  line-height: 1.57;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.popup_main_wrapper .desc span {
+  color: #231e1e;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.popup_main_wrapper .btn_wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.popup_main_wrapper .btn_wrap button {
+  min-width: 100px;
+  margin-right: 15px;
+}
+
+.popup_main_wrapper .btn_wrap button:last-of-type {
+  margin-right: 0;
+}
+
+.popup_main_wrapper .btn_wrap button .btn_secondry {
+  color: #14B1BD;
+  border: 1px solid #14B1BD;
+  padding: 10px;
+}
+/*# sourceMappingURL=time-overlap-popup.component.css.map */

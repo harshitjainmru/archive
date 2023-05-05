@@ -1,0 +1,56 @@
+<div class="recent-activity-column">
+  <div class="info-card">
+    <p>Active Staffs</p>
+    <div [routerLink]="['USER_JOB' | absolutePath]"
+    [queryParams]="{ page: 1, limit: 10 }"
+     class="info-card-row">
+      <div class="info-card-col">
+        <strong>{{ ongoingJobs }}</strong>
+        <p>ONGOING JOBS</p>
+      </div>
+      <div class="info-card-col">
+        <strong>{{ activeStaffCount }}</strong>
+        <p>ACTIVE STAFFS</p>
+      </div>
+    </div>
+  </div>
+  <div class="info-card" style="cursor:auto;">
+    <p>Average rating</p>
+    <div class="info-card-row">
+      <div class="info-card-col">
+        <strong>{{ avgRating }}</strong>
+        <p>AVERAGE RATING</p>
+      </div>
+      <div class="info-card-col">
+        <strong>{{ staffRated }}</strong>
+        <p>STAFFS RATED</p>
+      </div>
+    </div>
+  </div>
+  <div [routerLink]="['USER_JOB' | absolutePath]" [queryParams]="{ page: 1, limit: 10 }" class="info-card">
+    <p>Jobs open for hiring</p>
+    <div class="info-card-row">
+      <div class="info-card-col">
+        <strong>{{ openedJobs }}</strong>
+        <p>JOBS OPEN</p>
+      </div>
+      <div class="info-card-col">
+        <strong>{{ leftPostion }}</strong>
+        <p>POSITIONS LEFT</p>
+      </div>
+    </div>
+  </div>
+  <div [routerLink]="['USER_JOB' | absolutePath]" [queryParams]="{ page: 1, limit: 10 }" class="info-card">
+    <p>Applicants this Week</p>
+    <div class="info-card-row">
+      <div class="info-card-col">
+        <strong>{{ newApplicantsThisWeek }}</strong>
+        <p>APPLICANTS</p>
+      </div>
+      <div class="info-card-col">
+        <strong>{{ newOfferThisWeek }}</strong>
+        <p>OFFERS MADE</p>
+      </div>
+    </div>
+  </div>
+</div>

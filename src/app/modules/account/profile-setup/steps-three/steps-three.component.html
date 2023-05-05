@@ -1,0 +1,137 @@
+<div class="step-third-form">
+  <form [formGroup]="thirdStepForm" (ngSubmit)="onthirdStepSubmit()">
+    <div class="flex">
+      <div class="col-12">
+        <app-select-jobarea
+          [controls]="thirdStepForm | getControl: ['businessCategories']"
+          [searchUrl]="searchBusinessUrl"
+          [type]="stateType"
+          [validateKey]="'B_CATEGORY'"
+          [placeholder]="'Search business category'"
+          [selectPlaceholder]="'Business category'"
+        >
+        </app-select-jobarea>
+
+        <!-- <app-chip-search-form class="app-chip-search-form"
+        [searchObject]="businessCategoriesConfig"
+              [parant]="'job'"
+        ></app-chip-search-form> -->
+      </div>
+    </div>
+
+    <!-- image/jpeg,image/png -->
+    <div class="flex">
+      <div class="col-12">
+        <mat-label>Documents for verification (upload at least 2)</mat-label>
+        <div class="doc_upload_wrapper">
+          <div class="doc_upload">
+            <img src="assets/icons/doc-ic.svg" alt="" />
+            <strong>Upload documents</strong>
+            <span>File Size: 5MB Max </span>
+            <input
+              #inputSelection
+              type="file"
+              id="upload_input"
+              [accept]="documentFormats"
+              (change)="onSelectDocument($event)"
+              class="upload_input"
+            />
+          </div>
+
+          <div class="preview_img_wrapper">
+            <div
+              class="preview-item"
+              *ngFor="let item of docsFormArray.controls; let i = index"
+            >
+              <figure class="preview_img">
+                <ng-container [ngSwitch]="item.get('type').value">
+                  <img
+                    *ngSwitchCase="'pdf'"
+                    [title]="item.get('name').value"
+                    src="assets/images/pdf-icon.png"
+                    alt=""
+                    class="preview_icon"
+                  />
+                  <img
+                    *ngSwitchCase="'doc'"
+                    [title]="item.get('name').value"
+                    src="assets/images/doc-icon.png"
+                    alt=""
+                    class="preview_icon"
+                  />
+                  <img
+                    *ngSwitchCase="'docx'"
+                    [title]="item.get('name').value"
+                    src="assets/images/doc-icon.png"
+                    alt=""
+                    class="preview_icon"
+                  />
+                  <img
+                    *ngSwitchDefault
+                    [title]="item.get('name').value"
+                    src="assets/icons/booking_1.svg"
+                    alt=""
+                    class="preview_icon"
+                  />
+                </ng-container>
+                <!-- <img src="assets/images/booking_1.svg" alt="" class="preview_icon"> -->
+                <p class="file_name">{{ item.get("name").value }}</p>
+                <span (click)="remove(i)" class="delete">
+                  <img src="assets/images/RecycleBin.svg" alt="" />
+                </span>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="btn-wrap">
+      <!-- <button type="button" class="back-btn">Back</button> -->
+      <button type="submit" [disabled]="!secondStepStatus" class="primary-btn">
+        Save & Next
+      </button>
+    </div>
+  </form>
+</div>
+<div class="right-info">
+  <h3>List of valid documents</h3>
+  <ul>
+    <li>• Business Registration Certificate</li>
+    <li>• Trading license/certificate with company details</li>
+    <li>• Official invoice with company details</li>
+    <li>• Official government or bank letter with company details.</li>
+  </ul>
+  <div class="description">
+    <p>
+      Below are examples of documents that we need from you. You should provide
+      at least 2 of the above. If you are uploading a photo of the physical
+      document, it needs to genuine and clearly readable.
+    </p>
+  </div>
+  <div class="cstm_slider_wrapper">
+    <swiper [config]="propertySlider" [index]="activeIndex">
+      <figure
+        class="preview_slide"
+        *ngFor="let slides of sliderImages; let i = index"
+      >
+        <img [src]="slides || 'assets/images/noimage.png'" alt="" />
+      </figure>
+    </swiper>
+    <figure>
+      <img
+        #prev
+        src="assets/icons/arrow_left_ic.svg"
+        alt="Arrow Left"
+        class="arrow_icon_left"
+      />
+    </figure>
+    <figure>
+      <img
+        #next
+        src="assets/icons/arrow_right_ic.svg"
+        alt="Arrow Right"
+        class="arrow_icon_right"
+      />
+    </figure>
+  </div>
+</div>

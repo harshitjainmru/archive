@@ -1,0 +1,39 @@
+<div class="card_main_wrapper">
+    <div class="top_head">
+        <div class="info">
+            <h3 class="title">Shift A</h3>
+            <p class="value">Created: Jun 16, 2020 </p>
+        </div>        
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+        </button>
+    </div>
+
+    <div class="info">
+        <h3 class="title">Timing</h3>
+        <p class="value">6:30 AM  to  12:30 PM  </p>
+    </div>  
+    
+    <div class="info">
+        <h3 class="title">Week off</h3>
+        <ul class="list_wrapper">
+            <li class="list">SUN</li>
+            <li class="list active">MON</li>
+            <li class="list">TUES</li>
+            <li class="list">WED</li>
+            <li class="list active">THU</li>
+            <li class="list">FRI</li>
+            <li class="list">SAT</li>
+        </ul>
+    </div>   
+
+</div>
+
+<mat-menu #menu="matMenu">
+    <button mat-menu-item>      
+      <span>Edit</span>
+    </button>
+    <button mat-menu-item>      
+      <span>Delete</span>
+    </button>
+  </mat-menu>

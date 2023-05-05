@@ -1,0 +1,23 @@
+<div class="popup-wrapper">
+    <div class="popup-inner">
+        <div class="header">
+            <div class="left-section">
+                <h3>{{notificationDetail?.title}}</h3>
+                <span class="date-time">{{notificationDetail?.createdAt|dateAgo}}</span>
+            </div>
+            <div class="right-section"><a class="close-icon" (click)="onNoClick()"><img src="assets/icons/cross-icon.svg" alt="Icon"/></a></div>
+        </div>
+        <div class="popup-body">
+            <p [innerHtml]='message'></p>
+            <!-- <p>{{mess}}</p> -->
+            <!-- <p>{{message}}</p> -->
+            <!-- <p>{{detailIndexing[0]}}</p>
+            <p>{{detailIndexing[1]}}</p>
+            <p>{{detailIndexing[2]}}</p> -->
+        </div>
+        <div class="btn-wrap">
+            <button type="button" (click)="jobApplicant(notificationDetail?.appData?.jobId)"  class="schedule-shift-btn">Review Profile</button>
+        </div>
+        <!-- <p>{{notificationDetail?.message}}</p> -->
+    </div>
+</div>

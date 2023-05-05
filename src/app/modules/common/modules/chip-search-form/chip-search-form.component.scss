@@ -1,0 +1,84 @@
+:host ::ng-deep{
+    .cstm_chip_wrapper{
+        .mat-form-field-flex {
+            padding: 15px!important;
+        }
+        .mat-input-element {
+          margin-top: 15px !important;
+        }
+        .selected-item{
+            border: 2px #14B1BD solid ;
+        }
+    }
+    .mat-form-field {
+        .mat-form-field-wrapper {
+            .mat-form-field-flex {
+                .mat-form-field-infix{ 
+                    .mat-input-element{
+                        position: relative;
+                        top:-2px;
+                    }
+                }
+            }
+        }
+    }
+    .add_skill_wrapper{
+        width: 40%;
+        @media(max-width: 767px) {
+            width: 100%;
+        }
+        .mat-form-field-suffix {
+            white-space: nowrap;
+            flex: none;
+            position: relative;
+            top: 5px;
+            right: 6px;
+            padding: 5px;
+            border-radius: 100%;
+            color: #14B1BD;
+            font-size: 15px;
+            // img {
+            //     padding-bottom: 6px;
+            // }
+        }
+        .mat-form-field-flex {
+            border-radius: 5px;
+            border: solid 1px rgba(150, 165, 184, 0.1);
+            // background-color: rgba(219, 226, 234, 0.2);
+        }
+    }
+    
+    
+    .mat-chip.mat-standard-chip {
+        background-color: #f4f8ff;
+        color: #14B1BD;
+        font-family: 'Lato', sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        border-radius: 4px;
+        margin-right: 10px;
+        opacity: 1 !important;
+    }
+    .mat-standard-chip .mat-chip-remove.mat-icon {
+        width: 18px;
+        height: 18px;
+        color: #14B1BD;
+        position: relative;
+        top:-2px;
+        opacity: 1 !important;
+    }
+    
+    .more {
+        background: #f4f8ff;
+        font-size: 12px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 10px;
+        font-family: 'Lato', sans-serif;
+        color: #14B1BD;
+        font-weight: 800;
+        cursor: pointer;
+    }
+}

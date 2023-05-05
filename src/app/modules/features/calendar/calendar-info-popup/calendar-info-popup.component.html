@@ -1,0 +1,14 @@
+<div class="popup-wrapper">
+    <div class="popup-inner">
+        <h3>{{shiftsData?.date | customDate: customFormat.DAY_OF_MONTH}}</h3>
+        <span class="date">{{shiftsData?.date | customDate:customFormat.ONLY_DAY}}</span>
+        <ul>
+            <li [ngStyle]="{'border-left-color':item.jobcolor}" class="left-border" *ngFor="let item of shiftsData?.events?.shifts">{{item.jobTitle}} ({{item?.startTime | customDate:customFormat.shortTime}} to {{item?.endTime | customDate:customFormat.shortTime}})</li>
+            <!-- <li >Lorem Ipsum</li> -->
+            <!-- <li>Lorem Ipsum</li><li>Lorem Ipsum</li><li>Lorem Ipsum</li><li>Lorem Ipsum</li><li>Lorem Ipsum</li> -->
+        </ul>
+        <div class="btn-wrap">
+            <button (click)="viewTimeSheet(shiftsData)" type="button" class="primary-btn">View timesheet</button>
+        </div>
+    </div>
+</div>

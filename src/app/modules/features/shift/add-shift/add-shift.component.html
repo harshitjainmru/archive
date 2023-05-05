@@ -1,0 +1,78 @@
+<div class="page_main_wrapper">
+  <form [formGroup]="shiftForm" (ngSubmit)="onSubmit()">
+    <div class="top_head">
+      <h3>Add Shift</h3>
+      <div class="btn_wrapper">
+        <!-- <button class="btn_secondry">edit Shift</button> -->
+        <button type="button" class="btn_secondry" (click)="goBack()">Cancel</button>
+        <button class="primary-btn" type="submit"
+          [disabled]="shiftForm.invalid || selectedDays?.length==0">Save</button>
+      </div>
+    </div>
+    <div class="inner_content_wrapper">
+      <div class="left_col">
+        <div class="sec_wrapper">
+          <h3 class="sec_title">
+            Add shift name as per your preference
+          </h3>
+          <div class="form_group">
+            <mat-label>Shift Name &nbsp;<span class="mandatory_field">*</span></mat-label>
+            <mat-form-field appearance="outline">
+              <input matInput formControlName="name" placeholder="Enter Shift Name" autocapitalize="on"
+                autocomplete="off">
+              <mat-error>{{ shiftForm | getControl: ["name"] | validate: "SHIFT_NAME" }}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="sec_wrapper">
+          <h3 class="sec_title">
+            What would be the time schedule for this shift?
+          </h3>
+          <div class="row">
+            <div class="form_group col-sm-12 col-md-6">
+              <mat-label>Shift’s Start Time &nbsp;<span class="mandatory_field">*</span></mat-label>
+              <app-date-time-picker [dataTimeCtrl]="starttimeCtrl" (pickerClosed)="onPickerClosed($event, 'start')"
+                [pickerTitle]="'SHIFT_START_TIME'" [placeholder]="'Enter Shift’s Start Time'">
+              </app-date-time-picker>
+            </div>
+
+            <div class="form_group col-sm-12 col-md-6">
+              <mat-label>Shift’s End Time &nbsp;<span class="mandatory_field">*</span></mat-label>
+              <app-date-time-picker [dataTimeCtrl]="endTimeCtrl" (pickerClosed)="onPickerClosed($event, 'end')"
+                [pickerTitle]="'SHIFT_END_TIME'" [placeholder]="'Enter Shift’s End Time'">
+              </app-date-time-picker>
+            </div>
+          </div>
+        </div>
+        <div class="sec_wrapper">
+          <h3 class="sec_title">
+            Working Days &nbsp;<span class="mandatory_field">*</span>
+          </h3>
+          <div class="slection_wrapper">
+            <ng-container *ngFor="let day of dayName">
+              <mat-checkbox (change)="onDayChecked($event.checked,day)" class="day">{{day}}</mat-checkbox>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="right_col">
+        <div class="suggetion_box_wrapper">
+          <img class="box_icon" src="assets/images/ic_bulb.svg" alt="">
+          <h3>Here are good Example for title</h3>
+          <ul class="list_wrapper">
+            <li class="list">
+              • Cleaning & Maintenance Shift
+            </li>
+            <li class="list">
+              • General Accounting Shift
+            </li>
+            <li class="list">
+              • Production Shift
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

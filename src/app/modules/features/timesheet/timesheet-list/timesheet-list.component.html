@@ -1,0 +1,403 @@
+<!-- <button (click)="openCandidateDetails()">Open popup</button>
+<button (click)="openTimesheetFilter()">Open Filter</button>
+<button (click)="openApprovedPopup()">Open Approved Popup</button> -->
+
+<div class="page_main_wrapper">
+  <div class="breadcrumbs">
+    <ul>
+      <li><a>Staffing</a></li>
+      <li>Timesheet</li>
+    </ul>
+  </div>
+  <div class="page-header">
+    <h3 class="page-title">Timesheet</h3>
+    <div class="top-info">
+      <div class="left-calendar">
+        <div class="left-inner">
+          <span>
+            <p>
+              {{ searchSortFilter?.value | displayMonth }}
+            </p>
+          </span>
+          <div class="date_picker">
+            <!-- <button type="button" class="left-button">
+              <img src="assets/images/arrow-left.svg" alt="">
+            </button> -->
+            <div class="input-field-wrap">
+              <app-timesheet-date-range
+                (_emitdateRangechanged)="listenFormValueChanges($event)"
+                [searchSortFilter]="searchSortFilter"
+                [dateRangeConfig]="dateRangeConfig"
+              ></app-timesheet-date-range>
+            </div>
+            <!-- <button type="button" class="right-button">
+              <img src="assets/images/arrow-right.svg" alt="">
+            </button> -->
+          </div>
+        </div>
+        <div *ngIf="userDetailTimesheet" class="assistant-field">
+          <p class="assistant-text">
+            Timesheet view:
+            <span
+              >{{ userDetailTimesheet?.fullName }}
+              <span (click)="clearUserFilter()"
+                ><img src="assets/images/close.svg" alt="Clear" /></span
+            ></span>
+          </p>
+        </div>
+      </div>
+
+      <div class="basic-info">
+        <app-timesheet-attendance
+          class="app-timesheet-attendance"
+          [searchSortFilter]="searchSortFilter"
+        ></app-timesheet-attendance>
+        <div class="action-btn">
+          <a [matMenuTriggerFor]="belowMenu"
+            ><img src="assets/icons/more-icon.svg" alt="Icon"
+          /></a>
+          <mat-menu #belowMenu yPosition="below">
+            <!-- <button mat-menu-item>
+              <img src="assets/icons/ic_work-field.svg" alt="Icon" />View job
+              details
+            </button> -->
+            <button (click)="downloadTimesheet()" mat-menu-item>
+              <img src="assets/images/Download_ic.svg" alt="Icon" />Download
+              timesheet
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="filter_row">
+    <app-tabs [tabs]="navLinks" (tabClicked)="routeHandling($event)"></app-tabs>
+  </div>
+  <div class="search-filter-wrap">
+    <div class="common_search_wrapper">
+      <app-common-search
+        class="app-common-search"
+        [placeholder]="'Search shift by name'"
+        (setSearch)="searchEvent($event)"
+      ></app-common-search>
+    </div>
+    <div class="right_col">
+      <div
+        [hidden]="
+          (searchSortFilter | getControl: ['type']).value ==
+            timeSheetStatus.APPROVED ||
+          (searchSortFilter | getControl: ['type']).value ==
+            timeSheetStatus.REJECTED
+        "
+        class="sort_by_wrapper"
+      >
+        <mat-checkbox #selectCheckElemref>Shifts selected</mat-checkbox>
+      </div>
+      <ng-container
+        *ngIf="selectCheckElemref.checked; else singleSelectionTemplate"
+      >
+        <div [hidden]="
+        (searchSortFilter | getControl: ['type']).value ==
+          timeSheetStatus.APPROVED ||
+        (searchSortFilter | getControl: ['type']).value ==
+          timeSheetStatus.REJECTED
+      " class="reject-approve-wrap">
+          <button
+            (click)="bulkSelection(timeSheetStatus.REJECTED)"
+            type="button"
+            class="cancel-btn"
+          >
+            Reject
+          </button>
+          <button
+            (click)="bulkSelection(timeSheetStatus.APPROVED)"
+            type="button"
+            class="primary-btn"
+          >
+            Approve selected
+            <span
+              *ngIf="
+                checkboxSelectionConfig.control.value &&
+                checkboxSelectionConfig.control.value.length
+              "
+              >{{
+                " (" + checkboxSelectionConfig.control.value.length + ")"
+              }}</span
+            >
+          </button>
+        </div>
+      </ng-container>
+      <ng-template #singleSelectionTemplate>
+        <button mat-button [matMenuTriggerFor]="menu" class="sortby_btn">
+          <img src="assets/images/Sort.svg" alt="" />
+          <span class="selected_value">
+            {{ sorting }}
+          </span>
+          <img src="assets/images/Arrow_Bottom.svg" alt="" />
+        </button>
+
+        <button (click)="onFilterHandler()" type="button" class="filter_btn">
+          <img src="assets/images/Filter.svg" alt="" />
+          Filter
+          <span class="applied_icon">
+            <img
+              src="assets/images/white_check.svg"
+              alt=""
+              class="filter_icon"
+            />
+          </span>
+        </button>
+      </ng-template>
+    </div>
+  </div>
+  <div class="list_view_wrapper">
+    <div class="cstm_table_wrapper">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" summary="staff details" >
+        <ng-container matColumnDef="userData">
+          <th mat-header-cell *matHeaderCellDef scope="staff name" >Staff name</th>
+          <td
+            (click)="openStaffDetail(element)"
+            mat-cell
+            *matCellDef="let element"
+          >
+            <p class="staff-name">
+              {{ element?.jobData[0]?.userData?.status != 'deleted' ? (element?.jobData[0]?.userData?.fullName | checkNull) : "This user does not exist" }}
+            </p>
+            <p class="staff-id">
+              Job id: {{ element?.jobId | checkNull: "NA" }}
+
+              <span
+                *ngIf="
+                  element?.shift?.clockIn &&
+                  element?.shift?.clockOut &&
+                  type == 4
+                "
+                class="request-status"
+                >Action pending</span
+              >
+              <span
+                *ngIf="
+                  (!element?.shift?.clockIn || !element?.shift?.clockOut) &&
+                  element.shift.status === jobStatus.REST &&
+                  type == 4
+                "
+                class="request-status"
+                >Off day</span
+              >
+              <span
+                *ngIf="
+                  (!element?.shift?.clockIn || !element?.shift?.clockOut) &&
+                  element.shift.status === jobStatus.WORKING &&
+                  element.shift.isApprovedByWorker &&
+                  type == 4
+                "
+                class="request-status"
+                >Unapproved</span
+              >
+              <span
+                *ngIf="
+                  (!element?.shift?.clockIn || !element?.shift?.clockOut) &&
+                  element.shift.status === jobStatus.WORKING &&
+                  !element.shift.isApprovedByWorker &&
+                  type == 4
+                "
+                class="request-status"
+                >Approved</span
+              >
+            </p>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="jobData">
+          <th mat-header-cell *matHeaderCellDef scope="shift name & time" >Shift name & time</th>
+          <td mat-cell *matCellDef="let element">
+            <p>{{ element?.shift?.title }}</p>
+            <p>
+              {{
+                element?.shift?.startTime
+                  | customDate: customDateformat.shortTime
+              }}
+              -
+              {{
+                element?.shift?.endTime | customDate: customDateformat.shortTime
+              }}
+            </p>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="shiftDate">
+          <th mat-header-cell *matHeaderCellDef scope="shift date" >Shift date</th>
+          <td mat-cell *matCellDef="let element">
+            <!-- <p>Morning shit</p> -->
+            <p>{{ element?.shift?.shiftDate | customDate }}</p>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="clockIn">
+          <th mat-header-cell *matHeaderCellDef scope="clock-in time" >Clock-in time</th>
+          <td mat-cell *matCellDef="let element">
+            {{
+              element?.shift?.clockIn | customDate: customDateformat.shortTime
+            }}
+            <span *ngIf="element?.shift?.isLateIn" class="late-in"
+              >Late In</span
+            >
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="clockOut">
+          <th mat-header-cell *matHeaderCellDef scope="clock-out time" >Clock-out time</th>
+          <td mat-cell *matCellDef="let element">
+            {{
+              element?.shift?.clockOut | customDate: customDateformat.shortTime
+            }}
+            <span *ngIf="element?.shift?.isEarlyOut" class="early-out"
+              >Early Out</span
+            >
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="totalShiftHours">
+          <th mat-header-cell *matHeaderCellDef scope="logged hrs" >Logged Hrs</th>
+          <td mat-cell *matCellDef="let element">
+            {{
+              element?.shift.clockOut
+                | calcTimeDiff
+                  : element?.shift?.clockIn
+                  : timeDifference.HOURS_MINUTES
+            }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef scope="action" >Action</th>
+
+          <td mat-cell *matCellDef="let element">
+            <ng-container
+              *ngIf="
+                element.shift.workStatus === timeSheetStatus.APPROVED ||
+                  element.shift.workStatus === timeSheetStatus.REJECTED;
+                else unapprovedLeaveTemplate
+              "
+            >
+              NA
+            </ng-container>
+            <ng-template #unapprovedLeaveTemplate>
+              <ng-container
+                *ngIf="
+                  !selectCheckElemref.checked;
+                  else selectioncheckboxTemplate
+                "
+              >
+                <ul class="action-list">
+                  <li
+                    *ngIf="element?.shift?.clockIn && element?.shift?.clockOut"
+                    (click)="
+                      singleSelectionUpdatesheet(
+                        element,
+                        timeSheetStatus.APPROVED
+                      )
+                    "
+                  >
+                    <a
+                      class="check-icon"
+                      matTooltip="Approve timesheet"
+                      matTooltipPosition="above"
+                      ><img src="assets/images/check_icon.svg" alt="Check Icon"
+                    /></a>
+                  </li>
+                  <li
+                    *ngIf="element?.shift?.clockIn && element?.shift?.clockOut"
+                    (click)="
+                      singleSelectionUpdatesheet(
+                        element,
+                        timeSheetStatus.REJECTED
+                      )
+                    "
+                  >
+                    <a
+                      class="remove-icon"
+                      matTooltip="Reject timesheet"
+                      matTooltipPosition="above"
+                      ><img
+                        src="assets/images/close_icon.svg"
+                        alt="Remove Icon"
+                    /></a>
+                  </li>
+
+                  <li
+                    *ngIf="
+                      !element?.shift.isApprovedByWorker ||
+                      ((!element?.shift?.clockIn ||
+                        !element?.shift?.clockOut) &&
+                        (element?.shift?.workStatus === timeSheetStatus.LEAVE ||
+                          element?.shift?.workStatus ===
+                            timeSheetStatus.WORKERUNAPPROVED))
+                    "
+                    (click)="
+                      singleSelectionUpdatesheet(
+                        element,
+                        timeSheetStatus.REJECTED
+                      )
+                    "
+                  >
+                    <a matTooltip="Report" matTooltipPosition="above"
+                      ><img src="assets/icons/warning_ic.svg" alt="Remove Icon"
+                    /></a>
+                  </li>
+                  <li
+                    *ngIf="element|checkTimesheetEdit"
+                    (click)="editTimeSheet(element)"
+                  >
+                    <a
+                      class="edit-icon"
+                      matTooltip="Edit timesheet"
+                      matTooltipPosition="above"
+                      ><img src="assets/images/edit_icon.svg" alt="Edit Icon"
+                    /></a>
+                  </li>
+                </ul>
+              </ng-container>
+              <ng-template #selectioncheckboxTemplate>
+                <mat-checkbox
+                  *ngIf="element?.shift?.clockIn && element?.shift?.clockOut"
+                  #singleSelectionCheckboxRef
+                  (change)="onCheckboxChange()"
+                  [value]="element"
+                ></mat-checkbox>
+                <span
+                  *ngIf="!element?.shift?.clockIn || !element?.shift?.clockOut"
+                  >NA</span
+                >
+              </ng-template>
+            </ng-template>
+          </td>
+        </ng-container>
+
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns; sticky: true"
+        ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <div *ngIf="!timesheetList?.length">
+        <app-no-record [message]="type|emptyStatePipe:TIMESHEET_EMPTY_STATES"></app-no-record>
+      </div>
+    </div>
+    <div class="timesheet-pagination-wrap">
+      <mat-paginator
+        appStylePagination
+        [length]="total"
+        [pageIndex]="page - 1"
+        [pageSize]="limit"
+        [pageSizeOptions]="pageOptions"
+        (page)="changePage($event)"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</div>
+
+<mat-menu #menu="matMenu">
+  <button
+    mat-menu-item
+    *ngFor="let item of timeSheetMatMenu"
+    (click)="selectMenu(item)"
+  >
+    <span>{{ item?.name }}</span>
+  </button>
+</mat-menu>

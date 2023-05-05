@@ -1,0 +1,113 @@
+<div class="page_main_wrapper">
+
+  <div class="top_head">
+    <div class="left_col">
+      <div class="breadcrumbs">
+        <ul>
+          <li><a>Schedule</a></li>
+          <li>Shifts</li>
+        </ul>
+      </div>
+      <h3 class="page-title">Shifts</h3>
+    </div>
+    <div class="right_col">
+      <app-common-search class="app-common-search" (setSearch)="onSetSearch($event)"></app-common-search>
+      <button class="filter_btn" (click)="openFilter()">
+        <img src="assets/images/Filter.svg" alt="">
+        Filter
+      </button>
+    </div>
+  </div>
+  <div class="cstm_table_wrapper">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" summary="shift table" >
+
+      <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef scope="slot id" > Slot ID </th>
+        <td mat-cell *matCellDef="let element"> {{element?.slotId}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef scope="shift name" > Shift Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name | titlecase}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="timing">
+        <th mat-header-cell *matHeaderCellDef scope="timing" > Timing </th>
+        <td mat-cell *matCellDef="let row;">
+          {{row|timeDuration:'TIME_DIFF'}}
+        </td>
+      </ng-container>
+
+      <!-- Working Days Column -->
+      <ng-container matColumnDef="working_days" >
+        <th mat-header-cell *matHeaderCellDef scope="working days" > Working Days </th>
+        <td mat-cell *matCellDef="let row;">
+          <ng-container *ngFor="let item of row?.weekDays; let isLast=last">
+            <span>{{item |titlecase}}{{isLast?'':', '}}</span>
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <!--  Date of Creation -->
+      <ng-container matColumnDef="creation_date">
+        <th mat-header-cell *matHeaderCellDef scope="date of creation" > Date of Creation </th>
+        <td mat-cell *matCellDef="let element"> {{element?.createdAt |constantDate:'DATE_TYPE1'}} </td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef scope="action" > Action </th>
+        <td mat-cell *matCellDef="let row">
+          <a matTooltip="Edit" (click)="openEditshift(row)">
+            <figure class="edit_row">
+              <img src="assets/images/table_edit.svg" alt="">
+            </figure>
+          </a>
+        </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef scope="shift status" > Shift Status </th>
+        <td mat-cell *matCellDef="let row;">
+       <div class="table_action_btn_wrapper">
+        <button [disabled]="row?.status=='active'" matTooltip="Active" (click)="onAction(row, 'active')"
+        class="toggle_btn" [ngClass]="{'active': row?.status=='active'}" >Active</button>
+        <button [disabled]="row?.status=='block'" matTooltip="Inactive" (click)="onAction(row,'block')"
+          class="toggle_btn border_radius" [ngClass]="{'block': row?.status=='block'}" >Inactive</button>
+       </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <!-- <mat-paginator *ngIf="total>0" (page)="onPageHandler($event)" appStylePagination [hidePageSize]="true"
+      [pageSizeOptions]="pageOptions" [pageSize]="limit" [pageIndex]="page-1" [length]="total"></mat-paginator> -->
+
+      <div class="job_list_paginator_wrapper">
+          <div class="data_count_wrapper">
+           <span *ngIf="total > 0"> Showing {{limit}} from {{total}} data </span>
+          </div>
+          <div class="list_paginator_wrapper">
+            <mat-paginator *ngIf="total>0" (page)="onPageHandler($event)" appStylePagination [hidePageSize]="true"
+              [pageSizeOptions]="pageOptions" [pageSize]="limit" [pageIndex]="page-1" [length]="total"></mat-paginator>
+          </div>
+        </div>
+
+    <div *ngIf="total==0 && dataSource.data!=null" class="no_search_wrapper">
+      <figure class="icon">
+        <img src="assets/images/Search_icon.svg" alt="">
+      </figure>
+      <p>No data found</p>
+    </div>
+
+  </div>
+</div>

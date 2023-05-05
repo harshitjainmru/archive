@@ -1,0 +1,112 @@
+<div class="popup_main_wrapper">
+  <div class="heading">
+    <h3>Edit business category & documents</h3>
+  </div>
+  <div class="inner_content_wrapper">
+    <form [formGroup]="thirdStepForm">
+      <div class="flex">
+        <div class="col-12">
+          <mat-label>Business category</mat-label>
+          <app-select-jobarea
+            [controls]="thirdStepForm | getControl: ['businessCategories']"
+            [searchUrl]="searchBusinessUrl"
+            [type]="stateType"
+            [validateKey]="'B_CATEGORY'"
+            [placeholder]="'Search business category'"
+            [selectPlaceholder]="'Business category'"
+          >
+          </app-select-jobarea>
+
+          <!-- <app-chip-search-form class="app-chip-search-form"
+                [searchObject]="businessCategoriesConfig"
+                      [parant]="'job'"
+                >
+                </app-chip-search-form> -->
+        </div>
+      </div>
+
+      <!-- image/jpeg,image/png -->
+      <div class="flex">
+        <div class="col-12">
+          <mat-label>Documents for verification (upload at least 2)</mat-label>
+          <div class="doc_upload_wrapper">
+            <div (click)="inputSelection.click()" class="doc_upload">
+              <img src="assets/icons/doc-ic.svg" alt="" />
+              <strong>Upload documents</strong>
+              <span>File Size: 5MB Max </span>
+              <input
+                #inputSelection
+                type="file"
+                id="upload_input"
+                [accept]="documentFormats"
+                (change)="onSelectDocument($event)"
+                class="upload_input"
+                hidden
+              />
+            </div>
+
+            <div class="preview_img_wrapper">
+              <div
+                class="preview-item"
+                *ngFor="let item of docsFormArray.controls; let i = index"
+                (click)="openUrl(item)"
+              >
+                <figure class="preview_img">
+                  <ng-container [ngSwitch]="item.get('type').value">
+                    <img
+                      *ngSwitchCase="'pdf'"
+                      [title]="item.get('name').value"
+                      src="assets/images/pdf-icon.png"
+                      alt=""
+                      class="preview_icon"
+                    />
+                    <img
+                      *ngSwitchCase="'doc'"
+                      [title]="item.get('name').value"
+                      src="assets/images/doc-icon.png"
+                      alt=""
+                      class="preview_icon"
+                    />
+                    <img
+                      *ngSwitchCase="'docx'"
+                      [title]="item.get('name').value"
+                      src="assets/images/doc-icon.png"
+                      alt=""
+                      class="preview_icon"
+                    />
+                    <img
+                      *ngSwitchDefault
+                      [title]="item.get('name').value"
+                      src="assets/icons/booking_1.svg"
+                      alt=""
+                      class="preview_icon"
+                    />
+                  </ng-container>
+                  <!-- <img src="assets/images/booking_1.svg" alt="" class="preview_icon"> -->
+                  <p class="file_name">{{ item.get("name").value }}</p>
+                  <span (click)="remove(i)" class="delete">
+                    <img src="assets/images/RecycleBin.svg" alt="" />
+                  </span>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn_wrap">
+        <button (click)="close()" type="button" class="btn_secondry">
+          Cancel
+        </button>
+        <button
+          (click)="updateDetails()"
+          [disabled]="!secondStepStatus"
+          type="submit"
+          class="primary-btn"
+        >
+          Save & Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

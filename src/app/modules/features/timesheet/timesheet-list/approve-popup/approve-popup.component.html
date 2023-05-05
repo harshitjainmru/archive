@@ -1,0 +1,45 @@
+<div class="popup-wrapper">
+    <div class="popup-inner">
+        <div class="header">
+            <h3><img src="assets/icons/Warning_icon.svg" alt="Warning Icon"/> <span>Are you sure?</span></h3>
+        </div>
+        <div class="main-popup">
+            <h3>We need your consent on selected records before approval.</h3>
+            <p>Kindly click on check box to give your consent.</p>
+            <div class="grey-bg">
+                <div class="grey-bg-inner">
+                    <div class="left-content">
+                        <p>Records that don’t have any issue</p>
+                        <strong>{{recordsData[recordsTypeEnum.CLEAN]}}</strong>
+                    </div>
+                    <div class="check-box-wrap"><mat-checkbox #cleanSelectionRef (change)="changeSelection()" class="example-margin"></mat-checkbox></div>
+                </div>
+            </div>
+            <div class="red-bg">
+                <div class="red-bg-inner">
+                    <div class="left-content">
+                        <p>Records that have issues</p>
+                        <ul>
+                            <li>Late in:<strong> {{recordsData[recordsTypeEnum.LATEIN]}}</strong></li>
+                            <li>Early out:<strong> {{recordsData[recordsTypeEnum.EARLYOUT]}}</strong></li>
+                            <li>Missed:<strong> {{recordsData[recordsTypeEnum.MISSED]}}</strong></li>
+                        </ul>
+                    </div>
+                    <div class="check-box-wrap" [ngClass]="{'vis_check':!(recordsData[recordsTypeEnum.LATEIN] || recordsData[recordsTypeEnum.EARLYOUT] || recordsData[recordsTypeEnum.MISSED])}"><mat-checkbox  (change)="changeSelection()" #improperSelectionRef class="example-margin"></mat-checkbox></div>
+                </div>
+            </div>
+            <div class="description">
+                <p>
+                    By pressing on confirm button, above mentioned timesheet records will consider as approved and wouldn’t able to edit in future
+                </p>
+                <p>Read <a href="{{links.TERMSANDCONDITIONSURL}}" target="_blank">terms & conditions</a> to know more.</p>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="btn-wrap">
+                <button (click)="cancel()" type="button" class="outline-btn">Cancel</button>
+                <button (click)="confirm()" type="button" class="btn-primary">Confirm & {{data.type==timeSheetStatus.REJECTED?'reject':'approve'}} timesheet</button>
+            </div>
+        </div>
+    </div>
+</div>

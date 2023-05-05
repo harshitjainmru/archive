@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,SAAS,CAAC,qBAAqB,CAAC,MAAM;AACtC,YAAY,CAAC,MAAM,CAAC;EAChB,MAAM,EAAE,IAAI;CACf",
+    "sources": [
+        "button-loader.component.scss"
+    ],
+    "names": [],
+    "file": "button-loader.component.css"
+}

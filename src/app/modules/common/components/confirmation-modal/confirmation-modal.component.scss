@@ -1,0 +1,360 @@
+// .popup-wrapper {
+//   margin:-24px;
+//   overflow: hidden;
+//   position: relative;
+//   .popup-inner{
+//       padding: 10px 0;
+//       background-color: #f5f6fa;
+//       display: flex;
+//       position: relative;
+//       align-items: center;
+//       .close_popup{
+//           position: absolute;
+//           right:15px;
+//           top:50%;
+//           transform:translateY(-50%);
+//           z-index:9;
+//           cursor: pointer;
+//       }
+//       h1{
+//         width:100%;
+        
+//         text-align:center;
+//         margin-bottom:0;
+//       }
+//   }
+  
+// }
+// .mat-dialog-content p {
+//   font-size: 16px;
+//   text-align: center;
+//   line-height: normal;
+// }
+
+// .mat-dialog-actions {
+//   justify-content: center;
+//   margin-bottom: 0px;
+
+//   button {
+//     min-width: 100px;
+
+//     &+button {
+//       margin-left: 20px;
+//     }
+//   }
+// }
+
+// .modal_message {
+//   max-width: 400px;
+//   margin: 0 auto;
+//   padding: 20px 0;
+//   text-align: center;
+//   font-weight: 500;
+// }
+
+// .btn-wrapper{
+//   margin-bottom:30px;
+// }
+
+// @-webkit-keyframes scaleAnimation {
+//     0% {
+//       opacity: 0;
+//       -webkit-transform: scale(1.5);
+//               transform: scale(1.5);
+//     }
+//     100% {
+//       opacity: 1;
+//       -webkit-transform: scale(1);
+//               transform: scale(1);
+//     }
+//   }
+  
+//   @keyframes scaleAnimation {
+//     0% {
+//       opacity: 0;
+//       -webkit-transform: scale(1.5);
+//               transform: scale(1.5);
+//     }
+//     100% {
+//       opacity: 1;
+//       -webkit-transform: scale(1);
+//               transform: scale(1);
+//     }
+//   }
+//   @-webkit-keyframes drawCircle {
+//     0% {
+//       stroke-dashoffset: 151px;
+//     }
+//     100% {
+//       stroke-dashoffset: 0;
+//     }
+//   }
+//   @keyframes drawCircle {
+//     0% {
+//       stroke-dashoffset: 151px;
+//     }
+//     100% {
+//       stroke-dashoffset: 0;
+//     }
+//   }
+//   @-webkit-keyframes drawCheck {
+//     0% {
+//       stroke-dashoffset: 36px;
+//     }
+//     100% {
+//       stroke-dashoffset: 0;
+//     }
+//   }
+//   @keyframes drawCheck {
+//     0% {
+//       stroke-dashoffset: 36px;
+//     }
+//     100% {
+//       stroke-dashoffset: 0;
+//     }
+//   }
+//   @-webkit-keyframes fadeOut {
+//     0% {
+//       opacity: 1;
+//     }
+//     100% {
+//       opacity: 0;
+//     }
+//   }
+//   @keyframes fadeOut {
+//     0% {
+//       opacity: 1;
+//     }
+//     100% {
+//       opacity: 0;
+//     }
+//   }
+//   @-webkit-keyframes fadeIn {
+//     0% {
+//       opacity: 0;
+//     }
+//     100% {
+//       opacity: 1;
+//     }
+//   }
+//   @keyframes fadeIn {
+//     0% {
+//       opacity: 0;
+//     }
+//     100% {
+//       opacity: 1;
+//     }
+//   }
+//   #successAnimationCircle {
+//     stroke-dasharray: 151px 151px;
+//     stroke: #1fae33;
+//   }
+  
+//   #successAnimationCheck {
+//     stroke-dasharray: 36px 36px;
+//     stroke: #1fae33;
+//   }
+  
+//   #successAnimationResult {
+//     fill: #1fae33;
+//     opacity: 0;
+//   }
+  
+//   #successAnimation.animated {
+//     -webkit-animation: 1s ease-out 0s 1 both scaleAnimation;
+//             animation: 1s ease-out 0s 1 both scaleAnimation;
+//   }
+//   #successAnimation.animated #successAnimationCircle {
+//     -webkit-animation: 1s cubic-bezier(0.77, 0, 0.175, 1) 0s 1 both drawCircle, 0.3s linear 0.9s 1 both fadeOut;
+//             animation: 1s cubic-bezier(0.77, 0, 0.175, 1) 0s 1 both drawCircle, 0.3s linear 0.9s 1 both fadeOut;
+//   }
+//   #successAnimation.animated #successAnimationCheck {
+//     -webkit-animation: 1s cubic-bezier(0.77, 0, 0.175, 1) 0s 1 both drawCheck, 0.3s linear 0.9s 1 both fadeOut;
+//             animation: 1s cubic-bezier(0.77, 0, 0.175, 1) 0s 1 both drawCheck, 0.3s linear 0.9s 1 both fadeOut;
+//   }
+//   #successAnimation.animated #successAnimationResult {
+//     -webkit-animation: 0.3s linear 0.9s both fadeIn;
+//             animation: 0.3s linear 0.9s both fadeIn;
+//   }
+  
+.popup-wrapper {
+  margin:-24px;
+  overflow: hidden;
+  position: relative;
+  .popup-inner{
+      padding: 10px 0;
+      background-color: #f5f6fa;
+      display: flex;
+      position: relative;
+      align-items: center;
+      .close_popup{
+          position: absolute;
+          right:15px;
+          top:50%;
+          transform:translateY(-50%);
+          z-index:9;
+          cursor: pointer;
+      }
+      h1{
+        width:100%;
+        
+        text-align:center;
+        margin-bottom:0;
+      }
+  }
+  
+}
+.mat-dialog-content p {
+  font-size: 16px;
+  text-align: center;
+  line-height: normal;
+}
+
+.mat-dialog-actions {
+  justify-content: center;
+  margin-bottom: 0px;
+
+  button {
+    min-width: 100px;
+
+    &+button {
+      margin-left: 20px;
+    }
+  }
+}
+
+.modal_message {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px 0;
+  text-align: center;
+  font-weight: 500;
+}
+
+.btn-wrapper{
+  margin-bottom:30px;
+}
+
+@-webkit-keyframes scaleAnimation {
+    0% {
+      opacity: 0;
+      -webkit-transform: scale(1.5);
+              transform: scale(1.5);
+    }
+    100% {
+      opacity: 1;
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+  }
+  
+  @keyframes scaleAnimation {
+    0% {
+      opacity: 0;
+      -webkit-transform: scale(1.5);
+              transform: scale(1.5);
+    }
+    100% {
+      opacity: 1;
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+  }
+  @-webkit-keyframes drawCircle {
+    0% {
+      stroke-dashoffset: 151px;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+  @keyframes drawCircle {
+    0% {
+      stroke-dashoffset: 151px;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+  @-webkit-keyframes drawCheck {
+    0% {
+      stroke-dashoffset: 36px;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+  @keyframes drawCheck {
+    0% {
+      stroke-dashoffset: 36px;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+  @-webkit-keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @-webkit-keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  #successAnimationCircle {
+    stroke-dasharray: 151px 151px;
+    stroke: #1fae33;
+  }
+  
+  #successAnimationCheck {
+    stroke-dasharray: 36px 36px;
+    stroke: #1fae33;
+  }
+  
+  #successAnimationResult {
+    fill: #1fae33;
+    opacity: 0;
+  }
+  
+  #successAnimation.animated {
+    -webkit-animation: 1s ease-out 0s 1 both scaleAnimation;
+            animation: 1s ease-out 0s 1 both scaleAnimation;
+  }
+  #successAnimation.animated #successAnimationCircle {
+    -webkit-animation: 1s cubic-bezier(0.77, 0, 0.175, 1) 0s 1 both drawCircle, 0.3s linear 0.9s 1 both fadeOut;
+            animation: 1s cubic-bezier(0.77, 0, 0.175, 1) 0s 1 both drawCircle, 0.3s linear 0.9s 1 both fadeOut;
+  }
+  #successAnimation.animated #successAnimationCheck {
+    -webkit-animation: 1s cubic-bezier(0.77, 0, 0.175, 1) 0s 1 both drawCheck, 0.3s linear 0.9s 1 both fadeOut;
+            animation: 1s cubic-bezier(0.77, 0, 0.175, 1) 0s 1 both drawCheck, 0.3s linear 0.9s 1 both fadeOut;
+  }
+  #successAnimation.animated #successAnimationResult {
+    -webkit-animation: 0.3s linear 0.9s both fadeIn;
+            animation: 0.3s linear 0.9s both fadeIn;
+  }
+  
+
+  

@@ -1,0 +1,192 @@
+.page_main_wrapper .top_head {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 480px) {
+  .page_main_wrapper .top_head {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+}
+
+.page_main_wrapper .top_head h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+@media (max-width: 480px) {
+  .page_main_wrapper .top_head .btn_wrapper {
+    margin-left: auto;
+  }
+}
+
+.page_main_wrapper .top_head .btn_wrapper button {
+  margin-left: 15px;
+}
+
+.page_main_wrapper .inner_content_wrapper {
+  border: 1px solid #dbe2ea;
+  background: #fff;
+  padding: 0 15px;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+@media (max-width: 1280px) {
+  .page_main_wrapper .inner_content_wrapper {
+    width: 100%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.page_main_wrapper .inner_content_wrapper .left_col {
+  width: 49%;
+  padding: 20px 0;
+}
+
+@media (max-width: 1280px) {
+  .page_main_wrapper .inner_content_wrapper .left_col {
+    width: 100%;
+  }
+}
+
+.page_main_wrapper .inner_content_wrapper .left_col .sec_wrapper .sec_title {
+  color: #000;
+  font-weight: 600;
+}
+
+.page_main_wrapper .inner_content_wrapper .right_col {
+  width: 49%;
+}
+
+@media (max-width: 1280px) {
+  .page_main_wrapper .inner_content_wrapper .right_col {
+    width: 100%;
+  }
+}
+
+.page_main_wrapper .inner_content_wrapper .right_col .suggetion_box_wrapper {
+  width: 478px;
+  height: 346px;
+  background: #ff98000d;
+  border-radius: 2px;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-left: 30px;
+  position: relative;
+}
+
+@media (max-width: 1280px) {
+  .page_main_wrapper .inner_content_wrapper .right_col .suggetion_box_wrapper {
+    width: 100%;
+  }
+}
+
+.page_main_wrapper .inner_content_wrapper .right_col .suggetion_box_wrapper h3 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  .page_main_wrapper .inner_content_wrapper .right_col .suggetion_box_wrapper h3 {
+    margin-top: 30px;
+  }
+}
+
+.page_main_wrapper .inner_content_wrapper .right_col .suggetion_box_wrapper .box_icon {
+  position: absolute;
+  right: 30px;
+  top: 0;
+}
+
+@media (max-width: 991px) {
+  .page_main_wrapper .inner_content_wrapper .right_col .suggetion_box_wrapper .box_icon {
+    width: 50px;
+  }
+}
+
+.page_main_wrapper .inner_content_wrapper .right_col .suggetion_box_wrapper .list {
+  line-height: 22px;
+  color: #6E6B6B;
+  padding: 5px 0;
+}
+
+:host ::ng-deep .slection_wrapper .mat-checkbox-inner-container {
+  display: none;
+}
+
+:host ::ng-deep .slection_wrapper .mat-checkbox-label {
+  line-height: 24px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #96a5b8;
+  border: 1px solid #96a5b8;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 15px;
+}
+
+:host ::ng-deep .slection_wrapper .mat-checkbox {
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+
+:host ::ng-deep .slection_wrapper .mat-checkbox-checked .mat-checkbox-label {
+  background-color: #14B1BD;
+  color: #fff;
+  border: 1px solid #14B1BD;
+}
+
+:host ::ng-deep .slection_wrapper .day {
+  text-transform: uppercase;
+}
+
+:host ::ng-deep .inner_content_wrapper .mat-input-element::first-letter {
+  text-transform: capitalize;
+}
+/*# sourceMappingURL=add-shift.component.css.map */

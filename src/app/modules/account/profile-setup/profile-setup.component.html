@@ -1,0 +1,74 @@
+<div class="profile-setup">
+  <div class="logout-wrap"><a (click)="onLogout()"><img src="assets/icons/Power.svg" alt="Icon"><span>Logout</span></a>
+  </div>
+  <div class="wrap">
+    <h3 class="page_title">Complete Profile</h3>
+  </div>
+
+  <div class="subway-wrapper">
+
+    <ul class="subway">
+      <li class="subway-stop" [ngClass]="{'is-active': 
+      (currentTabIndex==profileSteps.FIRST_STEP || 
+      currentTabIndex==profileSteps.SECOND_STEP || 
+      currentTabIndex==profileSteps.THIRD_STEP), 'success':(currentTabIndex==profileSteps.SECOND_STEP || 
+      currentTabIndex==profileSteps.THIRD_STEP) }">
+        <div class="subway-stop-box">
+          <span class="value">1</span>
+          <img src="assets/images/tick.svg" alt="" class="success_icon">
+        </div>
+
+      </li>
+      <li class="subway-stop" [ngClass]="{'is-active': (currentTabIndex==profileSteps.SECOND_STEP || 
+      currentTabIndex==profileSteps.THIRD_STEP),'success':(currentTabIndex==profileSteps.THIRD_STEP) }">
+        <div class="subway-stop-box">
+          <span class="value">2</span>
+          <img src="assets/images/tick.svg" alt="" class="success_icon">
+        </div>
+
+      </li>
+      <li class="subway-stop" [ngClass]="{'is-active':currentTabIndex==profileSteps.THIRD_STEP}">
+        <div class="subway-stop-box">
+          <span class="value">3</span>
+          <img src="assets/images/tick.svg" alt="" class="success_icon">
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- <div *ngIf="currentTabIndex>1" class="icon">
+    <mat-icon class="link" (click)="previousStep()">arrow_back_ios</mat-icon>
+    <img src="assets/images/arrow-left.svg" alt="" (click)="previousStep()">
+  </div> -->
+
+  <div *ngIf="currentTabIndex==profileSteps.FIRST_STEP" class="step-description">
+    <h3 class="step_title"> Company Details</h3>
+    <p>This step help us to identify company's details</p>
+  </div>
+  <div *ngIf="currentTabIndex==profileSteps.SECOND_STEP" class="step-description">
+    <h3 class="step_title">
+      <img src="assets/images/arrow-left.svg" alt="" (click)="previousStep()"> Add company address
+    </h3>
+    <p>This step helps us verify your company's registered address.</p>
+  </div>
+  <div *ngIf="currentTabIndex==profileSteps.THIRD_STEP" class="step-description">
+    <h3 class="step_title">
+      <img src="assets/images/arrow-left.svg" alt="" (click)="previousStep()"> Business Category & Documents
+    </h3>
+    <p>Upload documents, It helps us to verify the company existence</p>
+  </div>
+
+  <ng-container [ngSwitch]="currentTabIndex">
+    <div *ngSwitchCase="1" class="step-first-wrapper">
+      <app-steps-one (stepOneData)="onStepOneData($event)"></app-steps-one>
+    </div>
+    <div *ngSwitchCase="2" class="step-second-wrapper">
+      <app-steps-two (stepTwoData)="onStepTwoData($event)"></app-steps-two>
+    </div>
+    <div *ngSwitchCase="3" class="step-third-wrapper">
+      <app-steps-three class="app-steps-three" (stepThreeData)="onStepThreeData($event)" ></app-steps-three>
+    </div>
+    <div *ngSwitchDefault></div>
+  </ng-container>
+
+</div>

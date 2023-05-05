@@ -1,0 +1,73 @@
+<div class="flex">
+    <div class="col-6">
+        <mat-label>{{owlDateTimeConfig?.label.startTime}}</mat-label>
+        <mat-form-field
+          appearance="outline"
+          class="time-picker"
+          [owlDateTimeTrigger]="startTime"
+        >
+          <input
+            matInput
+            readonly
+            [formControl]="owlDateTimeConfig.startTime"
+            [min]="owlDateTimeConfig.minLimitTime ? owlDateTimeConfig.minLimitTime : ''"
+            [owlDateTime]="startTime"
+            [placeholder]="owlDateTimeConfig.placeholder.startTime"
+          />
+          <owl-date-time
+            [pickerType]="'timer'"
+            #startTime
+            [stepMinute]="owlDateTimeConfig.stepMinute"
+            [hour12Timer]="true"
+            [startAt]="owlDateTimeConfig.startAt"
+          ></owl-date-time>
+          <img
+            class="watch"
+            matSuffix
+            src="./assets/icons/ic_clock.svg"
+            alt=""
+          />
+          <!-- <mat-error>{{
+            owlDateTimeConfig.startAt | validate:owlDateTimeConfig.labelKeys.startTime
+          }}</mat-error> -->
+        </mat-form-field>
+      </div>
+
+      <div class="col-6">
+        <mat-label>{{owlDateTimeConfig?.label.endTime}}</mat-label>
+        <mat-form-field
+          appearance="outline"
+          class="time-picker"
+          [owlDateTimeTrigger]="endTime"
+        >
+          <input
+            matInput
+            [min]="owlDateTimeConfig.startTime.value"
+            [max]="owlDateTimeConfig.maxLimtTime ? owlDateTimeConfig.maxLimtTime: ''"
+            readonly
+            
+            [formControl]="owlDateTimeConfig.endTime"
+            [placeholder]="owlDateTimeConfig.placeholder.endTime"
+        
+            [owlDateTime]="endTime"
+          />
+          <owl-date-time
+            [pickerType]="'timer'"
+            #endTime
+            [startAt]="owlDateTimeConfig.startAt ? owlDateTimeConfig.startAt : ''"
+            [stepMinute]="owlDateTimeConfig.stepMinute"
+            [hour12Timer]="true"
+          ></owl-date-time>
+          <img
+            class="watch"
+            matSuffix
+            src="./assets/icons/ic_clock.svg"
+            alt=""
+          />
+          <!-- <mat-error>{{
+           owlDateTimeConfig.endTime | validate:owlDateTimeConfig.labelKeys.endTime
+          }}</mat-error> -->
+        </mat-form-field>
+      </div>
+
+</div>

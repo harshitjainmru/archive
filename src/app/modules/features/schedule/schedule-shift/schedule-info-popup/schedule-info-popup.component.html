@@ -1,0 +1,29 @@
+<div class="popup-wrapper">
+    <div class="popup-inner">
+        <div class="header">
+            <h1><img src="assets/images/Resume.svg" alt="Staff Icon"/> <span>Staff info</span></h1>
+            <a (click)="close()"><img src="assets/icons/Close_ic.svg" alt="Close Icon"/></a>
+        </div>
+    </div>
+    <div class="popup-main">
+        <div class="top-info">
+            <figure>
+                <img appImageFallback [src]="infoData?.applicant?.status != 'deleted' ? infoData?.applicant?.profileImage : ''" alt="" />
+            </figure>
+            <h3>{{(infoData?.applicant?.status != 'deleted') ? (infoData?.applicant?.fullName | checkNull): 'This User does not exist' }}</h3>
+        </div>
+        <div class="basic-info">
+            <ul>
+                <li><strong>Job name: </strong> <span> {{infoData?.job?.title}}</span></li>
+                <li><strong>Role: </strong> <span> {{infoData?.jobRole?.jobCategory?.name}} - {{infoData?.jobRole?.name}}</span></li>
+                <li><strong>Job id: {{infoData?.applicant?.jobId}}</strong></li>
+            </ul>
+        </div>
+        <div class="min-engagement-wrap">
+            <ul>
+                <li><img src="assets/images/add_shift_small.svg" alt="Icon"/> <strong>Minimum engagement</strong></li>
+                <li>{{infoData?.workingHours?.hours}} hrs & {{infoData?.workingHours?.days}} days /person in week</li>
+            </ul>
+        </div>
+    </div>
+</div>

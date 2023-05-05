@@ -1,0 +1,38 @@
+<div class="page_main_wrapper">
+  <app-search-worker (filterData)="getFilterData($event)"></app-search-worker>
+  <ng-container *ngIf="workerList;else initial">
+    <section class="bottom_sec">
+      <div class="total_count">
+        <h3>{{total}} Worker Found</h3>
+        <p>Based on your preferences</p>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <ng-container *ngFor="let worker of workerList;">
+            <app-worker-card [workerData]="worker"></app-worker-card>
+          </ng-container>
+        </div>
+      </div>
+    </section>
+    <div class="cstm_pagination_wrapper">
+      <div *ngIf="total!=0" class="left_col">
+        <span>Showing workers</span>
+      </div>
+      <div *ngIf="total>10" class="right_col">
+        <mat-paginator (page)="onPageHandler($event)" [pageSizeOptions]="pageOptions" showFirstLastButtons
+          [hidePageSize]='true' [pageSize]="limit" [pageIndex]="page-1" onPageHandler [length]="total"></mat-paginator>
+      </div>
+    </div>
+    <!-- <div *ngIf="total==0">
+      <p>No data found</p>
+    </div> -->
+  </ng-container>
+  <ng-template #initial>
+    <div class="no_search_wrapper">
+      <figure class="icon">
+        <img src="assets/images/Search_icon.svg" alt="">
+      </figure>
+      <p>Please fill above fields to find workers</p>
+    </div>
+  </ng-template>
+</div>

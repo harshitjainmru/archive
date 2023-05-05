@@ -1,0 +1,59 @@
+agm-map {
+  height: 300px;
+  position: relative;
+}
+
+.popup_wrapper {
+  margin: -24px;
+}
+
+.popup_wrapper .heading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background: #f3f3f380;
+  padding: 10px 15px;
+}
+
+.popup_wrapper .heading h3 {
+  color: #14B1BD;
+  font-size: 20px;
+  margin-bottom: 0;
+  line-height: 1.8;
+}
+
+.popup_wrapper .heading .close {
+  cursor: pointer;
+}
+
+.popup_wrapper .inner_content {
+  padding: 15px;
+}
+
+.popup_wrapper .inner_content .wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.popup_wrapper .inner_content .wrap .form_group {
+  width: calc(100% - 80px);
+}
+
+.popup_wrapper .inner_content .wrap button {
+  height: 34px;
+  margin-top: -4px;
+}
+/*# sourceMappingURL=google-map.component.css.map */

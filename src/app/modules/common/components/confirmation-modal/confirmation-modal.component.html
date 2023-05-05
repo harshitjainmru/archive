@@ -1,0 +1,68 @@
+<div class="popup-wrapper">
+  <div class="popup-inner" *ngIf="modalData?.title">
+    <h1 mat-dialog-title>{{ modalData?.title }}</h1>
+  </div>
+  <mat-dialog-content>
+    <div class="modal_message">
+      <p>{{ modalData?.message }}</p>
+      <div *ngIf="modalData?.showTextBox" mat-dialog-actionst>
+        <ng-container
+          *ngIf="
+            modalData?.textBoxType === modalType.PARAGRAPH;
+            else actionTemplate
+          "
+        >
+          <h4 style="text-align: center; margin-top: 20px">
+            {{ modalData?.textBoxpara }}
+          </h4>
+        </ng-container>
+        <ng-template #actionTemplate>
+          <h4 style="text-align: center; margin-top: 20px">
+            {{ "REASON_TO_ACTION" }}
+          </h4>
+          <mat-form-field>
+            <textarea
+              matInput
+              placeholder="Type here.."
+              [(ngModel)]="responseData.note"
+              name="note"
+            ></textarea>
+          </mat-form-field>
+        </ng-template>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <div class="btn-wrapper">
+      <button
+        mat-stroked-button
+        type="button"
+        *ngIf="!modalData?.hideCancelButton && !modalData?.hideConfirmButton"
+        (click)="onNoClick()"
+        class="modal-btn no"
+      >
+        {{ modalData?.cancelButtonText }}
+      </button>
+      <button
+        mat-raised-button
+        type="button"
+        *ngIf="modalData?.hideConfirmButton"
+        (click)="onNoClick()"
+        class="modal-btn no"
+      >
+        {{ modalData?.cancelButtonText }}
+      </button>
+      <button
+        mat-raised-button
+        type="button"
+        color="primary"
+        *ngIf="modalData?.hideConfirmButton"
+        [mat-dialog-close]="responseData"
+        (click)="confirm()"
+        cdkFocusInitial
+      >
+        {{ modalData?.confirmButtonText }}
+      </button>
+    </div>
+  </mat-dialog-actions>
+</div>

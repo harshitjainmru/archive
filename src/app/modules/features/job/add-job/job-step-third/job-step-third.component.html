@@ -1,0 +1,448 @@
+<div class="add-job-wrapper">
+  <div class="title-header">
+    <div class="icon-title-wrap">
+      <div class="icon" (click)="onBack()">
+        <img src="assets/images/arrow-left.svg" alt="Prev Icon" />
+      </div>
+      <h3>Salary & Schedule</h3>
+    </div>
+    <div class="btn-wrap">
+      <button type="button" (click)="onCancelStep()" class="cancel-btn">
+        Cancel
+      </button>
+      <button type="button" (click)="onNextSubmit()" [disabled]="thirdStepForm.invalid" class="primary-btn">
+        Preview
+      </button>
+    </div>
+  </div>
+  <form [formGroup]="thirdStepForm" (ngSubmit)="onSubmit()" #triggerSubmitRef="ngForm">
+    <div class="third-step-wrapper">
+      <div class="flex">
+        <div class="col-12">
+          <div class="flex">
+            <div class="col-6 column-60">
+              <div class="base-salary-section">
+                <div class="section-title">
+                  <h3 class="title">
+                    What would be the base salary for this job?
+                  </h3>
+                  <p class="sub-title">
+                    You can add additional allowances during timeslot selection
+                  </p>
+                </div>
+                <div class="flex base_salary">
+                  <div class="col-lg-12 col-xl-12">
+                    <div class="hours_selection" formGroupName="baseSalary">
+                      <mat-form-field appearance="outline" class="price">
+                        <input formControlName="salary" 
+                        appFloatDigitOnly matInput placeholder="Enter minimum amount"
+                          autocomplete="off" />
+                        <img matSuffix [src]="countryData?.currencyIcon | currencyImage" alt="" />
+                        <mat-error>{{
+                          salaryCtrl
+                            | getControl: ["salary"]
+                            | validate: "SALARY"
+                        }}</mat-error>
+                      </mat-form-field>
+                      <span class="per">/hr</span>
+                      <input type="hidden" numberOnly formControlName="currency" />
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- <mat-label class="required head"
+              >Number of workers do you want for this job?</mat-label
+            >
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                formControlName="vacancies"
+                placeholder="Enter number of workers"
+                type="tel"
+                numberOnly
+                appNullifyZero
+                [maxlength]="LIMIT?.maxvacancies"
+              />
+              <mat-error>{{
+                secondStepForm
+                  | getControl: ["vacancies"]
+                  | validate: "NO_OF_WORKERS":"REQUIRED_ERROR2"
+              }}</mat-error>
+            </mat-form-field> -->
+            </div>
+            <div class="col-6 column-40">
+              <div class="salary-range">
+                <h3>Salary range for “{{ selectedJobRole?.scrubbed }}”</h3>
+                <div class="range-info">
+                  <div class="range-flex">
+                    <div class="range-col">
+                      <div class="inner">
+                        <p>Min <br />salary</p>
+                        <div class="range-value">
+                          {{
+                            selectedJobRole | roleSalary: "min" | customCurrency
+                          }}
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="range-col">
+                      <div class="inner">
+                        <p>Max <br />salary</p>
+                        <div class="range-value">
+                          {{
+                            selectedJobRole | roleSalary: "max" | customCurrency
+                          }}
+                        </div>
+                      </div>
+                    </div> -->
+                    <div class="range-col suggested-salary">
+                      <div class="inner">
+                        <p>Suggested <br />Salary</p>
+                        <div class="range-value spacing">
+                          {{
+                            selectedJobRole
+                              | roleSalary: "suggested"
+                              | customCurrency
+                          }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex">
+        <div class="col-12">
+          <div class="flex">
+            <div class="col-6 column-60">
+              <div class="timeline-sction">
+                <div class="section-title">
+                  <h3 class="title">What is the timeline for this job?</h3>
+                </div>
+                <div class="date-pick-wrap">
+                  <div class="flex" formGroupName="timeline">
+                    <div class="col-6">
+                      <mat-label>Start date</mat-label>
+                      <mat-form-field appearance="outline" (click)="this.startDate.open()">
+                        <input matInput formControlName="startDate" readonly [min]="nextDay" [max]="maxStartDate"
+                          (dateChange)="toDateChange($event)" [matDatepicker]="startDate" placeholder="Select date"
+                          readonly />
+                        <mat-datepicker-toggle matSuffix [for]="startDate">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #startDate></mat-datepicker>
+                        <mat-error>{{
+                          timelineCtrl
+                            | getControl: ["startDate"]
+                            | validate: "START_DATE"
+                        }}</mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                      <mat-label>End date</mat-label>
+                      <mat-form-field appearance="outline" (click)="this.endtDate.open()">
+                        <input matInput formControlName="endDate" readonly [min]="fromDate" [max]="maxFromDate"
+                          [matDatepicker]="endtDate" placeholder="Select date" readonly
+                          (dateChange)="endDateChanged($event)" />
+                        <mat-datepicker-toggle matSuffix [for]="endtDate">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #endtDate></mat-datepicker>
+                        <mat-error>{{
+                          timelineCtrl
+                            | getControl: ["endDate"]
+                            | validate: "END_DATE"
+                        }}</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <div class="fyi-wrap">
+                  <div class="inner">
+                    <div class="icon-wrap">
+                      <img src="assets/icons/info_icon.svg" alt="Info Icon" />
+                    </div>
+                    <div class="fly-info">
+                      <p>
+                        <strong>FYI:</strong> This job timeline is more than 1
+                        week. Please refer
+                        <a>https://cutt.ly/rnFZ2We</a>
+                      </p>
+                    </div>
+                  </div>
+                </div> -->
+                <div class="section-title">
+                  <h3 class="title">
+                    Minimum work hours/engagement duration required for this
+                    job?
+                  </h3>
+                </div>
+                <div class="hours-days-wrap" formGroupName="workingHours">
+                  <div class="hours-wrap">
+                    <mat-form-field appearance="outline">
+                      <input formControlName="hours" numberOnly matInput appNullifyZero placeholder="No. of hours" />
+                      <mat-error>{{
+                          workingHoursCtrl
+                            | getControl: ["hours"]
+                            | validate: "HOUR":"REQUIRED_ERROR2"
+                        }}
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="and-wrap">&</div>
+                  <div class="days-wrap">
+                    <mat-form-field appearance="outline">
+                      <input formControlName="days" numberOnly matInput appNullifyZero placeholder="No. of days" />
+                      <mat-error>{{
+                          workingHoursCtrl
+                            | getControl: ["days"]
+                            | validate: "DAYS":"REQUIRED_ERROR2"
+                        }}
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="per-person">/ person in week</div>
+                </div>
+                <!-- <div class="base-salary-section"> -->
+                <div class="section-title">
+                  <h3 class="title">
+                    Number of workers do you want for this job?
+                  </h3>
+                </div>
+                <!-- <div class="hours-days-wrap"> -->
+                <div class="vacancies-wrap">
+                  <mat-form-field appearance="outline">
+                    <input matInput formControlName="vacancies" placeholder="Enter number of workers" type="tel"
+                      numberOnly appNullifyZero />
+                    <mat-error>{{
+                          vacancyCtrl
+                            | validate: "NO_OF_WORKERS":"REQUIRED_ERROR2"
+                        }}</mat-error>
+                  </mat-form-field>
+                </div>
+
+                <!-- </div> -->
+                <!-- <div class="flex base_salary">
+                    <div class="col-lg-12 col-xl-12">
+                      <div class="hours_selection" formGroupName="baseSalary">
+                       
+                      
+                      </div>
+                    </div>
+                  </div> -->
+
+                <!-- </div> -->
+              </div>
+            </div>
+
+            <div class="col-6 column-40">
+              <div class="good-example-wrap">
+                <figure class="box_icon">
+                  <img src="assets/images/ic_bulb.svg" alt="" />
+                </figure>
+                <div class="good-example">
+                  <p>
+                    Please set the start date and the end date for the duration
+                    of the job. If it is a one-day job, please enter the same
+                    values for the start and end dates.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex est-invoice">
+        <div class="col-md-6 column-60">
+          <div class="job-site-wrap" formArrayName="jobSite">
+            <div class="job-site-section" *ngFor="
+                let item of getJobSites.controls;
+                let jobSiteIndex = index
+              " [formGroupName]="jobSiteIndex">
+              <div class="job-site-no">
+                <h3>Job Site {{ jobSiteIndex + 1 }}:</h3>
+
+                <mat-label>Where is the work location for this job?</mat-label>
+                <ng-container>
+                  <app-select-address [addressControl]="item['controls']['address']"
+                    [controls]="item['controls']['addressId']"></app-select-address>
+                </ng-container>
+
+                <mat-label>How many workers do you need for this site?</mat-label>
+                <mat-form-field appearance="outline">
+                  <input formControlName="noOfWorkers" placeholder="Enter number of workers" matInput numberOnly
+                    appNullifyZero/>
+                  <mat-error>{{
+                    item["controls"]["noOfWorkers"]
+                      | validate: "NO_OF_WORKERS":"REQUIRED_ERROR2"
+                  }}</mat-error>
+                </mat-form-field>
+
+                <div class="time-slot-section" formArrayName="timeSlots">
+                  <mat-label>Add timeslot</mat-label>
+                  <div class="timeslot-blk" *ngFor="
+                      let element of timeSlots(jobSiteIndex).controls;
+                      let timeSlotIndex = index
+                    " [formGroupName]="timeSlotIndex" data-id="{{ element }}">
+                    <div class="time-slot-form">
+                      <div class="time-slot-wrap">
+                        <div class="flex">
+                          <div class="col-12">
+                            <mat-label>Timeslot {{ timeSlotIndex + 1 }}
+                            </mat-label>
+                            <mat-form-field appearance="outline">
+                              <input matInput formControlName="title" placeholder="Enter timeslot title" />
+                              <mat-error>{{
+                                element["controls"]["title"] | validate: "TITLE"
+                              }}</mat-error>
+                            </mat-form-field>
+                          </div>
+                        </div>
+
+                        <div class="flex">
+                          <div class="col-4">
+                            <mat-label>Start time</mat-label>
+                            <mat-form-field appearance="outline" class="time-picker" [owlDateTimeTrigger]="startTime">
+                              <input matInput readonly formControlName="startTime" (dateTimeChange)="
+                                  jobSiteStartTimeChange(
+                                    $event,
+                                    timeSlotIndex,
+                                    jobSiteIndex
+                                  )
+                                " [owlDateTime]="startTime" placeholder="Start time" />
+                              <owl-date-time [pickerType]="'timer'" #startTime [stepMinute]="15" [hour12Timer]="true"
+                                [startAt]="startAt"></owl-date-time>
+                              <img class="watch" matSuffix src="./assets/icons/ic_clock.svg" alt="" />
+                              <mat-error>{{
+                                element["controls"]["startTime"]
+                                  | validate: "START_TIME"
+                              }}</mat-error>
+                            </mat-form-field>
+                          </div>
+
+                          <div class="col-4">
+                            <mat-label>End time</mat-label>
+                            <mat-form-field appearance="outline" class="time-picker" [owlDateTimeTrigger]="endTime">
+                              <input matInput readonly formControlName="endTime" placeholder="End time"
+                                (dateTimeChange)="
+                                  jobSiteEndTimeChange(
+                                    $event,
+                                    element['controls']['startTime'].value,
+                                    timeSlotIndex,
+                                    jobSiteIndex
+                                  )
+                                " [owlDateTime]="endTime" />
+                              <!-- [startAt]="endAt" -->
+                              <owl-date-time [pickerType]="'timer'" #endTime [stepMinute]="15" [hour12Timer]="true">
+                              </owl-date-time>
+                              <img class="watch" matSuffix src="./assets/icons/ic_clock.svg" alt="" />
+                              <mat-error>{{
+                                element["controls"]["endTime"]
+                                  | validate: "END_TIME"
+                              }}</mat-error>
+                            </mat-form-field>
+                          </div>
+
+                          <div class="col-4" formGroupName="additionalAllowance">
+                            <mat-label>Additional allowances</mat-label>
+                            <mat-form-field appearance="outline" class="price">
+                              <input appFloatDigitOnly formControlName="salary"  matInput placeholder="Amount" />
+                              <img matSuffix [src]="
+                                  countryData?.currencyIcon | currencyImage
+                                " alt="" />
+                              <mat-error>{{
+                                element.controls.additionalAllowance.controls[
+                                  "salary"
+                                ]
+                                  | validate
+                                    : "ADDITIONAL_ALLOWANCE"
+                                    : "REQUIRED_ERROR2"
+                              }}</mat-error>
+                            </mat-form-field>
+                            <input type="hidden" formControlName="currency" />
+                          </div>
+                        </div>
+
+                        <div class="remove-time-slot" *ngIf="timeSlots(jobSiteIndex).controls.length > 1">
+                          <a (click)="
+                              removeTimeSlot(jobSiteIndex, timeSlotIndex)
+                            ">
+                            Remove time slot
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="add-time-slot" *ngIf="
+                      timeSlots(jobSiteIndex).controls.length < maxTimeSlot
+                    ">
+                    <a (click)="addTimeSlot(jobSiteIndex)"> + Add time slot </a>
+                  </div>
+                </div>
+                <button type="button" mat-button *ngIf="getJobSites.controls.length > 1" color="warn"
+                  (click)="removeJobSite(jobSiteIndex)" class="remove-btn" mat-button>
+                  Remove Job Site
+                </button>
+              </div>
+            </div>
+            <div class="add-job-site" *ngIf="getJobSites.controls.length < maxJobSite">
+              <a (click)="addJobSite()"> + Add another site</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 column-40">
+          <div class="good-example-wrap">
+            <figure class="box_icon">
+              <img src="assets/images/ic_bulb.svg" alt="" />
+            </figure>
+            <div class="good-example">
+              <div>
+                <p>
+                  Please specify whether you have the actual shift schedule for
+                  this job.
+                </p>
+                <p>
+                  Our staff workers will be instantly matched to the shifts if
+                  provided. If no shift schedule is provided, we will still be
+                  able to match to the worker's weekday/weekend preference, but
+                  not their working hour preference
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="good-example-wrap">
+            <div class="estimated-invoice">
+              <h3>Estimated total invoice :</h3>
+              <div class="invoice-info">
+                <p>The estimated total invoice will be provided to you by our consultants.</p>
+                <!-- <div class="value-row">
+                  <div class="col-value">
+                    <span class="">{{
+                      this.minEstimate | customCurrency
+                    }}</span>
+                    -
+                    <span class="">{{
+                      this.maxEstimate | customCurrency
+                    }}</span>
+                  </div>
+                </div> -->
+                <!-- <p>This Calulation done based on following formula:</p>
+                <div class="est-description">
+                  No of worker on a site X no of hours per week X ( Base pay +
+                  Allowances( x1, x2.... ) + 18% commission = SUM [Weekly
+                  Estimates for total worker on site worker ( X1- Xn)]
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

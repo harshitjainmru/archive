@@ -1,0 +1,117 @@
+.page_main_wrapper {
+  border-radius: 12px;
+  background-color: rgba(219, 226, 234, 0.4);
+}
+
+.page_main_wrapper .bottom_sec {
+  padding: 20px;
+  padding-bottom: 0;
+  background: #fff;
+}
+
+.page_main_wrapper .bottom_sec .total_count h3 {
+  color: #000;
+  font-size: 19px;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.page_main_wrapper .bottom_sec .total_count p {
+  color: #8a8a8a;
+  margin-bottom: 0;
+}
+
+.cstm_pagination_wrapper {
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-bottom: 10px;
+  background: #fff;
+  border-top: 1px solid #eee;
+}
+
+.cstm_pagination_wrapper .left_col {
+  padding-left: 15px;
+}
+
+.cstm_pagination_wrapper .left_col span {
+  white-space: nowrap;
+  color: #231e1e;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.cstm_pagination_wrapper .right_col {
+  width: 100%;
+}
+
+:host ::ng-deep .cstm_pagination_wrapper .mat-paginator {
+  background: transparent;
+}
+
+:host ::ng-deep .cstm_pagination_wrapper .mat-paginator-outer-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+:host ::ng-deep .cstm_pagination_wrapper .mat-paginator-range-actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+:host ::ng-deep .cstm_pagination_wrapper .mat-paginator-range-label {
+  margin: 0 32px 0 24px;
+  margin-right: auto;
+  margin-left: 0;
+  color: #231e1e;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.no_search_wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 50px 0;
+  background: #fff;
+  border: 1px solid #dbe2ea;
+}
+
+.no_search_wrapper .icon {
+  margin-bottom: 20px;
+}
+
+.no_search_wrapper p {
+  color: #000;
+  margin-bottom: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+/*# sourceMappingURL=worker-list.component.css.map */

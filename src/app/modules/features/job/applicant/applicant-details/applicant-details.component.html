@@ -1,0 +1,544 @@
+<div *ngIf="applicantDetails" class="page_main_wrapper">
+  <div class="breadcrumbs">
+    <ul>
+      <li><a> Staffing </a></li>
+      <li>
+        <a 
+          [routerLink]="['USER_JOB' | absolutePath]"
+          [queryParams]="{ page: 1, limit: 10 }"
+          >Jobs
+        </a>
+      </li>
+      <li *ngIf="applyId">
+        <a  (click)="routeToApplicantTab()" > {{
+          applicantDetails?.currentApplicationStatus | applicantStatus
+        }}</a>
+      </li>
+
+      <li *ngIf="!applyId">
+        <a
+          [routerLink]="['SEARCH_APPLICANT_LIST' | absolutePath: this.jobId]"
+          [queryParams]="{ page: 1, limit: 10 }"
+          >{{ "Search candidate" }}</a
+        >
+      </li>
+      <li>{{ applicantDetails?.fullName }}</li>
+    </ul>
+  </div>
+  <div class="page-header">
+    <h3 class="page-title">{{ applicantDetails?.fullName }}</h3>
+    <div
+      class="right-action"
+      *ngIf="
+        applyId &&
+        applicantDetails?.currentApplicationStatus !==
+          candidateStatus.CONTRACT_SEND &&
+        applicantDetails?.currentApplicationStatus !==
+          candidateStatus.CONTRACT_SIGNED
+      "
+    >
+      <button
+        style="margin-right: 20px"
+        *ngIf="
+          applicantDetails?.currentApplicationStatus !==
+          candidateStatus.SHORTLISTED
+        "
+        type="button"
+        class="primary-btn"
+        (click)="changeStatus(candidateStatus.SHORTLISTED)"
+      >
+        Add to shorlisted
+      </button>
+      <!-- <button
+        *ngIf="
+          applicantDetails?.currentApplicationStatus !== candidateStatus.HIRED
+        "
+        type="button"
+        class="outline-btn"
+        (click)="changeStatus(candidateStatus.HIRED)"
+      >
+        Hire
+      </button> -->
+      <button
+        *ngIf="
+          applicantDetails?.currentApplicationStatus !==
+          candidateStatus.NOT_SUITABLE
+        "
+        type="button"
+        class="not-suitable-btn"
+        (click)="changeStatus(candidateStatus.NOT_SUITABLE)"
+      >
+        Not suitable
+      </button>
+    </div>
+  </div>
+  <div class="user-details-section">
+    <div class="basic-details">
+      <div class="left-details">
+        <div class="user-pic">
+          <figure>
+            <img
+              [src]="
+                applicantDetails?.profilePicture
+                  ? applicantDetails?.profilePicture
+                  : 'assets/icons/placeholder.svg'
+              "
+              alt="User Pic"
+            />
+          </figure>
+        </div>
+        <div class="details-wrap">
+          <div class="top-info">
+            <h3>{{ applicantDetails?.fullName }}</h3>
+            <div
+              *ngIf="applicantDetails?.isPreviouslyHired"
+              class="status-wrap"
+            >
+              Previuosly hired
+            </div>
+          </div>
+          <!-- <p class="exp-desc">2 years as Chef</p> -->
+          <div class="basic-info">
+            <div class="info-item">
+              <div class="icon-wrap jobs">
+                <img src="assets/icons/jobs-icon.svg" alt="Icon" />
+              </div>
+              <strong>Jobs completed:</strong>
+              <span>{{ applicantDetails?.totalCompletedJobs || 0 }}</span>
+            </div>
+            <div class="info-item">
+              <div class="status-rating-wrap">
+                <div class="rating-wrap">
+                  <img src="assets/icons/start_icon.svg" alt="Star Icon" />
+                  <p>
+                    {{ applicantDetails?.rating?.avgRating }}
+                    <span>({{ applicantDetails?.rating?.totalRatings }})</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="icon-wrap hours">
+                <img src="assets/icons/hours-icon.svg" alt="Icon" />
+              </div>
+              <strong>Work hours completed:</strong>
+              <span>{{ applicantDetails?.totalWorkedHours || 0 }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="action-btn" [matMenuTriggerFor]="beforeMenu">
+        <a><img src="assets/icons/more-white-ic.svg" alt="Icon" /></a>
+      </div>
+      <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <button (click)="downloadResume()" mat-menu-item>
+          <img src="assets/icons/download-ic-dark.svg" alt="Icon" />Download
+          resume
+        </button>
+        <button (click)="reportCandidate()" mat-menu-item>
+          <img src="assets/icons/Warning_icon_dark.svg" alt="Icon" />Report
+          candidate
+        </button>
+        <button *ngIf="!hideOfferBtn" (click)="openJobOfferPopup()" mat-menu-item>
+          <img src="assets/icons/Make-offer.svg" alt="Icon" />Make Offer
+        </button>
+        <button *ngIf="!hideInviteBtn" (click)="sendInvites()" mat-menu-item>
+          <img src="assets/icons/invite.svg" alt="Icon" />Send Invite
+        </button>
+      </mat-menu>
+    </div>
+    <div class="main-details">
+      <div class="section-card">
+        <h3 class="section-title">Basic Details</h3>
+        <div class="flex-wrap">
+          <div class="col-4">
+            <div class="title-wrap">
+              <img src="assets/icons/Add_Job.svg" alt="Skills Icon" />
+              <h3>Current job role</h3>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="title-wrap">
+              <img src="assets/icons/Flag_ic.svg" alt="Skills Icon" />
+              <h3>Nationality</h3>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="title-wrap">
+              <img src="assets/icons/world_ic.svg" alt="Skills Icon" />
+              <h3>Languages</h3>
+            </div>
+          </div>
+        </div>
+        <div class="flex-wrap">
+          <div class="col-4">
+            <p>{{ applicantDetails?.currentRole }}</p>
+          </div>
+          <div class="col-4">
+            <p>{{ applicantDetails?.nationality }}</p>
+          </div>
+          <div class="col-4">
+            <ul *ngIf="applicantDetails?.languages">
+              <li *ngFor="let language of applicantDetails?.languages">
+                <strong>{{ language?.language | titlecase }} :</strong>
+                {{ language?.proficiency | titlecase }}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="flex-wrap">
+          <div class="col-12">
+            <div class="title-wrap">
+              <img src="assets/icons/Skills.svg" alt="Skills Icon" />
+              <h3>Skills</h3>
+            </div>
+          </div>
+        </div>
+        <div class="flex-wrap">
+          <div class="col-12">
+            <ul class="listing-item">
+              <li
+                *ngFor="
+                  let skill of applicantDetails?.skillsAndExperience?.skills
+                "
+              >
+                {{ skill?.name }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h3 class="section-title">Job Preferences</h3>
+        <div class="flex-wrap">
+          <div class="col-12">
+            <div class="title-wrap">
+              <img src="assets/icons/Mask.svg" alt="Building Icon" />
+              <h3>Job roles</h3>
+            </div>
+          </div>
+        </div>
+        <div class="flex-wrap">
+          <div class="col-12">
+            <ul class="listing-item">
+              <li *ngFor="let skill of applicantDetails?.jobCategories">
+                {{ skill?.name }}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="flex-wrap">
+          <div class="col-12">
+            <div class="title-wrap">
+              <img src="assets/icons/location_icon.svg" alt="Location Icon" />
+              <h3>Location preferences</h3>
+            </div>
+          </div>
+        </div>
+        <div class="flex-wrap">
+          <div class="col-12">
+            <ul class="listing-item">
+              <li
+                *ngFor="
+                  let location of applicantDetails?.locationAndTimeSlot
+                    ?.location
+                "
+              >
+                {{ location?.name || "N/A" }}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="flex-wrap">
+          <div class="col-12">
+            <div class="title-wrap">
+              <img src="assets/icons/Clock.svg" alt="Time Icon" />
+              <h3>Time preferences</h3>
+            </div>
+          </div>
+        </div>
+        <div class="flex-wrap">
+          <div class="col-12">
+            <ul class="time-info-wrap">
+              <li>
+                <p>Mon</p>
+                <img
+                  onerror="this.style.display = 'none'"
+                  [src]="
+                    shiftIcons[
+                      applicantDetails?.locationAndTimeSlot?.slots['mon']
+                    ].iconPath
+                  "
+                  alt="Icon"
+                />
+                <span>{{
+                  applicantDetails?.locationAndTimeSlot?.slots["mon"]
+                    | titlecase
+                }}</span>
+              </li>
+              <li>
+                <p>Tue</p>
+                <img
+                  onerror="this.style.display = 'none'"
+                  [src]="
+                    shiftIcons[
+                      applicantDetails?.locationAndTimeSlot?.slots['tue']
+                    ].iconPath
+                  "
+                  alt="Icon"
+                />
+                <span>{{
+                  applicantDetails?.locationAndTimeSlot?.slots["tue"]
+                    | titlecase
+                }}</span>
+              </li>
+              <li>
+                <p>Wed</p>
+                <img
+                  onerror="this.style.display = 'none'"
+                  [src]="
+                    shiftIcons[
+                      applicantDetails?.locationAndTimeSlot?.slots['wed']
+                    ].iconPath
+                  "
+                  alt="Icon"
+                />
+                <span>{{
+                  applicantDetails?.locationAndTimeSlot?.slots["wed"]
+                    | titlecase
+                }}</span>
+              </li>
+              <li>
+                <p>Thu</p>
+                <img
+                  onerror="this.style.display = 'none'"
+                  [src]="
+                    shiftIcons[
+                      applicantDetails?.locationAndTimeSlot?.slots['thu']
+                    ].iconPath
+                  "
+                  alt="Icon"
+                />
+                <span>{{
+                  applicantDetails?.locationAndTimeSlot?.slots["thu"]
+                    | titlecase
+                }}</span>
+              </li>
+              <li>
+                <p>Fri</p>
+                <img
+                  onerror="this.style.display = 'none'"
+                  [src]="
+                    shiftIcons[
+                      applicantDetails?.locationAndTimeSlot?.slots['fri']
+                    ].iconPath
+                  "
+                  alt="Icon"
+                />
+                <span>{{
+                  applicantDetails?.locationAndTimeSlot?.slots["fri"]
+                    | titlecase
+                }}</span>
+              </li>
+              <li>
+                <p>Sat</p>
+                <img
+                  onerror="this.style.display = 'none'"
+                  [src]="
+                    shiftIcons[
+                      applicantDetails?.locationAndTimeSlot?.slots['sat']
+                    ].iconPath
+                  "
+                  alt="Icon"
+                />
+                <span>{{
+                  applicantDetails?.locationAndTimeSlot?.slots["sat"]
+                    | titlecase
+                }}</span>
+              </li>
+              <li>
+                <p>Sun</p>
+                <img
+                  onerror="this.style.display = 'none'"
+                  [src]="
+                    shiftIcons[
+                      applicantDetails?.locationAndTimeSlot?.slots['sun']
+                    ].iconPath
+                  "
+                  alt="Icon"
+                />
+                <span>{{
+                  applicantDetails?.locationAndTimeSlot?.slots["sun"]
+                    | titlecase
+                }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div
+        *ngIf="
+          this.applicantDetails?.manualResume &&
+          this.applicantDetails.manualResume.length
+        "
+        class="section-card"
+      >
+        <h3 class="section-title">CV/Experience</h3>
+        <div class="cv-experience">
+          <div
+            *ngFor="let exp of this.applicantDetails?.manualResume"
+            class="cv-exp-list-item"
+          >
+            <h3>{{ exp?.jobRole[0]?.name || exp?.jobRole }}</h3>
+            <div class="job-details">
+              <!-- <h4>Housekeeping and Management</h4> -->
+              <p class="full-exp">
+                <ng-container *ngIf="exp?.startDate; else months">
+                {{ exp?.startDate | date: "MMMM y" }} -
+                {{
+                  exp?.endDate == "" && exp?.stillInSame
+                    ? "Present"
+                    : (exp?.endDate | date: "MMMM y")
+                }}
+              </ng-container>
+              <ng-template #months>
+                {{ exp?.months || 0}} months
+              </ng-template>
+              </p>
+            </div>
+            <p class="description">
+              {{ exp?.description }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        *ngIf="
+          this.applicantDetails?.certificates &&
+          this.applicantDetails?.certificates.length
+        "
+        class="section-card"
+      >
+        <h3 class="section-title">Certification</h3>
+        <div
+          class="certification-info"
+          *ngFor="let certification of this.applicantDetails.certificates"
+          style="margin-top: 10px"
+        >
+          <div class="user-picture">
+            <figure
+              style="cursor: pointer"
+              matTooltip="View certification"
+              (click)="openDocument(certification.document)"
+            >
+              <!-- <ng-container [ngSwitch]="certification.type">
+                <img
+                  *ngSwitchCase="'pdf'"
+                  src="assets/images/pdf-icon.png"
+                  alt=""
+                  class="preview_icon"
+                />
+                <img
+                  *ngSwitchCase="'doc'"
+                  src="assets/images/doc-icon.png"
+                  alt=""
+                  class="preview_icon"
+                />
+                <img
+                  *ngSwitchCase="'docx'"
+                  src="assets/images/doc-icon.png"
+                  alt=""
+                  class="preview_icon"
+                />
+                <img
+                  *ngSwitchDefault
+                  src="assets/icons/booking_1.svg"
+                  alt=""
+                  class="preview_icon"
+                />
+              </ng-container> -->
+              <img
+              src="assets/images/doc-icon.png"
+              alt=""
+              class="preview_icon"
+            />
+            </figure>
+          </div>
+          <div class="user-info">
+            <h3>{{ certification?.name || "N/A" }}</h3>
+            <!-- <p class="designation">
+              {{ certification?.issuingOrganisation || "N/A" }}
+            </p> -->
+            <!-- <ul>
+              <li><label>Issued On</label></li>
+              <li>:</li>
+              <li>
+                <p>
+                  {{ certification?.issueDate | date: "d MMMM, y" }}
+                  {{
+                    certification.expiryDate
+                      ? "to " + (certification.expiryDate | date: "d MMMM, y")
+                      : "(No Expiry)"
+                  }}
+                </p>
+              </li>
+            </ul> -->
+            <ul>
+              <!-- <li><label>Credential ID</label></li>
+              <li>:</li>
+              <li><p>uc-3eeeyu7-cf2af-45d4-8551</p></li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="allRatings.length" class="section-card">
+        <h3 class="section-title">Reviews from previous employer</h3>
+        <div
+          style="height: 450px; overflow: auto"
+          infiniteScroll
+          [scrollWindow]="false"
+          (scrolled)="onScroll()"
+        >
+          <div *ngFor="let rating of allRatings" class="review-previous-emp">
+            <div class="left-wrap">
+              <h3>{{ rating?.jobRole?.scrubbed }}</h3>
+              <p>
+                {{ rating?.experience }}
+              </p>
+            </div>
+            <div class="rating-info">
+              <strong>{{ rating?.rating }}</strong>
+              <div class="rating-area">
+                <bar-rating [rate]="rating?.rating" [max]="5" [readOnly]="true">
+                </bar-rating>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  *ngIf="this.applicantsList && this.applicantsList.length"
+  class="pagination-wrap"
+>
+  <a (click)="previous()" [ngClass]="{ disabled: this.currentIndex == 0 }"
+    ><img src="assets/images/prev_icon.svg" alt="icon" /><span
+      >Prev Candidate</span
+    ></a
+  >
+  <a
+    [ngClass]="{
+      disabled: this.currentIndex == this.applicantsList.length - 1
+    }"
+    (click)="next()"
+    ><img src="assets/images/next_icon.svg" alt="icon" /><span
+      >Next Candidate</span
+    ></a
+  >
+</div>

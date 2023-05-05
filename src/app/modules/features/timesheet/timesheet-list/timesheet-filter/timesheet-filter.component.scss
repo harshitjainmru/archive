@@ -1,0 +1,265 @@
+.timesheet-filter-content {
+    .timesheet-filter-heading {
+        background-color: #f3f3f3;
+        padding: 11px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        @media (max-width: 1024px) {
+            padding: 10px 15px;
+        }
+        @media (max-width: 767px) {
+            padding: 10px 15px;
+        }
+        h3 {
+            font-size: 14px;
+            margin-bottom: 0;
+            font-weight: 500;
+            line-height: 1.57;
+            color: #333;
+            @media (max-width: 767px) {
+                font-size: 13px;
+                line-height: 1.3;
+            }
+        }
+        .close_btn {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+    }
+    .timesheet-filter-body {
+        padding: 16px 24px;
+        overflow-y: auto;
+        height: calc(100vh - 127px);
+        @media (max-width: 1024px) {
+            padding: 15px;
+        }
+        @media (max-width: 767px) {
+            height: calc(100vh - 124px);
+            padding: 15px;
+        }
+        .job-role {
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(219, 226, 234, 0.21);
+            @media (max-width: 1024px) {
+                padding-bottom: 15px;
+            }
+            @media (max-width: 767px) {
+                padding-bottom: 15px;
+            }
+            a {
+                text-decoration: underline;
+                font-size: 12px;
+                font-weight: 500;
+                line-height: 1.5;
+                color: #14B1BD;
+            }
+            .search-input {
+                display: flex;
+                position: relative;
+                margin-bottom: 15px;
+                input {
+                    border-radius: 5px;
+                    font-size: 13px;
+                    font-weight: 600;
+                    font-family: "Lato", sans-serif;
+                    color: #27303f;
+                    padding: 0 10px;
+                    background: transparent;
+                    height: 43px;
+                    width: 100%;
+                    outline: none;
+                    border: 0;
+                    box-shadow: 0 0 3px rgba(0, 0, 0, 0.21);
+                }
+                button {
+                    background-color: #f3f3f3;
+                    width: 43px;
+                    height: 43px;
+                    transform: rotate(90deg);
+                    position: absolute;
+                    right: 0px;
+                    overflow: hidden;
+                }
+            }
+        }
+        .status-box {
+            &:first-child {
+                margin-bottom: 30px;
+            }
+            .expansion-panel-content:first-child {
+                border-bottom: 1px solid rgba(219, 226, 234, 0.21);
+            }
+        }
+    }
+    .timesheet-filter-footer {
+        height: 84px;
+        border-top: 2px solid rgba(219, 226, 234, 0.21);
+        padding: 18px 24px;
+        display: flex;
+        justify-content: space-between;
+        @media (max-width: 1024px) {
+            padding: 15px;
+        }
+        @media (max-width: 767px) {
+            padding: 15px;
+        }
+        button {
+            width: 200px;
+            height: 48px;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            @media (max-width: 767px) {
+                width: 124px;
+                font-size: 13px;
+            }
+        }
+        .apply-filter-button {
+            button {
+                color: #ffffff;
+                background-color: #14B1BD;
+            }
+        }
+        .reset-button {
+            button {
+                border: 1px solid rgba(150, 165, 184, 0.5);
+                color: #14B1BD;
+                background-color: transparent;
+            }
+        }
+    }
+}
+
+:host ::ng-deep {
+    .app-chip-search-form{
+        .add_skill_wrapper{
+            width:100%;
+        }
+    }
+    .timesheet-filter-body {
+        mat-label {
+            margin-bottom: 20px;
+            display: block;
+            width: 100%;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #231e1e;
+            @media (max-width: 1024px) {
+                margin-bottom: 5px;
+            }
+            @media (max-width: 767px) {
+                font-size: 15px;
+                margin-bottom: 5px;
+            }
+        }
+        mat-label.shift-name {
+            padding: 30px 0 0 0;
+            @media (max-width: 1024px) {
+                padding: 15px 0 0 0;
+            }
+            @media (max-width: 767px) {
+                padding: 15px 0 0 0;
+            }
+        }
+        .mat-checkbox {
+            margin-bottom: 20px;
+            display: block;
+            @media (max-width: 1024px) {
+                margin-bottom: 10px;
+            }
+            @media (max-width: 767px) {
+                margin-bottom: 10px;
+            }
+            label {
+                font-size: 14px;
+                color: #231e1e;
+                @media (max-width: 767px) {
+                    font-size: 13px;
+                }
+            }
+        }
+        .mat-radio-group {
+            .mat-radio-btn{
+                @media (max-width: 1024px) {
+                    margin-bottom: 10px;
+                }
+                @media (max-width: 767px) {
+                    margin-bottom: 10px;
+                }
+            }
+            label {
+                font-size: 14px;
+                color: #231e1e;
+                @media (max-width: 767px) {
+                    font-size: 13px;
+                }
+            }
+        }
+        mat-accordion {
+            margin-bottom: 20px;
+            mat-expansion-panel {
+                &:first-child {
+                    margin-top: 20px;
+                    @media (max-width: 1024px) {
+                        margin-top: 10px;
+                    }
+                    @media (max-width: 767px) {
+                        margin-top: 10px;
+                    }
+                }
+                margin-bottom: 20px;
+                @media (max-width: 1024px) {
+                    margin-bottom: 10px;
+                }
+                @media (max-width: 767px) {
+                    margin-bottom: 10px;
+                }
+                &:last-child{
+                    margin-bottom: 0;
+                }
+            }
+            .mat-expansion-panel-header{
+                @media (max-width: 1024px) {
+                    padding: 0 5px;
+                }
+                @media (max-width: 767px) {
+                    padding: 0 5px;
+                }
+            }
+            .mat-expansion-panel:not([class*="mat-elevation-z"]) {
+                box-shadow: none;
+            }
+            mat-label {
+                margin-bottom: 0 !important;
+            }
+            .mat-checkbox {
+                margin-bottom: 20px;
+                display: block;
+                @media (max-width: 1024px) {
+                    margin-bottom: 10px;
+                }
+                @media (max-width: 767px) {
+                    margin-bottom: 10px;
+                }
+                label {
+                    font-size: 14px;
+                    color: #231e1e;
+                    @media (max-width: 767px) {
+                        font-size: 13px;
+                    }
+                    span {
+                        color: #96a5b8;
+                    }
+                }
+            }
+        }
+        .mat-expansion-panel:not(.mat-expanded):not([aria-disabled="true"]) .mat-expansion-panel-header:hover {
+            background: transparent;
+        }
+    }
+}

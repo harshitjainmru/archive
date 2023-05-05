@@ -1,0 +1,128 @@
+.filter_main_wrapper .heading {
+  background: #eeee;
+  padding: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.filter_main_wrapper .heading h3 {
+  font-size: 18px;
+  margin-bottom: 0;
+  font-weight: 600;
+}
+
+.filter_main_wrapper .heading .close_btn {
+  cursor: pointer;
+}
+
+.filter_main_wrapper .filter_body {
+  max-height: calc(100vh - 137px);
+  overflow-y: auto;
+  padding: 15px;
+}
+
+.filter_main_wrapper .btn_wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 20px 0;
+}
+
+.filter_main_wrapper .btn_wrap button {
+  margin-left: 15px;
+}
+
+.filter_main_wrapper .btn_wrap button:first-of-type {
+  margin-left: 0;
+}
+
+:host ::ng-deep .filter_body app-chip-search-form {
+  width: 100%;
+}
+
+:host ::ng-deep .filter_body app-chip-search-form .add_skill_wrapper {
+  width: 100%;
+}
+
+:host ::ng-deep .filter_body .mat-checkbox {
+  margin-bottom: 20px;
+  display: block;
+}
+
+:host ::ng-deep .filter_body mat-label {
+  padding: 0 15px;
+  margin-bottom: 20px;
+  display: block;
+  display: block;
+  width: 100%;
+}
+
+:host ::ng-deep .filter_body .mat-checkbox-layout .mat-checkbox-label {
+  line-height: 24px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+:host ::ng-deep .filter_body .mat-checkbox-layout .mat-checkbox-label img {
+  margin: 0 4px;
+}
+
+:host ::ng-deep .filter_body app-date-filter mat-label {
+  padding: 0;
+  margin-bottom: 5px;
+}
+
+:host ::ng-deep .filter_body .ngx-slider .ngx-slider-pointer {
+  background-color: #14B1BD;
+}
+
+:host ::ng-deep .filter_body .ngx-slider .ngx-slider-selection {
+  background: #14B1BD;
+}
+
+:host ::ng-deep .filter_body .ngx-slider .ngx-slider-bubble {
+  color: #fff;
+  background: #6e6b6b;
+  font-size: 12px;
+  font-family: 'Lato';
+  margin-bottom: 6px;
+  border-radius: 4px;
+}
+
+:host ::ng-deep .filter_body .ngx-slider .ngx-slider-bubble.ngx-slider-limit {
+  color: #fff;
+}
+
+.row {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+.row:last-of-type {
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+
+.row .filter_col {
+  padding: 0 15px;
+  width: 100%;
+}
+/*# sourceMappingURL=schedule-shift-filter.component.css.map */

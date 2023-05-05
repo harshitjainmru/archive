@@ -1,0 +1,35 @@
+<div class="filter_main_wrapper">
+  <div class="heading">
+    Filter By
+  </div>
+  <form [formGroup]="userFilterForm" (ngSubmit)="onApplyHandler()">
+    <div class="sec_wrapper">
+      <div class="col-sm-12">
+        <!-- <h3 class="sec_title">
+          Date of Creation (Select Date Range)
+        </h3> -->
+      </div>
+      <div class="col-sm-12">
+        <app-date-filter [dateObject]="userFilterObject.registrationDate"></app-date-filter>
+      </div>
+
+      <div class="col-sm-12">
+        <!-- <h3 class="sec_title">
+          By Status
+        </h3> -->
+      </div>
+      <div class="col-sm-12">
+        <app-dropdown-filter [dropdown]="userFilterObject.status"></app-dropdown-filter>
+      </div>
+
+      <div class="col-sm-12">
+        <app-dropdown-filter [dropdown]="userFilterObject.fullDaya"></app-dropdown-filter>
+      </div>
+    </div>
+
+    <div class="btn_wrap">
+      <button type="submit" class="primary-btn">Apply Filter</button>
+      <button (click)="resetFilter()" type="button" class="btn_secondry">Reset</button>
+    </div>
+  </form>
+</div>

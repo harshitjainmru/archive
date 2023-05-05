@@ -1,0 +1,120 @@
+.popup_main_wrapper {
+  margin: -24px;
+  padding: 15px;
+}
+
+.popup_main_wrapper .heading h3 {
+  color: #6e6b6b;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.popup_main_wrapper .inner_content_wrapper {
+  max-height: calc(100vh - 221px);
+  overflow-y: auto;
+}
+
+.popup_main_wrapper .list_wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 10px;
+}
+
+.popup_main_wrapper .list_wrapper .list {
+  color: #dbe2ea;
+  border: 1.5px solid #dbe2ea;
+  border-radius: 100%;
+  min-width: 50px;
+  height: 50px;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-right: 10px;
+  font-size: 12px;
+}
+
+.popup_main_wrapper .list_wrapper .list.active {
+  background: #cf7d03;
+  color: #fff;
+  border: 1.5px solid #cf7d03;
+}
+
+.popup_main_wrapper .list_wrapper .list:last-of-type {
+  margin-right: 0;
+}
+
+.popup_main_wrapper .btn_wrap {
+  padding-top: 15px;
+  margin-top: 15px;
+  border-top: 1px solid #dbe2ea;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.popup_main_wrapper .btn_wrap button {
+  margin-left: 15px;
+}
+
+.popup_main_wrapper .btn_wrap button:first-of-type {
+  margin-left: 0;
+}
+
+:host ::ng-deep .slection_wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 10px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+:host ::ng-deep .slection_wrapper .mat-checkbox-inner-container {
+  display: none;
+}
+
+:host ::ng-deep .slection_wrapper .mat-checkbox-label {
+  line-height: 24px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #96a5b8;
+  border: 1px solid #96a5b8;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+:host ::ng-deep .slection_wrapper .mat-checkbox {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+:host ::ng-deep .slection_wrapper .mat-checkbox-checked .mat-checkbox-label {
+  background-color: #14B1BD;
+  color: #fff;
+  border: 1px solid #14B1BD;
+}
+/*# sourceMappingURL=edit-shift.component.css.map */

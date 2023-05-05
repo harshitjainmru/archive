@@ -1,0 +1,22 @@
+.status {
+  height: 32px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  margin-left: 10px;
+  font-size: 14px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  line-height: 1.71;
+  white-space: nowrap;
+  @media (max-width: 1024px) {
+    font-size: 13px;
+    line-height: 1.2;
+  }
+  @media (max-width: 767px) {
+    font-size: 12px;
+  }
+  &.red {
+    color: #ef5279;
+    background-color: #fdf5f7;
+  }
+}

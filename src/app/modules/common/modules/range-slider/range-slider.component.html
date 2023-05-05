@@ -1,0 +1,10 @@
+<div class="filter_body">
+  <mat-label>{{ rangeConfig.label }}</mat-label>
+
+  <nouislider
+    style="margin-top: 3.5rem"
+    (ngModelChange)="onChange($event)"
+    [(ngModel)]="rangeConfig.selectedRangeDefault"
+    [config]="rangeConfig.config"
+  ></nouislider>
+</div>

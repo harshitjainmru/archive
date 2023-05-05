@@ -1,0 +1,33 @@
+<div class="cart-column">
+  <div class="header-section">
+    <div class="inner-header-section">
+      <h3>Hiring statistics</h3>
+      <div class="date-filter-graph-area">
+        <div class="date-filter calendar-wrap">
+          <!-- <a (click)="previous()" class="prev-icon"></a> -->
+          <!-- <span>Sep 2021</span> -->
+          <div class="right-calendar">
+            <app-monthly-calender-graph
+              #monthlyRef
+              (monthChanged)="handleMonthChanged($event)"
+            ></app-monthly-calender-graph>
+          </div>
+          <!-- <a (click)="next()" class="next-icon"></a> -->
+        </div>
+        <div class="monthly-calender-wrap"></div>
+      </div>
+    </div>
+  </div>
+  <div class="grap-chart-wrap">
+    <div style="width: 100%; height: 100%">
+      <canvas #canvasElement></canvas>
+    </div>
+  </div>
+  <div class="hiring-statistics-status">
+    <ul>
+      <li><span class="grey-circle"></span>No of Applicants</li>
+      <li><span class="yellow-circle"></span>No of job offer</li>
+      <li><span class="green-circle"></span>Offer accepted</li>
+    </ul>
+  </div>
+</div>

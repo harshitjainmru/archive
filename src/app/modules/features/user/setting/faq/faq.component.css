@@ -1,0 +1,18 @@
+.page_main_wrapper {
+  margin: 20px 0;
+}
+
+:host ::ng-deep .cstm_expansion .mat-expansion-panel:not([class*="mat-elevation-z"]) {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+:host ::ng-deep .cstm_expansion .mat-expansion-panel {
+  background: #dfebff;
+  margin-bottom: 20px;
+}
+
+:host ::ng-deep .cstm_expansion .mat-expansion-indicator::after {
+  color: #14B1BD;
+}
+/*# sourceMappingURL=faq.component.css.map */

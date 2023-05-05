@@ -1,0 +1,92 @@
+<div class="popup-wrapper" mat-dialog-content>
+  <div class="popup-inner">
+    <div class="header">
+      <h3>Add Address</h3>
+    </div>
+    <form [formGroup]="addAddressForm" (ngSubmit)="onSubmit()">
+      <div class="main-content">
+        <div class="add-address-form">
+          <mat-label>Select job area</mat-label>
+          <app-select-jobarea
+            class="app-common-search"
+            [controls]="f['jobAreaId']"
+            [searchUrl]="jobareaSearchUrl"
+            [type]="jobareaType"
+          ></app-select-jobarea>
+          <mat-label>Name of job site</mat-label>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              formControlName="title"
+              appWhiteSpace
+              [maxlength]="LIMIT?.nameMaxLength"
+            />
+            <mat-error>{{
+              addAddressForm | getControl: ["title"] | validate: "TITLE"
+            }}</mat-error>
+          </mat-form-field>
+
+          <mat-label>Address line</mat-label>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              formControlName="addressLine"
+              appWhiteSpace
+              [minlength]="LIMIT?.addressMinLength"
+              [maxlength]="LIMIT?.addressMaxLength"
+            />
+            <mat-error>{{
+              addAddressForm
+                | getControl: ["addressLine"]
+                | validate: "ADDRESS_LINE"
+            }}</mat-error>
+          </mat-form-field>
+
+          <mat-label>City</mat-label>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              formControlName="cityName"
+              appWhiteSpace
+              [minlength]="LIMIT?.addressMinLength"
+              [maxlength]="LIMIT?.addressMaxLength"
+            />
+            <mat-error>{{
+              addAddressForm | getControl: ["cityName"] | validate: "CITY_NAME"
+            }}</mat-error>
+          </mat-form-field>
+
+          <mat-label>Postcode</mat-label>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              formControlName="zipcode"
+              appWhiteSpace
+              type="tel"
+              numberOnly
+              [minlength]="LIMIT?.zipcodeMinLength"
+              [maxlength]="LIMIT?.zipcodeMaxLength"
+            />
+            <mat-error>{{
+              addAddressForm | getControl: ["zipcode"] | validate: "ZIPCODE"
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="btn-wrap">
+          <button type="button" [mat-dialog-close] class="cancel-btn">
+            Cancel
+          </button>
+          <button
+            type="submit"
+            [class.loadersmall]="isLoader"
+            class="primary-btn"
+          >
+            Add
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

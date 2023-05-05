@@ -1,0 +1,54 @@
+<div class="profile-setup">
+  <div *ngIf="currentTabIndex<4" class="subway-wrapper">
+    <ul class="subway">
+      <li class="subway-stop" [ngClass]="{
+        'is-active': (currentTabIndex==profileSteps.FIRST_STEP || 
+        currentTabIndex==profileSteps.SECOND_STEP || 
+        currentTabIndex==profileSteps.THIRD_STEP), 
+        'success':(currentTabIndex==profileSteps.SECOND_STEP || 
+        currentTabIndex==profileSteps.THIRD_STEP) }">
+        <div class="subway-stop-box">
+          <span class="value">1</span>
+          <img src="assets/images/tick.svg" alt="" class="success_icon">
+        </div>
+      </li>
+      <li class="subway-stop" [ngClass]="{
+        'is-active': (currentTabIndex==profileSteps.SECOND_STEP || 
+        currentTabIndex==profileSteps.THIRD_STEP),
+        'success':(currentTabIndex==profileSteps.THIRD_STEP) }">
+        <div class="subway-stop-box">
+          <span class="value">2</span>
+          <img src="assets/images/tick.svg" alt="" class="success_icon">
+        </div>
+      </li>
+      <li class="subway-stop" [ngClass]="{
+        'is-active':(currentTabIndex==profileSteps.THIRD_STEP),
+        'success':(currentTabIndex==profileSteps.FOUTH_STEP) }">
+        <div class="subway-stop-box">
+          <span class="value">3</span>
+          <img src="assets/images/tick.svg" alt="" class="success_icon">
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- stepper line end here -->
+
+  <div class="scroll_wrapper" *ngIf="!isJobData" > 
+    <ng-container [ngSwitch]="currentTabIndex">
+      <div *ngSwitchCase="1">
+        <app-job-step-first (step)="updatedStep($event)" [stepOneData]="jobData"></app-job-step-first>
+      </div>
+      <div *ngSwitchCase="2">
+        <app-job-step-second (step)="updatedStep($event)" [stepTwoData]="jobData"></app-job-step-second>
+      </div>
+      <div *ngSwitchCase="3">
+        <app-job-step-third (step)="updatedStep($event)" [stepThreeData]="jobData"></app-job-step-third>
+      </div>
+      <div *ngSwitchCase="4">
+        <app-job-preview (step)="updatedStep($event)" ></app-job-preview>
+      </div>
+      <div *ngSwitchDefault></div>
+    </ng-container>
+  </div>
+</div>

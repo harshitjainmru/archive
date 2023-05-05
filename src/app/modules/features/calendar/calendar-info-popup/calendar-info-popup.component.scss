@@ -1,0 +1,64 @@
+.popup-wrapper{
+    margin:-24px;
+    .popup-inner{
+        padding:15px;
+        h3{
+            font-size: 12px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-align: center;
+            color: #231e1e;
+            margin-bottom:0;
+            text-transform: uppercase;
+        }
+        .date{
+            width: 24px;
+            height: 24px;
+            margin:0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;    
+            border-radius: 100px;
+            background-color: #14B1BD;
+            font-size: 16px;
+            line-height: 1.5;
+            color:#fff;
+        }
+        ul{
+            padding-top:25px;
+            li{
+                font-size: 12px;
+                font-family: 'Lato', sans-serif;
+                font-weight: 500;
+                line-height: 1.5;
+                text-align: left;
+                color: #231e1e;
+                padding-left:10px;
+                position: relative;
+                margin-bottom:10px;
+                &.left-border{
+                   border-left:solid 2px;
+                   
+                }
+                // &:before{
+                //     width: 2px;
+                //     height: 16px;
+                //     opacity: 0.8;
+                //     border-radius: 5px;
+                //     background-color: #4caf50;
+                //     position: absolute;
+                //     content:"";
+                //     left:0;
+                //     top:0;
+                // }
+            }
+        }
+    }
+    .btn-wrap{
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        padding-top:10px;
+    }
+}

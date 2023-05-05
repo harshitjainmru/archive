@@ -1,0 +1,42 @@
+:host ::ng-deep {
+  .mat-date-range-input-inner {
+    font-family: "Lato", sans-serif;
+  }
+  .mat-date-range-input-mirror {
+    min-width: 60px;
+  }
+  .mat-date-range-input-container {
+    padding-left: 10px;
+  }
+  .mat-form-field {
+    .mat-form-field-wrapper {
+      padding-bottom: 0;
+    }
+  }
+  .mat-form-field:not(.mat-form-field-appearance-legacy)
+    .mat-form-field-prefix
+    .mat-icon-button,
+  .mat-form-field:not(.mat-form-field-appearance-legacy)
+    .mat-form-field-suffix
+    .mat-icon-button {
+    height: 2.5em !important;
+    position: relative;
+    right: 5px;
+  }
+  .mat-form-field{
+    max-width:100px;
+  }
+  .mat-form-field-infix {
+    line-height: 44px!important;
+    height: 44px!important;
+  }
+}
+.top_wrap {
+  display: flex;
+  align-items: center;
+  p {
+    margin: 0;
+    white-space: nowrap;
+    padding-right: 5px;
+  }
+}

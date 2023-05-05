@@ -1,0 +1,82 @@
+<div class="popup-wrapper">
+  <div class="popup-inner">
+    <div class="popup-header">
+      <h3>Request details</h3>
+      <a (click)="closeDialog()" class="close-popup"
+        ><img src="assets/images/close-circle-icon.svg" alt="Close Icon"
+      /></a>
+    </div>
+    <div class="popup-main">
+      <div class="status-wrap">
+        <label class="mat-label">Subject</label>
+        <span
+          class="request-status"
+          [ngClass]="{
+            closed: data?.applyStatus == 'CLOSED',
+            open: data?.applyStatus == 'OPEN'
+          }"
+          >{{ data?.applyStatus }}</span
+        >
+      </div>
+
+      <p>{{ data?.subject }}</p>
+      <label class="mat-label">Description</label>
+      <p>
+        {{ data?.description }}
+      </p>
+      <ng-container *ngIf="documents.length">
+        <label class="mat-label">Attachment</label>
+        <div class="preview_img_wrapper">
+          <div
+            class="preview-item"
+            *ngFor="let item of documents; let i = index; let first = first"
+            (click)="openUrl(item)"
+          >
+            <figure
+              class="preview_img"
+              [ngStyle]="{ 'margin-left': first && '0px' }"
+            >
+              <ng-container [ngSwitch]="item.type">
+                <img
+                  *ngSwitchCase="'pdf'"
+                  [title]="item.name"
+                  src="assets/images/pdf-icon.png"
+                  alt=""
+                  class="preview_icon"
+                />
+                <img
+                  *ngSwitchCase="'doc'"
+                  [title]="item.name"
+                  src="assets/images/doc-icon.png"
+                  alt=""
+                  class="preview_icon"
+                />
+                <img
+                  *ngSwitchCase="'docx'"
+                  [title]="item.name"
+                  src="assets/images/doc-icon.png"
+                  alt=""
+                  class="preview_icon"
+                />
+                <img
+                  *ngSwitchDefault
+                  [title]="item.name"
+                  src="assets/icons/booking_1.svg"
+                  alt=""
+                  class="preview_icon"
+                />
+              </ng-container>
+              <!-- <img src="assets/images/booking_1.svg" alt="" class="preview_icon"> -->
+              <p class="file_name">
+                {{ item.name }}
+              </p>
+              <!-- <span (click)="remove(i)" class="delete">
+                  <img src="assets/images/RecycleBin.svg" alt="" />
+                </span> -->
+            </figure>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

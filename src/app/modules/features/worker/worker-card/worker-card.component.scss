@@ -1,0 +1,141 @@
+
+.card_main_wrapper{
+    background: #fff;
+    border: 1px solid #dbe2ea;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 20px 0;
+    .worker_details_wrapper {
+        display: flex;
+        align-items: center;
+        @media(max-width: 767px) {
+            flex-direction: column;
+            align-items: flex-start;
+            position: relative;
+        }
+        .w_img {
+            width: 80px;
+            height: 80px;
+            margin-right: 15px;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 100%;
+            }
+        }
+        .info_wrapper{
+            .wrap {
+                display: flex;
+                align-items: center;
+                .name {
+                    font-size: 16px;
+                    font-weight: 600;
+                    margin-bottom: 0;
+                    margin-right: 10px;
+                }
+                .rating {
+                    margin-bottom: 0;
+                    background: #f3f3f3;
+                    padding: 3px 10px;
+                    font-size: 15px;
+                    font-weight: 600;
+                    border-radius: 5px;
+                    margin-right: 10px;
+                    display: flex;
+                    align-items: center;
+                    img{
+                        margin-right: 5px;
+                    }
+                }
+                .review_count {
+                    color: #6e6b6b;
+                    font-size: 12px;
+                    font-weight: 700;
+                }
+            }
+            .exp {
+                color: #6e6b6b;
+                margin-bottom: 0;
+                font-weight: 600;
+            }
+        }
+        .tag {
+            margin-left: auto;
+            color: #ff9800;
+            background: #fff8ed;
+            font-size: 13px;
+            padding: 5px;
+            border-radius: 5px;
+            @media(max-width: 767px) {
+               position: absolute;
+               top: 10px;
+               right: 10px;
+            }
+        }
+    }
+    .middile_sec_wrapper {
+        margin-top: 20px;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    .info_box {
+        width: 50%;
+        margin-bottom: 10px;
+        @media(max-width: 767px) {
+            width: 100%;
+        }
+        &.full_width {
+            width: 100%;
+        }
+        .key {
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            color: #96a5b8;
+            font-size: 13px;
+            font-weight: 600;
+            img{
+                margin-right: 5px;
+            }
+        }
+        .value {
+            color: #231e1e;
+            font-size: 14px;
+            font-weight: 600;
+            margin-left: 25px;
+        }
+    }
+    }
+    .bottom_sec{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+}
+
+
+
+.skills_wrapper {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 0 15px;
+    .skill {
+        background: #f4f8ff;
+        margin-bottom: 15px;
+        margin-right: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: fit-content;
+        padding: 5px;
+        border-radius: 5px;
+        color: #537fcb;
+        font-size: 14px;
+        font-weight: 600;
+        .close_icon{
+            cursor: pointer;
+        }
+    }
+}

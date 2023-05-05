@@ -1,0 +1,187 @@
+@use 'global' as *;
+//----------comment -----
+button.mat-button-base.mat-stroked-button,
+button.mat-button-base.mat-flat-button {
+    min-width: 100px;
+    font-size: 13px;
+    line-height: 34px;
+    text-transform: uppercase;
+}
+
+.cstm_input_wrapper {
+    .mat-form-field-subscript-wrapper{
+        top: 34px!important;
+        font-family: 'Open Sans', sans-serif;
+    }
+}
+button.mat-button-base.mat-stroked-button {
+    border-width: 2px;
+    border-color: $drkcolor;
+    color: $drkcolor;
+    font-weight: 500;
+    line-height: 28px;
+    &.mat-primary {
+        border-color: $thm;
+        color: $thm;
+    }
+}
+
+button.mat-icon-button {
+    --size: 32px;
+    width: var(--size);
+    height: var(--size);
+    line-height: var(--size);
+    &.mat-calendar-previous-button,
+    &.mat-calendar-next-button{
+        --size:40px;
+        width: var(--size);
+        height: var(--size);
+        line-height: var(--size);
+    }
+    .mat-icon {
+        --icon: 20px;
+        width: var(--icon);
+        height: var(--icon);
+        line-height: var(--icon);
+        font-size: var(--icon);
+    }
+    &.hasimage {
+        line-height: 0;
+    }
+    &.mat-primary {
+        color: #ffffff;
+        background: #e02342;
+    }
+}
+
+mat-label {
+    font-size: 14px;
+    line-height: 1.29;
+    color: #6e6b6b;
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+.btn_group {
+    button+button {
+        margin-left: 10px;
+    }
+}
+
+.mat-form-field {
+    width: 100%;
+    font-family: $font2;
+    .mat-form-field-wrapper {
+        margin: 0 !important;
+        padding-bottom: 1.2em;
+        .mat-form-field-flex {
+            margin-top: 0;
+            padding: 0;
+            .mat-form-field-infix {
+                border-top: 0;
+                padding: 2px 2px;
+                line-height: 35px;
+                height: 40px;
+                .mat-input-element {
+                    font-family:'Lato', sans-serif;
+                    height:100%;
+                    font-size: 13px;
+                    font-weight: 600;
+                    color: $drkgry;
+                    margin-top: 0;
+                    padding: 0 10px;
+                    @include radius (5px);
+                }
+                textarea.mat-input-element{
+                    padding: 2px 10px;
+                }
+            }
+        }
+    }
+    .mat-form-field-outline-thick {
+        color: $thm;
+    }
+    &.mat-form-field-type-mat-select {
+        .mat-select-value {
+            font-size: 13px;
+            font-weight: 600;
+            color: $drkgry;
+            padding: 0 10px;
+            @include radius (5px);
+        }
+        .mat-select-arrow-wrapper {
+            @include translateY(0);
+        }
+    }
+    .mat-form-field-subscript-wrapper {
+        position: relative;
+        margin-bottom:2px;
+    }
+    &.mat-form-field-appearance-outline {
+        .mat-form-field-outline {
+            top: 0;
+        }
+        .mat-form-field-outline:not(.mat-form-field-outline-thick) {
+            // background-color: #f7f7f7;
+            background-color: #fff;
+        }
+    }
+    .mat-form-field-suffix {
+        .mat-icon-button {
+            height: 2em !important;
+        }
+    }
+}
+
+textarea {
+    resize: none !important;
+}
+
+.textarea_autosize.mat-form-field {
+    .mat-form-field-infix {
+        height: auto !important;
+        line-height: 1.45 !important;
+        padding: 7px 2px !important;
+        textarea.mat-input-element {
+            margin: 0 0;
+        }
+    }
+}
+
+.mat-checkbox {
+    .mat-checkbox-inner-container {
+        width: 18px;
+        height: 18px;
+    }
+    .mat-checkbox-frame {
+        @include radius (4px);
+        border-width: 1px;
+        border-color: rgba($black, 0.12);
+        background-color: #f7f7f7;
+    }
+}
+
+.mat-dialog-container {
+    box-shadow: none;
+    overflow: initial !important;
+}
+
+.cdk-overlay-dark-backdrop {
+    background: rgba(#000000, 0.8);
+}
+
+.mat-select-panel {
+    mat-option.mat-option {
+        line-height: 30px;
+        height: 30px;
+        font-size: 13px;
+        font-weight: 600;
+    }
+}
+
+.mat-menu-panel {
+    @include radius(2px !important);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.04) !important;
+    border: solid 1px #dbe2ea;
+}

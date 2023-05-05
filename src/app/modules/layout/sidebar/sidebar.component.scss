@@ -1,0 +1,118 @@
+.nav-menu{
+    .child-menu{
+        
+        li{
+            padding-left: 30px;
+            img{
+                margin-right:10px;
+            }
+        }
+    }
+    li{
+        &.active{
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        &:hover{
+            // background:#4D8EFF;
+            background: #89D8DE;
+        }
+        a{
+            height:54px;
+            padding:0 15px;
+            display: flex;
+            align-items: center;
+            transition:0.3s ease-in;
+            position: relative;
+            text-decoration: none;
+            &.active{
+                // background:#4D8EFF;
+                background: #89D8DE;;
+            }
+            // &:hover{
+            //     background:#4D8EFF;
+            // }
+            .icon{
+                width:24px;
+                height:24px;
+                margin-right:10px;
+                &.dashboard{
+                    background: url("../../../../assets/icons/Dashboard.svg") no-repeat;
+                }
+                &.staffing{
+                    background: url("../../../../assets/icons/Staffing.svg") no-repeat;
+                }
+                &.schedule{
+                    background: url("../../../../assets/icons/Schedule.svg") no-repeat;
+                }
+                &.payroll{
+                    background: url("../../../../assets/icons/Payroll.svg") no-repeat;
+                }
+                &.reports{
+                    background: url("../../../../assets/icons/Reports.svg") no-repeat;
+                }
+            }
+            strong{
+                font-size:14px;
+                font-weight:500;
+                color:#fff;
+            }
+        }
+       
+    }
+}
+
+:host ::ng-deep{
+    .nav-menu{
+      
+        .mat-expansion-panel:not([class*=mat-elevation-z]) {
+            box-shadow: none;
+        }
+        .mat-expansion-panel {
+            background: transparent;
+            .mat-expansion-panel-header { 
+                &.active{
+                    background: #4d8eff !important;
+                }   
+                &:hover{
+                    background: transparent !important;
+                }                         
+            }           
+        }
+        .mat-expansion-indicator::after {
+            color: rgb(205 223 255);
+        }
+        .mat-expansion-panel-header {        
+            padding: 0 18px 0 0; 
+            height: 54px;           
+        }
+        .mat-expansion-panel-body {
+            padding: 0;
+        }
+    }
+   
+}
+
+.sub_menu {    
+    .submenu_list {
+        font-size: 14px;
+        font-weight: 500;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        a{
+            width:100%;
+            padding:0 0 0 45px;
+        }
+        img{
+            margin-right: 5px;
+        }
+    }
+}
+
+.parent-menu{
+    &:hover{
+        background: transparent !important;
+    }
+}

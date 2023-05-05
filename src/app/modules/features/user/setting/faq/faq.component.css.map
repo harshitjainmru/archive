@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,kBAAkB,CAAC;EACjB,MAAM,EAAE,MAAM;CACf;;AAED,AAEI,KAFC,CAAC,SAAS,CACb,eAAe,CACb,oBAAoB,AAAA,IAAK,EAAA,AAAA,KAAC,EAAO,iBAAiB,AAAxB,GAA2B;EACnD,UAAU,EAAE,IAAI;CACjB;;AAJL,AAKI,KALC,CAAC,SAAS,CACb,eAAe,CAIb,oBAAoB,CAAC;EACnB,UAAU,EAAE,OAAO;EACnB,aAAa,EAAE,IAAI;CACpB;;AARL,AASI,KATC,CAAC,SAAS,CACb,eAAe,CAQb,wBAAwB,AAAA,OAAO,CAAC;EAC9B,KAAK,EAAE,OAAO;CACf",
+    "sources": [
+        "faq.component.scss"
+    ],
+    "names": [],
+    "file": "faq.component.css"
+}

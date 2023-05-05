@@ -1,0 +1,37 @@
+<div class="filter_main_wrapper">
+  <div class="heading">
+    <h3>FILTER BY</h3>
+    <span class="close_btn" (click)="closeDialog()">
+      <img src="assets/images/filter_close.svg" alt="" />
+    </span>
+  </div>
+  <form style="width: 100%" [formGroup]="userFilterForm">
+    <div class="filter_body">
+      <div class="row">
+        <div class="filter_col">
+          <mat-label>Location</mat-label>
+          <app-chip-search-form class="app-chip-search-form"
+            [searchObject]="jobAreaSearchConfig"
+            [parant]="'job'"
+          ></app-chip-search-form>
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="filter_col">
+          <app-custom-checkbox
+            [checkBoxConfigect]="jobRoleConfig"
+          ></app-custom-checkbox>
+        </div>
+      </div> -->
+      <div class="row" style="margin: 0 5px">
+        <div *ngIf="showRange" class="filter_col">
+          <app-range-slider [rangeConfig]="rangeConfig"></app-range-slider>
+        </div>
+      </div>
+    </div>
+    <div class="btn_wrap">
+      <button class="primary-btn" (click)="applyFilter()">Apply filter</button>
+      <button class="btn_secondry" (click)="reset()">Reset</button>
+    </div>
+  </form>
+</div>

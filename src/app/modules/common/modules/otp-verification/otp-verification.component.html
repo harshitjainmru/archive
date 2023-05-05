@@ -1,0 +1,104 @@
+<div class="login_wrapper animated fadeInLeft" *ngIf="!viewType">
+  <h3 class="page_title">OTP Sent</h3>
+  <p class="sub_heading">
+    We have sent a 4 digit verification code to your <br />
+    phone no.
+    <span class="phone-no"
+      >{{ phoneData?.countryCode }} {{ phoneData?.phoneNo }}</span
+    >
+  </p>
+  <div class="form_wrapper" id="otp-box">
+    <form class="example-form" (ngSubmit)="onVerifyOtp()">
+      <app-otp-box
+        #ngOtpInput
+        (onInputChange)="onOtpChange($event)"
+        [config]="config"
+      >
+      </app-otp-box>
+      <div class="time-duration">
+        <p *ngIf="timeLimit > 00">You can resend the code in</p>
+        <div class="time-info-btn-wrap">
+          <div *ngIf="timeLimit > 00" class="time-info">
+            <p class="time_slot" [ngClass]="{ 'timer-zero': timeLimit == 00 }">
+              00 : {{ timeLimit }}
+            </p>
+            <p class="time_slot" *ngIf="attemptsLeft">
+              {{ attemptsLeft }} {{ "OTP_ATTEMPTS_LEFT" | translate }}
+            </p>
+            <!-- <button type="button" class="primary-btn" (click)="resendOtp()" *ngIf="showResendOption">
+              Resend OTP
+            </button> -->
+          </div>
+          <div class="btn_wrapper">
+            <button
+              type="button"
+              class="primary-btn"
+              (click)="resendOtp()"
+              *ngIf="showResendOption"
+            >
+              Resend OTP
+            </button>
+            <!-- <button type="submit" class="primary-btn" [disabled]="!otp||otp.length!=config.length">
+              {{"SUBMIT_OTP"|translate}}
+            </button> -->
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="login_wrapper user_otp_popup" *ngIf="viewType">
+  <h3 class="title">Verify number</h3>
+  <div class="inner_wrapper">
+    <p class="sub_heading">
+      We have sent a 4 digit verification code to your <br />
+      phone no.
+      <span class="phone-no"
+        >{{ phoneData?.countryCode }} {{ phoneData?.phoneNo }}</span
+      >
+    </p>
+    <div class="form_wrapper" id="otp-box">
+      <form class="example-form" (ngSubmit)="onVerifyOtp()">
+        <app-otp-box
+          #ngOtpInput
+          (onInputChange)="onOtpChange($event)"
+          [config]="config"
+        >
+        </app-otp-box>
+        <div class="time-duration">
+          <p>You can resend the code in</p>
+          <div class="time-info-btn-wrap">
+            <div class="time-info">
+              <p
+                class="time_slot"
+                [ngClass]="{ 'timer-zero': timeLimit == 00 }"
+              >
+                00 : {{ timeLimit }}
+              </p>
+              <p class="time_slot" *ngIf="attemptsLeft">
+                {{ attemptsLeft }} {{ "OTP_ATTEMPTS_LEFT" | translate }}
+              </p>
+              <!-- <button type="button" class="primary-btn" (click)="resendOtp()" *ngIf="showResendOption">
+                  Resend OTP
+                </button> -->
+            </div>
+            <div class="btn_wrapper">
+              <button
+                type="button"
+                class="primary-btn"
+                (click)="resendOtp()"
+                *ngIf="showResendOption"
+              >
+                Resend OTP
+              </button>
+              <!-- <button type="submit" class="primary-btn" [disabled]="!otp||otp.length!=config.length">
+                  {{"SUBMIT_OTP"|translate}}
+                </button> -->
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

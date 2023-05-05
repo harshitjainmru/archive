@@ -1,0 +1,79 @@
+<form [formGroup]="secondStepForm" (ngSubmit)="onSecondStepSubmit()">
+  <div class="flex">
+    <div class="col-12">
+      <!-- <app-job-area-selection [stateCityLists]="stateCityLists" [jobAreaSelectCtrl]="jobAreaCtrl"
+        (jobAreaSelection)="onJobAreaSelection($event)">
+      </app-job-area-selection> -->
+      <app-select-jobarea
+        [controls]="jobAreaCtrl"
+        [searchUrl]="stateSearchUrl"
+        [type]="stateType"
+        [selectPlaceholder]="'Select company address'"
+      >
+      </app-select-jobarea>
+    </div>
+  </div>
+  <div class="flex">
+    <div class="col-12">
+      <mat-label>Street address</mat-label>
+      <mat-form-field appearance="outline">
+        <input
+          type="text"
+          formControlName="street"
+          matInput
+          placeholder="Enter street address"
+          autocomplete="off"
+        />
+
+        <mat-error>{{
+          secondStepForm | getControl: ["street"] | validate: "STREET"
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- <div class="col-4">
+      <app-select-jobarea
+      [controls]="secondStepForm | getControl:['city']"
+      [searchUrl]="citySearchUrl"
+      [type]="cityType"
+      >
+      </app-select-jobarea>
+
+      <div class="form_group">
+        <mat-label>City</mat-label>
+        <mat-form-field appearance="outline">
+          <input type="text" formControlName="city" matInput placeholder="Enter city name" autocomplete="off">
+        </mat-form-field>
+      </div>
+    </div> -->
+    <div class="col-6">
+      <div class="form_group">
+        <mat-label>Postcode</mat-label>
+        <mat-form-field appearance="outline">
+          <input
+            type="text"
+            numberOnly
+            formControlName="postalCode"
+            matInput
+            placeholder="Enter Postcode"
+            autocomplete="off"
+          />
+          <mat-error>{{
+            secondStepForm | getControl: ["postalCode"] | validate: "ZIPCODE"
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-wrap">
+    <!-- <button type="button" class="back-btn">Back</button> -->
+    <button
+      type="submit"
+      class="primary-btn"
+      [disabled]="!secondStepForm.valid"
+    >
+      Save & Next
+    </button>
+  </div>
+</form>

@@ -1,0 +1,83 @@
+@use 'global' as *;
+.backtxt {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    color: $drkcolor;
+    padding: 0 16px;
+    text-decoration: underline;
+    margin-bottom: 5px;
+}
+
+mat-nav-list {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: calc(100% - 35px);
+    padding-top: 0;
+    .mat-list-item {
+        line-height: 1.4;
+        height: auto;
+        font-size: 13px;
+        font-weight: 700;
+        color: $drkcolor;
+        &.active {
+            color: $thm;
+        }
+    }
+    .mat-icon-button {
+        --size: 25px;
+        height: var(--size);
+        width: var(--size);
+        line-height: 0;
+        mat-icon {
+            --size: 16px;
+            height: var(--size);
+            width: var(--size);
+            font-size: var(--size);
+            line-height: var(--size);
+        }
+    }
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    span {
+        flex: 0 0 calc(100% - 67px);
+        @extend %ellipsis;
+    }
+    .lefticon {
+        margin-left: -8px;
+    }
+}
+
+:host ::ng-deep .property-sidebar {
+    .mat-list-item {
+        .mat-list-item-content {
+            padding: 6px 15px;
+        }
+    }
+    .mat-expansion-panel {
+        box-shadow: none !important;
+        @include radius(0 !important);
+        .mat-expansion-panel-header {
+            font-size: 14px;
+            font-weight: bold;
+            color: $drkcolor;
+            padding: 0 16px;
+        }
+        .mat-expansion-panel-body {
+            padding: 0;
+            .mat-list-item-content {
+                font-size: 12px;
+                color: inherit;
+            }
+        }
+        .mat-list-item {
+            .mat-list-item-content {
+                padding: 2px 15px;
+            }
+        }
+    }
+}

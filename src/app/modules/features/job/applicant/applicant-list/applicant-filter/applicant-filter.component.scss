@@ -1,0 +1,119 @@
+.filter_main_wrapper {
+  .heading {
+    background: #eeee;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    h3 {
+      font-size: 18px;
+      margin-bottom: 0;
+      font-weight: 600;
+    }
+    .close_btn {
+      cursor: pointer;
+    }
+  }
+  .filter_body {
+    max-height: calc(100vh - 137px);
+    overflow-y: auto;
+    padding: 15px;
+  }
+  .slider_wrapper {
+    border: 1px solid #eee;
+    border-radius: 7px;
+    padding: 20px 15px;
+  }
+  .btn_wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:15px 17px;
+    border-top: solid 1px rgba(214, 214, 214, 0.5);
+    button {
+      width:calc(50% - 5px);
+      height:48px;
+      font-size: 14px;
+      font-weight: 500;
+      &:first-of-type {
+        margin-left: 0;
+      }
+    }
+    .btn_secondry{
+      border: solid 1.5px rgba(150, 165, 184, 0.5);
+      color:#14B1BD;
+    }
+  }
+}
+
+:host ::ng-deep {
+  .filter_body {
+    .app-chip-search-form {
+      width: 100%;
+      .add_skill_wrapper {
+        width: 100%;
+      }
+    }
+    .mat-checkbox {
+      margin-bottom: 20px;
+      display: block;
+    }
+    mat-label {
+      margin-bottom: 20px;
+      display: block;
+      width: 100%;
+    }
+    .ngx-slider .ngx-slider-pointer {
+      background-color: #14B1BD;
+    }
+    .ngx-slider .ngx-slider-selection {
+      background: #14B1BD;
+    }
+    .ngx-slider .ngx-slider-bubble {
+      color: #fff;
+      background: #6e6b6b;
+      font-size: 12px;
+      font-family: 'Lato', sans-serif;
+      margin-bottom: 6px;
+      border-radius: 4px;
+    }
+    .ngx-slider .ngx-slider-bubble.ngx-slider-limit {
+      color: #fff;
+    }
+    mat-accordion {
+      .mat-expansion-panel:not(.mat-expanded):not([aria-disabled="true"]) .mat-expansion-panel-header:hover {
+        background: transparent;
+      }
+      .mat-expansion-panel-header-title,
+      .mat-expansion-panel-header-description {
+        margin-right: 0;
+      }
+      mat-label {
+        margin-bottom: 0px;
+      }
+      .mat-expansion-panel:not([class*="mat-elevation-z"]) {
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.21);
+      }
+    }
+  }
+}
+.row {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+  &:last-of-type {
+    margin-bottom: 0;
+    border-bottom: 0;
+  }
+  .filter_col {
+    padding: 0 15px;
+    width: 100%;
+  }
+}
+.fix_height {
+  min-height: 232px;
+}
+.star-icon {
+  position: relative;
+  top: 3px;
+}

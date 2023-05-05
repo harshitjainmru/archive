@@ -1,0 +1,149 @@
+<form [formGroup]="ratingForm">
+  <div class="popup-wrapper">
+    <div class="popup-inner">
+      <div class="popup-header">
+        <h3 class="title">
+          {{ !data?.applicant?.rating ? "Rate Candidate" : "Edit Rating" }}
+        </h3>
+      </div>
+      <div class="popup-main">
+        <p class="tell-us">Please tell us about your experience with</p>
+        <div class="user-section">
+          <div class="user-img">
+            <figure>
+              <img
+                onerror="this.src='assets/icons/placeholder.svg'"
+                [src]="
+                  data?.applicant?.applicant?.profilePic
+                    ? data?.applicant?.applicant?.profilePic
+                    : 'assets/icons/placeholder.svg'
+                "
+                alt="User Image"
+              />
+            </figure>
+          </div>
+          <div class="basic-info">
+            <p>
+              <strong class="user-name">{{
+                data?.applicant?.applicant?.fullName
+              }}</strong>
+              as a {{ data?.jobDetails?.jobRole?.scrubbed }}
+            </p>
+          </div>
+        </div>
+        <div class="rating-wrap-area">
+          <div class="star-listing">
+            <mat-radio-group
+              aria-label="Select an option"
+              class="choose-star"
+              formControlName="rating"
+            >
+              <div class="star-item first">
+                <mat-radio-button
+                  [value]="STAR_RATING_OPTIONS[0]"
+                  [ngClass]="{
+                    bad: true,
+                    fill: ratingControl.value > 1
+                  }"
+                  >Bad</mat-radio-button
+                >
+              </div>
+              <div class="star-item">
+                <mat-radio-button
+                  [value]="STAR_RATING_OPTIONS[1]"
+                  [ngClass]="{
+                    fair: true,
+                    fill: ratingControl.value > 2
+                  }"
+                  >Fair</mat-radio-button
+                >
+              </div>
+              <div class="star-item">
+                <mat-radio-button
+                  [value]="STAR_RATING_OPTIONS[2]"
+                  [ngClass]="{
+                    average: true,
+                    fill: ratingControl.value > 3
+                  }"
+                  >Average</mat-radio-button
+                >
+              </div>
+              <div class="star-item">
+                <mat-radio-button
+                  [value]="STAR_RATING_OPTIONS[3]"
+                  [ngClass]="{
+                    good: true,
+                    fill: ratingControl.value > 4
+                  }"
+                  >Good</mat-radio-button
+                >
+              </div>
+              <div class="star-item">
+                <mat-radio-button
+                  [value]="STAR_RATING_OPTIONS[4]"
+                  [ngClass]="{
+                    excellent: true,
+                    fill: ratingControl.value > 5
+                  }"
+                  >Excellent</mat-radio-button
+                >
+              </div>
+            </mat-radio-group>
+          </div>
+        </div>
+        <p class="select-option">
+          Please select options, you like about working with
+          <strong>{{ data?.applicant?.applicant?.fullName }}</strong
+          >.
+        </p>
+        <div class="options-wrap">
+          <ul class="option-listing">
+            <li *ngFor="let item of descriptionArr">
+              <mat-checkbox
+                [checked]="checkChecked(item)"
+                (change)="handleCheckboxChange($event, item)"
+                class="example-margin"
+                >{{ item }}</mat-checkbox
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="write-something-wrap">
+          <mat-label>Write something about your experience</mat-label>
+          <mat-form-field
+            class="example-full-width"
+            appearance="outline"
+            class="textarea_autosize"
+          >
+            <textarea
+              formControlName="experience"
+              matInput
+              placeholder="Start writing here...."
+            ></textarea>
+            <mat-error>{{
+              ratingForm | getControl: ["experience"] | validate: "EXPERIENCE"
+            }}</mat-error>
+            <mat-hint align="end">{{
+              ratingForm.get("experience").value.length +
+                "/" +
+                VALIDATION_CRITERIA.descriptionMaxLength
+            }}</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="footer">
+        <button (click)="closeDialog()" type="button" class="cancel-btn">
+          Cancel
+        </button>
+        <button
+          [disabled]="ratingForm.invalid"
+          type="button"
+          class="primary-btn"
+          (click)="submitRating()"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

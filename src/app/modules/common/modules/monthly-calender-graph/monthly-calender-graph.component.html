@@ -1,0 +1,53 @@
+<!-- <mat-form-field style="cursor: pointer" appearance="outline">
+  <mat-date-range-input style="cursor: pointer" [rangePicker]="picker">
+    <input
+      style="cursor: pointer"
+      readonly
+      (click)="picker.open()"
+      (dateChange)="dateChange($event)"
+      [formControl]="monthControl"
+      matEndDate
+      placeholder="End date"
+    />
+  </mat-date-range-input>
+  <mat-date-range-picker #picker></mat-date-range-picker>
+</mat-form-field> -->
+<!-- <mat-form-field appearance="outline" (click)="this.endMonth.open()">
+  <input
+    [matDatepicker]="startMonth"
+    [formControl]="monthStartControl"
+    matInput
+    readonly
+  />
+  <mat-datepicker startView="multi-year" #startMonth></mat-datepicker>
+</mat-form-field> -->
+<div class="top_wrap" style="cursor: pointer" (click)="this.endMonth.open()">
+  <p
+    style="
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #27303f;
+    "
+  >
+    {{ infoString }}
+  </p>
+  <mat-form-field appearance="none" style="cursor: pointer">
+    <input
+      matInput
+      (dateChange)="dateChange($event)"
+      [formControl]="monthEndControl"
+      [matDatepicker]="endMonth"
+      [min]="tenYearsBefore"
+      [max]="today"
+      placeholder="Select date"
+      readonly
+      style="cursor: pointer"
+    />
+    <mat-datepicker
+      (monthSelected)="closeDatePicker($event, endMonth)"
+      startView="multi-year"
+      #endMonth
+    ></mat-datepicker>
+  </mat-form-field>
+</div>

@@ -1,0 +1,38 @@
+<form [formGroup]="inviteForm" (submit)="sendInvites()">
+    <div class="popup_main_wrapper">
+        <div class="haeding">
+            <h3>Invite Candidate</h3>
+        </div>
+        <div class="form_group_wrapper">
+            <div class="form_group">
+                <mat-label>Title</mat-label>
+                <mat-form-field appearance="outline">
+                    <input formControlName="title" matInput placeholder="Enter title">
+                    <mat-error>{{
+                        inviteForm | getControl: ["title"] | validate: "TITLE"
+                      }}</mat-error>
+                  </mat-form-field>
+            </div>
+    
+            <div class="form_group text_area">
+                <mat-label>Message</mat-label>
+                <mat-form-field appearance="outline">
+                    <textarea [maxLength]="VALIDATION_CRITERIA.maxinviteMsgLength" formControlName="message" matInput placeholder="Enter Message"></textarea>
+                    <mat-error>{{
+                        inviteForm | getControl: ["message"] | validate: "MESSAGE"
+                      }}</mat-error>
+                      <mat-hint align="end">{{inviteForm.get('message').value.length+"/"+VALIDATION_CRITERIA.maxinviteMsgLength}}</mat-hint>
+                  </mat-form-field>
+            </div>
+        </div>
+        <div class="btn_wrap">
+            <button type="button" (click)="onNoClick()" class="btn_secondry">
+                Cancel
+            </button>
+            <button type="submit"  class="primary-btn">
+                Send invite
+            </button>
+        </div>
+    
+    </div>
+</form>

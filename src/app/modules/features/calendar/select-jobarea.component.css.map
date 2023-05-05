@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AACA,AAAA,WAAW,CAAC;EACR,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;EACZ,QAAQ,EAAE,QAAQ;EAClB,GAAG,EAAE,GAAG;EACR,KAAK,EAAE,KAAK;EACZ,OAAO,EAAE,GAAG;EACZ,UAAU,EAAE,OAAO;EACnB,OAAO,EAAE,GAAG;CACf;;AAED,AAAA,SAAS,CAAC;EACN,OAAO,EAAE,iBAAiB;EAC1B,UAAU,EAAE,MAAM;CACrB;;AAED,AAAA,YAAY,CAAC;EACT,KAAK,EAAE,OAAO;CACjB",
+    "sources": [
+        "select-jobarea.component.scss"
+    ],
+    "names": [],
+    "file": "select-jobarea.component.css"
+}

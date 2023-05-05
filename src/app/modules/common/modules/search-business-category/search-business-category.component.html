@@ -1,0 +1,34 @@
+
+    <mat-label class="required" >Business Categories &nbsp; <span class="mandatory_field">*</span> <img
+        [matTooltip]="'You can select maximum 5 Business Categories'" src="assets/images/Info_new.svg" alt=""
+        class="info_icon"></mat-label>
+
+    <!-- <mat-form-field appearance="outline">
+      <mat-select formControlName="businessCategories" (openedChange)="onChenageState()"
+        placeholder="Select Multiple Business Category" (selectionChange)="onSelectionChange($event.value)">
+        <div class="input-wrap">
+          <mat-form-field appearance="outline">
+            <input type="text" (keydown)="$event.stopPropagation()" [formControl]="searchValue" matInput
+              placeholder="Search by Category" autocomplete="off">
+          </mat-form-field>
+        </div>
+        <ng-container *ngFor="let catg of categoryData | searchFilter:'name':searchValue.value">
+          <p class="notFound" *ngIf="catg?.found">No Data Found</p>
+          <mat-option *ngIf="!catg.found" [value]="catg"
+            [ngClass]="{'checkmark':selectedCategories.indexOf(catg) >=0}">{{catg.name}}</mat-option>
+        </ng-container>
+        <mat-select-trigger>{{ "Select Multiple Business Category" }}</mat-select-trigger>
+      </mat-select>
+      <mat-error>{{thirdStepForm | getControl: ["businessCategories"] | validate: "BUSINESS_CATEGORY"}}</mat-error>
+    </mat-form-field> -->
+
+
+<div class="mat-chip-wrap">
+  <div class="mat-area-chip">
+    <mat-chip-list>
+      <mat-chip *ngFor="let Catg of selectedCategories;let i=index" (removed)="onRemove(Catg)">{{Catg.name}}
+        <img src="assets/images/close.svg" alt="" *ngIf="selectedCategories?.length>=1" matChipRemove>
+      </mat-chip>
+    </mat-chip-list>
+  </div>
+</div>

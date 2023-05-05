@@ -1,0 +1,206 @@
+.popup-wrapper {
+  margin: -24px;
+  .popup-inner {
+    .popup-header {
+      padding: 0 24px;
+      width: 100%;
+      height: 64px;
+      background: rgba(243, 243, 243, 0.5);
+      border-radius: 8px 8px 0px 0px;
+      display: flex;
+      align-items: center;
+      h3 {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 36px;
+        color: #14B1BD;
+        margin-bottom: 0;
+      }
+    }
+    .popup-main {
+      padding: 20px 15px;
+      .upload-wrap {
+        width: 180px;
+        height: 180px;
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px dashed #bac0c7;
+        box-shadow: 0px 4px 8px rgba(44, 39, 56, 0.04);
+        border-radius: 6px;
+        position: relative;
+        .remove-image {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          background: #fff;
+          cursor: pointer;
+          border: solid 1px #ff0000;
+          position: absolute;
+          right: -15px;
+          top: -15px;
+          z-index: 9;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .uploaded-image {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          left: 0;
+          top: 0;
+          overflow: hidden;
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: 6px;
+            object-fit: cover;
+            object-position: center center;
+          }
+        }
+        .upload-inner {
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          border-radius: 6px;
+          overflow: hidden;
+          position: relative;
+          input {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            opacity: 0;
+          }
+          .upload-icon {
+            width: 52px;
+            height: 44px;
+            background: url("../../../../../../assets/icons/upload-ic.svg")
+              center center no-repeat;
+          }
+          h3 {
+            font-size: 16px;
+            line-height: 24px;
+            text-align: center;
+            color: #6e6b6b;
+            margin-bottom: 5px;
+          }
+          .note {
+            font-size: 12px;
+            line-height: 14px;
+            text-align: center;
+            color: #96a5b8;
+          }
+        }
+      }
+    }
+    .popup-footer {
+      padding: 15px;
+      border-top: 2px solid #dbe2ea;
+      .btn-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        .cancel-btn {
+          margin-right: 15px;
+          background: #fff;
+        }
+      }
+    }
+  }
+}
+
+.doc_upload_wrapper {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  .doc_upload {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px 0 rgba(44, 39, 56, 0.04);
+    border: solid 1px #dbe2ea;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @media (max-width: 1024px) {
+      width: 160px;
+      height: 160px;
+    }
+    strong {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.71;
+      color: rgba(110, 107, 107, 0.7);
+    }
+    span {
+      font-size: 12px;
+      color: #96a5b8;
+    }
+    .upload_input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+  }
+  .preview_img_wrapper {
+    display: flex;
+    align-items: flex-start;
+    // flex-wrap: wrap;
+    width: calc(100% - 200px);
+    @media (max-width: 1024px) {
+      width: calc(100% - 160px);
+    }
+    .preview_img {
+      box-shadow: 0 4px 8px 0 rgba(44, 39, 56, 0.04);
+      border: solid 1px #dbe2ea;
+      background-color: #fff;
+      width: 200px;
+      height: 200px;
+      margin: 0 0 20px 20px;
+      border-radius: 5px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      margin-bottom: 20px;
+      @media (max-width: 1024px) {
+        width: 160px;
+        height: 160px;
+      }
+      &:last-of-type {
+        margin-right: 0;
+      }
+      .file_name {
+        margin-bottom: 0;
+        font-size: 11px;
+        font-weight: 800;
+        white-space: nowrap;
+        max-width: 180px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .preview_icon {
+        width: 32px;
+        height: auto;
+        margin-bottom: 10px;
+      }
+      .delete {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        cursor: pointer;
+      }
+    }
+  }
+}

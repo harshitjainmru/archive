@@ -1,0 +1,41 @@
+.agm-map {
+    height: 300px;
+    position: relative;
+}
+
+.popup_wrapper {
+    margin: -24px;
+    .heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #f3f3f380;
+        padding: 10px 15px;
+        h3 {
+            color: #14B1BD;
+            font-size: 20px;
+            margin-bottom: 0;
+            line-height: 1.8;
+        }
+        .close{
+            cursor: pointer;
+        }
+    }
+    .inner_content {
+        padding: 15px;
+        .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .form_group {
+                width: calc(100% - 80px);
+            }
+            button{
+             height: 34px;
+                margin-top: -4px;
+            }
+        }
+    }
+    
+    
+}

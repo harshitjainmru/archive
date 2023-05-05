@@ -1,0 +1,31 @@
+<div class="popup_main_wrapper">
+  <figure class="popup_icon">
+    <img src="assets/images/ConfirmationCheckIcon.svg" alt="">
+  </figure>
+  <ng-container *ngIf="!data?.slotId;else updated">
+    <h3 class="title">
+      New Work Shift Created
+    </h3>
+    <p>
+      You have successfully craeted a new shift called <br>
+      <span>“{{data?.name}}”</span> <br>
+      To manage all your work shifts
+    </p>
+    <div class="btn_wrap">
+      <a (click)="goToDashboard()">Go to dashboard</a>
+      <button (click)="goToShif()" class="primary-btn">Go to Shifts</button>
+    </div>
+  </ng-container>
+  <ng-template #updated>
+    <h3 class="title">
+      Work Shift Updated
+    </h3>
+    <p>
+      You have successfully updated a shift called <br>
+      <span>“{{data?.name}}”</span> <br>
+    </p>
+    <div class="btn_wrap">
+      <button (click)="onNoClick()" class="primary-btn">Close</button>
+    </div>
+  </ng-template>
+</div>

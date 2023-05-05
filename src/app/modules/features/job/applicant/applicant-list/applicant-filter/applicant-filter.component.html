@@ -1,0 +1,126 @@
+<div class="filter_main_wrapper">
+  <div class="heading">
+    <h3>FILTER BY</h3>
+    <span (click)="closeDialog()" class="close_btn">
+      <img src="assets/images/filter_close.svg" alt="" />
+    </span>
+  </div>
+  <form [formGroup]="applicantFilterForm">
+    <div class="filter_body">
+      <div class="row" *ngIf="dialogData?.status!==status.INVITATION">
+        <div class="filter_col">
+          <mat-label>Applied on</mat-label>
+          <mat-radio-group
+            aria-labelledby="example-radio-group-label"
+            class="example-radio-group"
+            formControlName="appliedOn"
+          >
+            <!-- <mat-radio-button class="example-radio-button" value="1"
+              >Any time</mat-radio-button
+            > -->
+            <mat-radio-button
+              class="example-radio-button"
+              [value]="appliedOn.day"
+              >Past 24 hours</mat-radio-button
+            >
+            <mat-radio-button
+              class="example-radio-button"
+              [value]="appliedOn.week"
+              >Past week</mat-radio-button
+            >
+            <mat-radio-button
+              class="example-radio-button"
+              [value]="appliedOn.month"
+              >Past month</mat-radio-button
+            >
+          </mat-radio-group>
+        </div>
+      </div>
+      <div class="row">
+        <div class="filter_col">
+          <mat-label>Rating</mat-label>
+          <mat-radio-group
+            aria-labelledby="example-radio-group-label"
+            class="example-radio-group"
+            formControlName="rating"
+          >
+            <mat-radio-button
+              class="example-radio-button"
+              [value]="rating.three"
+              >3
+              <img
+                src="assets/icons/Rating_Icon.svg"
+                alt="Icon"
+                class="star-icon"
+              />
+              & above</mat-radio-button
+            >
+            <mat-radio-button class="example-radio-button" [value]="rating.two"
+              >2
+              <img
+                src="assets/icons/Rating_Icon.svg"
+                alt="Icon"
+                class="star-icon"
+              />
+              & above</mat-radio-button
+            >
+            <mat-radio-button class="example-radio-button" [value]="rating.one"
+              >1
+              <img
+                src="assets/icons/Rating_Icon.svg"
+                alt="Icon"
+                class="star-icon"
+              />
+              & above</mat-radio-button
+            >
+          </mat-radio-group>
+          <ul></ul>
+        </div>
+      </div>
+      <div *ngIf="dialogData?.status!==status.INVITATION" class="row">
+        <div class="filter_col">
+          <mat-label>Overall experience</mat-label>
+          <mat-radio-group
+            aria-labelledby="example-radio-group-label"
+            class="example-radio-group"
+            formControlName="experience"
+          >
+
+            <mat-radio-button
+              class="example-radio-button"
+              [value]="experience.two"
+              >Upto 2 years</mat-radio-button
+            >
+            <mat-radio-button
+              class="example-radio-button"
+              [value]="experience.four"
+              >Upto 4 years</mat-radio-button
+            >
+            <mat-radio-button
+              class="example-radio-button"
+              [value]="experience.six"
+              >Upto 6 years</mat-radio-button
+            >
+            <mat-radio-button
+              class="example-radio-button"
+              [value]="experience.aboveSix"
+              >Above 6 years</mat-radio-button
+            >
+          </mat-radio-group>
+        </div>
+      </div>
+      <div class="row">
+        <div class="filter_col">
+          <app-chip-search-form class="app-chip-search-form "
+            [searchObject]="skillsSearchConfig"
+            [parant]="'skills'"
+          ></app-chip-search-form>
+        </div>
+      </div>
+    </div>
+    <div class="btn_wrap">
+      <button (click)="applyFilter()" class="primary-btn">Apply Filter</button>
+      <button (click)="reset()" class="btn_secondry">Reset</button>
+    </div>
+  </form>
+</div>

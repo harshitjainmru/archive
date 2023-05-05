@@ -1,0 +1,365 @@
+.breadcrumbs {
+  ul {
+    li {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 22px;
+      color: #14B1BD;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 15px;
+      @media (max-width: 1024px) {
+        font-size: 13px;
+      }
+      @media (max-width: 767px) {
+        font-size: 12px;
+        line-height: 20px;
+      }
+      a {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 22px;
+        color: #969ba0;
+        position: relative;
+        @media (max-width: 1024px) {
+          font-size: 13px;
+        }
+        @media (max-width: 767px) {
+          font-size: 12px;
+          line-height: 20px;
+        }
+        &::before {
+          position: absolute;
+          content: "/";
+          font-size: 18px;
+          color: #969ba0;
+          right: -12px;
+          top: -2px;
+          @media (max-width: 1024px) {
+            font-size: 17px;
+          }
+          @media (max-width: 767px) {
+            font-size: 16px;
+            right: -9px;
+          }
+        }
+      }
+    }
+  }
+}
+.page-title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  color: #000000;
+  margin-bottom: 15px;
+  text-transform: capitalize;
+  @media (max-width: 1024px) {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  @media (max-width: 767px) {
+    margin-bottom: 8px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
+.filter_row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-top: 20px;
+  @media (max-width: 1024px) {
+    margin-top: 15px;
+  }
+  @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 15px 0;
+  }
+
+  .left_col {
+    width: 50%;
+    display: flex;
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+    @media (max-width: 480px) {
+      flex-direction: column;
+    }
+    .app-common-search {
+      width: 100%;
+    }
+    .show_entry_wrapper {
+      max-width: 103px;
+      margin-right: 20px;
+    }
+  }
+  .right_col {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    @media (max-width: 767px) {
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+    .sortby_btn {
+      padding: 7px 10px;
+      border-radius: 6px;
+      border: solid 1.5px #96a5b84d;
+      display: flex;
+      align-items: center;
+      background: transparent;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #231e1e;
+      @media (max-width: 767px) {
+        padding: 5px 10px;
+        font-size: 13px;
+      }
+      span {
+        margin: 0 5px;
+      }
+    }
+  }
+  .filter_btn {
+    padding: 7px 16px;
+    border-radius: 6px;
+    border: solid 1.5px #96a5b84d;
+    display: flex;
+    align-items: center;
+    background: transparent;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #231e1e;
+    margin-left: 20px;
+    @media (max-width: 767px) {
+      padding: 5px 10px;
+      font-size: 13px;
+      margin-left: 15px;
+    }
+    img {
+      margin-right: 5px;
+    }
+  }
+}
+
+:host ::ng-deep {
+  .common_search_wrapper {
+    .mat-form-field .mat-form-field-wrapper {
+      padding-bottom: 15px;
+    }
+  }
+  .mat-form-field-label-wrapper {
+    font-family: "Lato", sans-serif;
+  }
+  .job_tabs_wrapper {
+    .mat-tab-label {
+      font-family: "Lato", sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: #6e6b6b;
+      @media (max-width: 767px) {
+        font-size: 15px;
+      }
+    }
+    .data_count_wrapper {
+      font-weight: 600;
+    }
+    .mat-tab-label-active {
+      .mat-tab-label-content {
+        color: #14B1BD !important;
+        font-weight: 600;
+        opacity: 1;
+      }
+    }
+    .mat-tab-label {
+      height: 60px;
+      @media (max-width: 767px) {
+        height: 50px;
+      }
+    }
+    .mat-paginator {
+      border-radius: 10px;
+    }
+    .mat-cell {
+      font-size: 14px;
+      color: #6e6b6b;
+      font-family: 'Lato', sans-serif;
+      font-weight: 500;
+      text-align: left;
+      white-space: nowrap;
+      padding: 15px 30px;
+      &:last-of-type {
+        text-align: center;
+      }
+    }
+    .mat-paginator-page-size-select {
+      width: 90px;
+    }
+  }
+}
+:host ::ng-deep {
+  .job_list_paginator_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 20px;
+    @media (max-width: 1024px) {
+      justify-content: center;
+      margin-top: 10px;
+      padding-left: 0;
+    }
+    @media (max-width: 767px) {
+      margin-top: 5px;
+      padding-left: 0;
+    }
+    @media (max-width: 576px) {
+      flex-direction: column;
+    }
+    .mat-paginator-container {
+      min-height: auto;
+      @media (max-width: 1024px) {
+        display: flex;
+        align-items: center;
+      }
+      @media (max-width: 767px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    @media (max-width: 576px) {
+      width: 100%;
+    }
+    .mat-paginator-page-size {
+      @media (max-width: 1024px) {
+        align-items: center;
+        margin-right: 5px;
+      }
+      @media (max-width: 767px) {
+        align-items: center;
+        margin-right: 0;
+      }
+    }
+    .mat-paginator-navigation-previous {
+      width: 100px !important;
+      display: block;
+      margin-right: 35px !important;
+      @media (max-width: 767px) {
+        display: none;
+      }
+    }
+    .mat-paginator-navigation-next {
+      width: 100px !important;
+      display: block;
+      margin-right: 0 !important;
+      @media (max-width: 767px) {
+        display: none;
+      }
+    }
+    .mat-paginator-range-label {
+      margin: 0;
+      display: none;
+    }
+    .mat-button-disabled {
+      opacity: 0.2 !important;
+      cursor: default !important;
+      @media (max-width: 1024px) {
+        display: none;
+      }
+    }
+    .mat-form-field .mat-form-field-wrapper {
+      @media (max-width: 1024px) {
+        padding-bottom: 10px;
+      }
+    }
+  }
+  .show_entry_wrapper {
+    .mat-form-field .mat-form-field-wrapper .mat-form-field-flex {
+      margin-top: 0;
+      padding: 0;
+      box-shadow: 0 4px 8px 0 rgb(44 39 56 / 4%);
+      background: rgba(219, 226, 234, 0.4);
+      border-radius: 4px;
+    }
+  }
+}
+
+.filter_icon {
+  width: 20px;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-wrap {
+  display: flex;
+  align-items: center;
+  button {
+    min-width: 120px;
+  }
+  button + button {
+    margin-left: 15px;
+  }
+}
+:host ::ng-deep {
+  
+
+  .job_list_paginator_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 20px;
+    @media (max-width: 576px) {
+      flex-direction: column;
+    }
+    .mat-paginator-container {
+      min-height: auto;
+    }
+    @media (max-width: 576px) {
+      width: 100%;
+    }
+    .mat-paginator-navigation-previous {
+      width: 100px !important;
+      display: block;
+      margin-right: 35px !important;
+    }
+    .mat-paginator-navigation-next {
+      width: 100px !important;
+      display: block;
+      margin-right: 0 !important;
+    }
+    .mat-button-disabled {
+      opacity: 0.2 !important;
+      cursor: default !important;
+    }
+  }
+  .show_entry_wrapper {
+    .mat-form-field .mat-form-field-wrapper .mat-form-field-flex {
+      margin-top: 0;
+      padding: 0;
+      box-shadow: 0 4px 8px 0 rgb(44 39 56 / 4%);
+      background: rgba(219, 226, 234, 0.4);
+      border-radius: 4px;
+    }
+  }
+}
+.applied_icon {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #f44336;
+  position: absolute;
+  right: 5px;
+  top: -5px;
+  color: white;
+  font-size: 10px;
+}

@@ -1,0 +1,15 @@
+<div class="popup_main_wrapper">
+  <h3 class="title">Choose country of residence</h3>
+  <!-- for close popup -->
+  <img (click)="onClose()" *ngIf="!!currentCountry" class="closedbtn" src="assets/images/Close_new.svg" alt="">
+  <ul class="counrty_selection_wrapper">
+    <ng-container *ngFor="let country of countryLists">
+      <li (click)="onCountrySelection(country)"  class="country"
+        [ngClass]="{'active': selectedCountry?.name==country?.name}">
+        <img [src]="country?.image" alt="">
+        {{country?.name}}
+      </li>
+    </ng-container>
+  </ul>
+  <button [disabled]="!selectedCountry" (click)="onSubmit()" class="primary-btn">Submit</button>
+</div>

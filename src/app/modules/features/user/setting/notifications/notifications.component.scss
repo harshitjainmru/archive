@@ -1,0 +1,17 @@
+.flex-notification{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:25px 15px;
+    .left-section{
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 28px;
+        color: #231E1E;
+        img{
+            margin-right:10px;
+        }
+    }
+}

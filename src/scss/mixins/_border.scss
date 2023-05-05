@@ -1,0 +1,20 @@
+$position: all !default;
+$size: 1px !default;
+$pattern: solid !default;
+$color: rgba(#000000, 0.12) !default;
+@mixin border($position: $position, $size: $size, $pattern: $pattern, $color: $color) {
+    @if $position==$position {
+        border: $size $pattern $color;
+    }
+    @else {
+        #{$position}: $size $pattern $color;
+    }
+}
+
+@mixin radius ($radius) {
+    border-radius: $radius;
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+}

@@ -1,0 +1,49 @@
+<div class="popup_main_wrapper">
+  <div class="heading">
+    <h3>Edit Shift</h3>
+  </div>
+  <form [formGroup]="shiftForm" (ngSubmit)="onSubmit()">
+    <div class="inner_content_wrapper row">
+      <div class="col-sm-12">
+        <mat-label>Shift Name &nbsp;<span class="mandatory_field">*</span></mat-label>
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="name" placeholder="Enter Shift Name" autocomplete="off"
+            placeholder="Shift A">
+          <mat-error>{{ shiftForm | getControl: ["name"] | validate: "SHIFT_NAME" }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-sm-6">
+        <mat-label>Shift’s Start Time &nbsp;<span class="mandatory_field">*</span></mat-label>
+        <app-date-time-picker [dataTimeCtrl]="starttimeCtrl" (pickerClosed)="onPickerClosed($event, 'start')"
+          [pickerTitle]="'SHIFT_START_TIME'" [placeholder]="'Enter Shift’s Start Time'">
+        </app-date-time-picker>
+
+      </div>
+
+      <div class="col-sm-6">
+        <mat-label>Shift’s End Time &nbsp;<span class="mandatory_field">*</span></mat-label>
+        <app-date-time-picker [dataTimeCtrl]="endTimeCtrl" (pickerClosed)="onPickerClosed($event, 'end')"
+          [pickerTitle]="'SHIFT_END_TIME'" [placeholder]="'Enter Shift’s End Time'">
+        </app-date-time-picker>
+      </div>
+
+      <div class="col-sm-12">
+        <mat-label>Working Days &nbsp;<span class="mandatory_field">*</span></mat-label>
+        <div class="slection_wrapper">
+          <ng-container *ngFor="let day of daysList">
+            <mat-checkbox [checked]="day?.checked" (change)="onDayChecked($event.checked,day)" class="day">{{day?.name}}
+            </mat-checkbox>
+          </ng-container>
+        </div>
+      </div>     
+    </div>
+    <div class="col-sm-12">
+      <div class="btn_wrap">
+        <button type="button" (click)="closeMe()" class="btn_secondry">Cancel</button>
+        <button [disabled]="shiftForm.invalid || selectedDays?.length==0" type="submit"
+          class="primary-btn">Save</button>
+      </div>
+    </div>
+  </form>
+</div>

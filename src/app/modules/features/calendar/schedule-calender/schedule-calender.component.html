@@ -1,0 +1,73 @@
+
+<div class="date-selector">
+    <a type="button" (click)="backWeek()"
+      ><img src="assets/images/arrow-left.svg" alt="Back Icon"
+    /></a>
+    <div *ngIf="dateRangeConfigObject" class="calendar-wrap">
+      <app-monthly-selection
+      [dateRangeConfig]="dateRangeConfigObject"
+      #monthlyCalendarRef
+      (_emitMonthChanged)="emitMonthlyChangeConfig($event)"
+      ></app-monthly-selection>
+
+    </div>
+    <a type="button" (click)="nextWeek()"
+      ><img
+        src="assets/images/arrow-left.svg"
+        alt="Next Icon"
+        class="next-icon"
+    /></a>
+  </div>
+
+
+
+
+<ng-template #customCellTemplate let-day="day" let-locale="locale">
+    <div [ngClass]="{'day-strip':day.events && day.events.length}" >
+        <div class="cal-cell-top">
+            
+            <!-- {{day | json}} -->
+            <!-- <span *ngIf="(day?.events | holidayValidate:1)" class="holiday_span">{{'HOLIDAY'|translate : 'TITLE'}} - {{day?.events | holidayValidate:2}} </span> -->
+            <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
+        </div>
+        <ng-container *ngIf="day.events && day.events.length">
+            <div class="timesheet-wrap" *ngFor="let d of day.events[0].shifts | slice:0:2; let i = index">
+                <span   class="cal-day-badge" >
+                    {{d.jobTitle}} 
+                </span>
+            </div> 
+            <div *ngIf="day.events[0].shifts.length > 2" class="left-out"><a>{{day.events[0].shifts.length - 2}} more</a></div>
+        </ng-container>
+    </div>
+</ng-template>
+
+<ng-container >
+    <div [ngSwitch]="view">
+        <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="eventsArray" [cellTemplate]="customCellTemplate" (eventClicked)="handleEvent('Clicked', $event.event)" (dayClicked)="dayClicked($event.day)">
+        </mwl-calendar-month-view>
+    </div>
+</ng-container>
+
+<ng-template #modalContent let-close="close">
+    <div class="modal-header">
+        <h5 class="modal-title">{{'EVENT_ACTION_OCCURED'}}</h5>
+        <button type="button" class="close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div>
+            {{'ACTION'}}:
+            <pre>{{ modalData?.action }}</pre>
+        </div>
+        <div>
+            {{'EVENT'}}:
+            <pre>{{ modalData?.event | json }}</pre>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="close()">
+            {{'OK'}}
+      </button>
+    </div>
+</ng-template>

@@ -1,0 +1,8 @@
+:host ::ng-deep{
+    .mat-form-field{
+        top: 4px;
+    }
+    .mat-form-field.mat-form-field-appearance-outline .mat-form-field-outline:not(.mat-form-field-outline-thick) {
+        background-color: #eee;
+    }
+}

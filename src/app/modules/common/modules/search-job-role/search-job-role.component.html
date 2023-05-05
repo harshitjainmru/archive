@@ -1,0 +1,24 @@
+<mat-form-field appearance="outline">
+  <mat-select
+    #selectElem
+    [formControl]="controls"
+    placeholder="Search & select job role"
+    (valueChange)="valueChanged($event)"
+  >
+    <div *ngIf="isLoader" class="loader-btn loadersmall"></div>
+    <app-select-search
+      (search)="searchRoles($event)"
+      placeholder="Search here ..."
+    ></app-select-search>
+    <mat-option class="notFound" *ngIf="!jobRoleData?.length && !isLoader"
+      >No Data Found</mat-option
+    >
+    <ng-container>
+      <mat-option *ngFor="let catg of jobRoleData" [value]="catg._id">{{
+        catg.scrubbed
+      }}</mat-option>
+    </ng-container>
+    <!-- <mat-select-trigger>{{"Search & select skills"}}</mat-select-trigger> -->
+  </mat-select>
+  <mat-error>{{ controls | validate: "JOB_ROLE" }} </mat-error>
+</mat-form-field>

@@ -1,0 +1,31 @@
+.no_search_wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 50px 0;
+  margin: 0 -15px;
+  background: #fff;
+  border: 1px solid #dbe2ea;
+}
+
+.no_search_wrapper .icon {
+  margin-bottom: 20px;
+}
+
+.no_search_wrapper p {
+  color: #000;
+  margin-bottom: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+/*# sourceMappingURL=no-record.component.css.map */

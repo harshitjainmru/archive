@@ -1,0 +1,61 @@
+<div #scrollframe class="add-job-wrapper">
+  <div class="title-header">
+    <h3>Getting Started</h3>
+    <div class="btn-wrap">
+      <button type="button" (click)="onCancelStep()" class="cancel-btn">
+        Cancel
+      </button>
+      <button
+        type="submit"
+        (click)="onNextSubmit()"
+        [disabled]="!firstStepForm.dirty"
+        class="primary-btn"
+      >
+        Save & next
+      </button>
+    </div>
+  </div>
+  <form
+    [formGroup]="firstStepForm"
+    (ngSubmit)="onSubmit()"
+    #triggerSubmitRef="ngForm"
+  >
+    <div class="get-started-wrap">
+      <div *ngIf="totalJobs > 0" class="question-wrap">
+        <p>
+          Hey! Would you like to copy job details from a previous job? &nbsp;
+          <a (click)="copyJob()">Yes! Let me choose from list</a>
+        </p>
+      </div>
+      <div class="flex">
+        <div class="col-6">
+          <div class="flex">
+            <div class="col-12">
+              <mat-label class="required"
+                >What would be the business category for this job?</mat-label
+              >
+              <mat-form-field appearance="outline">
+                <input
+                  matInput
+                  type="text"
+                  [value]="userData.businessCategories[0].name"
+                  [disabled]="true"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-12">
+              <mat-label class="required">
+                What would be the job role for this job?
+              </mat-label>
+              <app-search-job-role
+                (selectedItem)="storeSelectedItem($event)"
+                [filterKey]="jobRoleFilter"
+                [controls]="f['jobRoleId']"
+              ></app-search-job-role>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

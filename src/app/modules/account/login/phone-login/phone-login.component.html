@@ -1,0 +1,105 @@
+<div
+  class="login_wrapper animated fadeInRight"
+  *ngIf="!showOtpScreen; else otp"
+>
+  <div class="wrap">
+    <h3 class="page_title">{{ "LOGIN_WELCOME" | translate }}</h3>
+    <p class="sub_heading">{{ "PROVIDE_PHONE" | translate }}</p>
+  </div>
+  <form
+    class="example-form"
+    [formGroup]="phoneLoginForm"
+    (ngSubmit)="sendOtp()"
+  >
+    <div class="form_wrapper clearfix">
+      <app-phone-field
+        (hideBackendError)="errorType = 0"
+        [phoneForm]="phoneLoginForm"
+      ></app-phone-field>
+      <app-data-loader *ngIf="showLoader"></app-data-loader>
+      <mat-error *ngIf="showError">{{
+        "NOT_REGISTERED" | translate
+      }}</mat-error>
+
+      <span
+        *ngIf="
+          errorType == 1 || errorType == 2 || errorType == 3 || errorType == 5
+        "
+        class="mat-error custom-validation backend-err"
+        >{{ errormsg }}</span
+      >
+    </div>
+
+    <div class="form_group clearfix">
+      <mat-label
+        >{{ "PASSWORD" | translate: "TITLE" }} &nbsp;<span
+          class="mandatory_field"
+          >*</span
+        ></mat-label
+      >
+      <mat-form-field
+        checkMaxLength="passwordMaxLength"
+        class="example-full-width"
+        appearance="outline"
+      >
+        <input
+          (keydown)="errorType = 0"
+          matInput
+          formControlName="password"
+          [type]="hidePassword ? 'password' : 'text'"
+          [placeholder]="'ENTER_PASSWORD' | translate"
+        />
+        <mat-icon
+          class="pointer"
+          matSuffix
+          (click)="hidePassword = !hidePassword"
+        >
+          {{ hidePassword ? "visibility_off" : "visibility" }}
+        </mat-icon>
+        <mat-error>
+          {{ phoneLoginForm | getControl: ["password"] | validate: "PASSWORD" }}
+        </mat-error>
+        <span
+          *ngIf="errorType == 4 || errorType == 9"
+          class="mat-error custom-validation"
+          >{{ errormsg }}</span
+        >
+      </mat-form-field>
+    </div>
+    <div class="remember-me">
+      <div class="checkbox-wrap">
+        <mat-checkbox [formControl]="rememberMeCtrl" class="example-margin"
+          >Remember me</mat-checkbox
+        >
+      </div>
+      <a tabindex="-1" [routerLink]="['FORGOT_PASSWORD' | absolutePath]"
+        >Forgot Password?</a
+      >
+    </div>
+
+    <div class="btn-wrap clearfix">
+      <button mat-button type="submit" class="login-btn">
+        <app-button-loader [showLoader]="phoneLoginForm.disabled">{{
+          "LOGIN" | translate
+        }}</app-button-loader>
+      </button>
+    </div>
+    <div class="info">
+      <p>
+        Don’t have an account yet?
+        <a [routerLink]="['SIGNUP' | absolutePath]">{{
+          "SIGNUP" | translate
+        }}</a>
+      </p>
+    </div>
+  </form>
+</div>
+<ng-template #otp>
+  <app-otp-verification
+    [otpAttemptLeft]="attemptLeft"
+    [phoneData]="phoneLoginForm.value"
+    (onBack)="showOtpScreen = false"
+    (verifyOtp)="verifyOtp($event)"
+  >
+  </app-otp-verification>
+</ng-template>

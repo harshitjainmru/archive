@@ -1,0 +1,47 @@
+.btn_wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  border-top: 1px solid #6e6b6b3b;
+  padding: 20px 0;
+}
+
+.btn_wrap button {
+  margin-left: 20px;
+}
+
+.btn_wrap button:first-of-type {
+  margin-left: 0;
+}
+
+.popup_main_wrapper {
+  margin: -24px;
+  max-width: 700px;
+}
+
+.popup_main_wrapper .heading {
+  background-color: rgba(243, 243, 243, 0.5);
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.popup_main_wrapper .heading h3 {
+  margin-bottom: 0;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.8;
+  color: #14B1BD;
+}
+
+.popup_main_wrapper .content_wrapper {
+  margin: 0;
+  overflow-y: auto;
+  max-height: calc(100vh - 177px);
+}
+/*# sourceMappingURL=edit-user-profile.component.css.map */

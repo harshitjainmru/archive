@@ -1,0 +1,77 @@
+<form [formGroup]="secondStepForm">
+  <div class="popup_main_wrapper">
+    <div class="heading">
+      <h3>Edit company address</h3>
+    </div>
+    <div class="inner_content_wrapper">
+      <div class="row">
+        <div class="col-sm-6">
+          <mat-label>Company's registered location</mat-label>
+
+          <app-select-jobarea
+            [controls]="jobAreaCtrl"
+            [searchUrl]="stateSearchUrl"
+            [type]="stateType"
+            [selectPlaceholder]="'Select  location'"
+            [validateKey]="'LOCATION'"
+            [preSelected]="preSelected"
+          >
+          </app-select-jobarea>
+        </div>
+        <div class="col-sm-6">
+          <mat-label>Street address</mat-label>
+          <mat-form-field appearance="outline">
+            <input
+              type="text"
+              formControlName="street"
+              preventStartingSpace
+              matInput
+              placeholder="Enter street address"
+              autocomplete="off"
+            />
+            <mat-error>{{
+              secondStepForm | getControl: ["street"] | validate: "STREET"
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <!-- <div class="col-sm-6">
+              <mat-label>City</mat-label>
+              <mat-form-field appearance="outline">
+                <input matInput>
+              </mat-form-field>
+            </div> -->
+        <div class="col-sm-6">
+          <mat-label>Postcode</mat-label>
+          <mat-form-field appearance="outline">
+            <input
+              type="text"
+              formControlName="postalCode"
+              preventStartingSpace
+              matInput
+              placeholder="Enter Postcode"
+              autocomplete="off"
+            />
+            <mat-error>{{
+              secondStepForm | getControl: ["postalCode"] | validate: "ZIPCODE"
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="btn_wrap">
+      <button (click)="close()" type="button" class="btn_secondry">
+        Cancel
+      </button>
+      <button
+        (click)="updateCompanyAddress()"
+        type="submit"
+        class="primary-btn"
+        [disabled]="secondStepForm.invalid"
+      >
+        Save & submit
+      </button>
+    </div>
+  </div>
+</form>

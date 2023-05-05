@@ -1,0 +1,20 @@
+.page_main_wrapper {
+    // margin: 20px 0;
+    padding: 15px;
+    border-radius: 4px;
+    border: solid 1px #dfebff;
+    background-color: rgba(36, 116, 255, 0.05);
+
+    .sec_wrapper{
+        h3 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .desc {
+            color: #6e6b6b;
+            font-size: 14px;
+            font-weight: 500;
+        }
+    }
+    
+}

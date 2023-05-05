@@ -1,0 +1,241 @@
+<div class="applicant-card">
+  <div class="applicant-inner">
+    <div class="flex-row pb-15">
+      <div class="col-4">
+        <div class="user-info-wrap">
+          <div class="user-pic">
+            <figure>
+              <img
+                onerror="this.src='assets/icons/placeholder.svg'"
+                [src]="
+                  applicant?.profilePicture
+                    ? applicant?.profilePicture
+                    : 'assets/icons/placeholder.svg'
+                "
+                alt="User Image"
+              />
+            </figure>
+          </div>
+          <div class="user-basic-details">
+            <div class="user-top-info">
+              <h3 class="link" (click)="viewApplicantDetails()" >{{ applicant?.fullName }}</h3>
+              <span *ngIf="applicant?.isPreviouslyHired" class="status-wrap"
+                >Previously hired</span
+              >
+            </div>
+            <div class="exp-rating-wrap">
+              <div class="rating-wrap" *ngIf="applicant?.rating">
+                <img src="assets/icons/start_icon.svg" alt="Start Icon" />
+                <p>
+                  <span>{{ "" + applicant?.rating?.avgRating }} </span>
+                  ({{ "" + applicant?.rating?.totalRatings }}
+                  reviews)
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="title-wrap">
+          <img src="assets/icons/ic_Skills.svg" alt="Skills Icon" />
+          <h3>Skills</h3>
+        </div>
+        <ul class="skills-listing">
+          <li
+            *ngFor="
+              let skill of applicant?.skillsAndExperience?.skills | slice: 0:2
+            "
+          >
+            {{ skill?.name }}
+          </li>
+          <li
+            [matTooltip]="
+              applicant?.skillsAndExperience?.skills | skillsTooltip
+            "
+            *ngIf="applicant?.skillsAndExperience?.skills.length - 2 > 0"
+          >
+            <a>+{{ applicant?.skillsAndExperience?.skills.length - 2 }}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-4">
+        <div class="top-head">
+          <div class="title-wrap">
+            <img src="assets/icons/Add_Job.svg" alt="Skills Icon" />
+            <!-- <h3>Current job role</h3> -->
+            <h3>Preferred job roles</h3>
+          </div>
+          <ng-container *ngIf="!this.showCheckbox">
+            <a [matMenuTriggerFor]="belowMenu"
+              ><img src="assets/icons/more-icon.svg" alt="Icon"
+            /></a>
+            <mat-menu #belowMenu="matMenu" yPosition="below">
+              <button (click)="viewApplicantDetails()" mat-menu-item>
+                <img src="assets/icons/ic_users.svg" alt="Icon" />View details
+              </button>
+              <button (click)="downloadResume()" mat-menu-item>
+                <img
+                  src="assets/icons/download-ic-dark.svg"
+                  alt="Icon"
+                />Download resume
+              </button>
+              <button (click)="reportCandidate()" mat-menu-item>
+                <img
+                  src="assets/icons/Warning_icon_dark.svg"
+                  alt="Icon"
+                />Report candidate
+              </button>
+            </mat-menu>
+          </ng-container>
+          <ng-container *ngIf="this.showCheckbox">
+            <mat-checkbox
+              *ngIf="!applicant.isInviteSend"
+              (change)="handleCheckbox($event)"
+              class="example-margin"
+              [checked]="isChecked()"
+            ></mat-checkbox>
+          </ng-container>
+        </div>
+        <!-- <p>{{ applicant?.currentRole }}</p> -->
+        <ul class="skills-listing">
+          <li *ngIf="applicant?.jobCategories?.length > 0">
+            <!-- {{ applicant?.jobCategories[0]?.name }} -->
+            {{ applicant?.jobCategories[0].name }}
+          </li>
+          <li *ngIf="applicant?.jobCategories?.length > 1">
+            {{ applicant?.jobCategories[1]?.name }}
+          </li>
+          <li
+            [matTooltip]="
+              applicant?.jobCategories | skillsTooltip
+            "
+            *ngIf="applicant?.jobCategories?.length > 2"
+          >
+            <a>+{{ applicant?.jobCategories?.length - 2 }}</a>
+        </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flex-row">
+      <div class="col-4">
+        <div class="title-wrap">
+          <img src="assets/icons/location_icon.svg" alt="Skills Icon" />
+          <h3>Preferred job area</h3>
+        </div>
+        <ul class="skills-listing">
+          <li *ngIf="applicant?.locationAndTimeSlot?.location?.length > 0">
+            {{ applicant?.locationAndTimeSlot?.location[0]?.name }}
+          </li>
+          <li *ngIf="applicant?.locationAndTimeSlot?.location?.length > 1">
+            {{ applicant?.locationAndTimeSlot?.location[1]?.name }}
+          </li>
+          <li
+            [matTooltip]="
+              applicant?.locationAndTimeSlot?.location | skillsTooltip
+            "
+            *ngIf="applicant?.locationAndTimeSlot?.location?.length > 2"
+          >
+            <a>+{{ applicant?.locationAndTimeSlot?.location?.length - 2 }}</a>
+          </li>
+        </ul>
+      </div>
+      <!-- {{hideActions}}
+      {{showCheckbox}}
+      {{applicant.isInviteSend}} -->
+      <div *ngIf="!this.showCheckbox" class="col-4">
+        <div class="title-wrap">
+          <img src="assets/icons/Clock.svg" alt="Skills Icon" />
+          <h3>Time preferences</h3>
+        </div>
+        <div class="time-preference-wrap">
+          <div class="time-preference-listing">
+            <div *ngIf="applicant?.locationAndTimeSlot?.slots?.mon" class="time-preference-item">
+              <p>Mon</p>
+              <app-time-preference [dayName]="applicant?.locationAndTimeSlot?.slots?.mon"></app-time-preference>
+
+            </div>
+            <div *ngIf="applicant?.locationAndTimeSlot?.slots?.tue" class="time-preference-item">
+              <p>Tue</p>
+              <!-- <img src="assets/icons/Early-Shift-icon.svg" alt="Icon"/>
+              <span>Early</span> -->
+              <app-time-preference [dayName]="applicant?.locationAndTimeSlot?.slots?.tue"></app-time-preference>
+            </div>
+            <div *ngIf="applicant?.locationAndTimeSlot?.slots?.wed" class="time-preference-item">
+              <p>Wed</p>
+              <!-- <img src="assets/icons/Early-Shift-icon.svg" alt="Icon"/>
+              <span>Early</span> -->
+              <app-time-preference [dayName]="applicant?.locationAndTimeSlot?.slots?.wed"></app-time-preference>
+            </div>
+            <div *ngIf="applicant?.locationAndTimeSlot?.slots?.thu" class="time-preference-item">
+              <p>Thu</p>
+              <!-- <img src="assets/icons/Day-Shift-icon.svg" alt="Icon"/>
+              <span>Day</span> -->
+              <app-time-preference [dayName]="applicant?.locationAndTimeSlot?.slots?.thu"></app-time-preference>
+            </div>
+            <div *ngIf="applicant?.locationAndTimeSlot?.slots?.fri" class="time-preference-item">
+              <p>Fri</p>
+              <!-- <img src="assets/icons/Early-Shift-icon.svg" alt="Icon"/>
+              <span>Early</span> -->
+              <app-time-preference [dayName]="applicant?.locationAndTimeSlot?.slots?.fri"></app-time-preference>
+            </div>
+            <div *ngIf="applicant?.locationAndTimeSlot?.slots?.sat" class="time-preference-item">
+              <p>Sat</p>
+              <!-- <img src="assets/icons/Night-Shift-icon.svg" alt="Icon"/>
+              <span>Night</span> -->
+              <app-time-preference [dayName]="applicant?.locationAndTimeSlot?.slots?.sat"></app-time-preference>
+            </div>
+            <div *ngIf="applicant?.locationAndTimeSlot?.slots?.sun" class="time-preference-item">
+              <p>Sun</p>
+              <!-- <img src="assets/icons/Early-Shift-icon.svg" alt="Icon"/>
+              <span>Early</span> -->
+              <app-time-preference [dayName]="applicant?.locationAndTimeSlot?.slots?.sun"></app-time-preference>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!this.showCheckbox" class="col-4 contract-text">
+        <div class="title-wrap">
+          <h3></h3>
+        </div>
+
+        <a
+          *ngIf="
+            jobDetails?.jobStatus !== jobStatus?.DRAFT &&
+            jobDetails?.jobStatus !== jobStatus.COMPLETED
+          "
+          (click)="
+            openJobOfferPopup.emit({
+              applicant: applicant,
+              previousState: 'MAKE_AN_OFFER'
+            })
+          "
+          >Make an offer</a
+        >
+        <a
+          *ngIf="!applicant.isInviteSend && !hideActions"
+          (click)="emitInvitePopupEvent()"
+          >Invite candidate</a
+        >
+        <a
+          *ngIf="applicant.isInviteSend && !hideActions"
+          style="text-decoration: none"
+          >Invite Sent</a
+        >
+      </div>
+      <!-- <div *ngIf="applicant.isInviteSend" class="col-8 contract-text">
+        <div class="title-wrap">
+          <h3></h3>
+        </div> -->
+
+      <!-- </div> -->
+    </div>
+    <!-- <div *ngIf="hideActions" class="applied-date">
+      <span
+        >Invited On:
+        {{ applicant?.createdAt | customDate: dFormat.ONLY_DATE }}</span
+      >
+    </div> -->
+  </div>
+</div>

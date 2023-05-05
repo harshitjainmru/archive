@@ -1,0 +1,30 @@
+@mixin uploadImg($dr, $file, $image) {
+    @if $dr=='row' {
+        flex-direction: row;
+    }
+    @if $dr=='row-reverse' {
+        justify-content: flex-end;
+        flex-direction: row-reverse;
+    }
+    @if $dr=='column' {
+        flex-direction: column;
+    }
+    .upload_img {
+        width: $file;
+        flex: 0 0 $file;
+        height: $file;
+        @if $dr=='row' {
+            margin-right: 10px;
+        }
+        @if $dr=='column' {
+            margin-bottom: 10px;
+        }
+        @if $dr=='row-reverse' {
+            margin-left: 10px;
+        }
+    }
+    .image_list {
+        width: $image;
+        height: $image;
+    }
+}

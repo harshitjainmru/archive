@@ -1,0 +1,34 @@
+.btn_wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-top: 1px solid #6e6b6b3b;
+    padding: 20px 0;
+    button {
+        margin-left: 20px;
+        &:first-of-type{
+            margin-left: 0;
+        }
+    }
+}
+.popup_main_wrapper {
+    margin: -24px;
+    max-width: 700px;
+    .heading {
+        background-color: rgba(243, 243, 243, 0.5);
+        padding: 15px;
+        margin-bottom: 20px;
+        h3 {
+            margin-bottom: 0;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 1.8;
+            color: #14B1BD;
+        }
+    }
+    .content_wrapper {
+        margin: 0;
+        overflow-y: auto;
+        max-height: calc(100vh - 177px);
+    }
+}

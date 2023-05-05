@@ -1,0 +1,47 @@
+.top_haed {
+    border-bottom: 1px solid #dbe2ea;
+    padding: 20px 15px;
+    .sec_title {
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .bg_white {
+        width: 100%;
+        background: #fff;
+        margin: 0 15px;
+        border-radius: 4px;
+        padding: 15px 0;
+        .skills_wrapper {
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            padding: 0 15px;
+            .skill {
+                background: #f4f8ff;
+                margin-bottom: 15px;
+                margin-right: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: fit-content;
+                padding: 5px;
+                border-radius: 5px;
+                color: #537fcb;
+                font-size: 14px;
+                font-weight: 600;
+                .close_icon{
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    .btn_wrapper {
+        margin: 20px 0;
+        button {
+            margin-right: 20px;
+            &:last-of-type{
+                margin-right: 0;
+            }
+        }
+    }
+}

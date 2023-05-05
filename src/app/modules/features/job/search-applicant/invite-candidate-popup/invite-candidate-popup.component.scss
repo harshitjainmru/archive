@@ -1,0 +1,42 @@
+.popup_main_wrapper {
+    margin: -23px;
+    .haeding {
+        background: #F3F3F3;
+        padding: 15px;
+        h3 {
+            margin-bottom: 0;
+            color: #14B1BD;
+            font-weight: 600;
+            font-size: 18px;
+        }
+    }
+    .form_group_wrapper {
+        padding: 15px;
+    }
+    .btn_wrap {
+        display: flex;
+        justify-content: flex-end;
+        border-top: 1px solid #eee;
+        padding: 15px;
+        button {
+            margin-left: 20px;
+            &:first-of-type{
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+:host ::ng-deep{
+    .text_area{
+        .mat-form-field .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix {
+            
+            line-height: 20px;
+            height: 100%;
+            
+        }
+        textarea {
+            resize: auto !important;
+        }
+    }
+}

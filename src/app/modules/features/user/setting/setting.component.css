@@ -1,0 +1,121 @@
+.setting-wrapper .breadcrumbs {
+  margin-bottom: 15px;
+}
+
+.setting-wrapper .breadcrumbs ul li {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  color: #14B1BD;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.setting-wrapper .breadcrumbs ul li a {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  color: #969BA0;
+  position: relative;
+}
+
+.setting-wrapper .breadcrumbs ul li a::before {
+  position: absolute;
+  content: "/";
+  font-size: 18px;
+  color: #969BA0;
+  right: -10px;
+  top: -2px;
+}
+
+.setting-wrapper .page-title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  color: #000000;
+  margin-bottom: 15px;
+}
+
+.setting-wrapper .setting-wrap .btn-wrap {
+  z-index: 99;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.setting-wrapper .setting-wrap .btn-wrap .cancel-btn {
+  padding: 9px 25px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6e6b6b;
+  background-color: #fff;
+  border: solid 1px #6e6b6b;
+  border-radius: 5px;
+  margin-right: 15px;
+}
+
+
+.setting-wrapper .pointer {
+  cursor: pointer;
+}
+
+.setting-wrapper .request-new-password {
+  margin-bottom: 15px;
+  text-align: right;
+  position: relative;
+  top: -15px;
+}
+
+.setting-wrapper .request-new-password a {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.29;
+  text-align: left;
+  color: #14B1BD;
+}
+
+:host ::ng-deep .tabs-wrap .mat-tab-label.mat-tab-label-active {
+  opacity: 1;
+}
+
+:host ::ng-deep .tabs-wrap .mat-tab-label.mat-tab-label-active .mat-tab-label-content {
+  color: #14B1BD;
+  opacity: 1;
+}
+
+:host ::ng-deep .tabs-wrap .mat-tab-label .mat-tab-label-content {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #96a5b8;
+}
+
+:host ::ng-deep .tabs-wrap .mat-tab-body-wrapper {
+  padding: 0 15px 0 15px;
+  border-radius: 10px;
+  border: solid 1px #dbe2ea;
+  background-color: #ffffff;
+  margin-top: 20px;
+}
+
+.flex {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+@media (max-width: 767px) {
+  .flex .col-6 {
+    max-width: 100%;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 100%;
+            flex: 0 100%;
+  }
+}
+/*# sourceMappingURL=setting.component.css.map */

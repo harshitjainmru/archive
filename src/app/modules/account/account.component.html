@@ -1,0 +1,30 @@
+<div class="account-wrapper">
+  <div class="left-section">
+    <div class="logo-wrap">
+      <a [routerLink]="['HOME'|absolutePath]">
+        <!-- <img src="assets/images/Osprey-Logo.svg" alt="Logo" /> -->
+        <img src="assets/images/Pivvot_Type & Symbol-50.svg" alt="Logo" />
+      </a>
+    </div>
+    <div class="inner-wrap">
+      <div class="title-description">
+        <h3>Your Digital Staffing
+          Solution</h3>
+        <p>Unlimited reliable, scalable & capable employee</p>
+      </div>
+      <button type="button" class="white-btn">Take A Tour</button>
+    </div>
+  </div>
+  <div class="right-section">
+    <!-- <button *ngIf="!isPSetup" (click)="onOpenDialog()" mat-icon-button class="lang_btn"
+      aria-label="Example icon-button with a menu">
+      <figure class="select_counrty">
+        <img [src]=" currentCountry?.image || 'assets/icons/singapore-flag.svg'" alt="">
+      </figure>
+      <figure class="drop">
+        <img src="assets/images/downIcon.svg" alt="">
+      </figure>
+    </button> -->
+    <router-outlet></router-outlet>
+  </div>
+</div>

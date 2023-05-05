@@ -1,0 +1,27 @@
+<div class="main-wrapper">
+  <aside [ngClass]="{'openside': showSideView}">
+    <div class="logo-wrap">
+      <!-- <img src="assets/images/Osprey-Logo.svg" alt="Logo" /> -->
+      <!-- <img src="assets/images/Pivvot_Logo.svg" alt="" /> -->
+      <img src="assets/images/Pivvot_Type & Symbol-50.svg" alt="Logo" />
+      
+    </div>
+    <div class="side-menu">
+      <app-sidebar></app-sidebar>
+    </div>
+    <!-- <div class="overlay" [ngClass]="{'openside': showSideView}">
+
+    </div> -->
+  </aside>
+  <div class="main-content">
+    <div class="center-wrapper">
+      <div class="header-wrapper">
+        <app-header></app-header>
+      </div>
+      <div class="content-inner">
+        <!-- <p class="date_time">Today, {{toDay|date:'dd MMM y'}}<span>{{toDay|date:'h:mm a'}}</span></p> -->
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

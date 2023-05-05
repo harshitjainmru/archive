@@ -1,0 +1,90 @@
+<mat-accordion>
+  <ul class="nav-menu">
+    <li routerLinkActive="active">
+      <a [routerLink]="['DASHBOARD' | absolutePath]">
+        <span class="icon dashboard"></span><strong>Dashboard</strong>
+      </a>
+    </li>
+
+    <!-- <li class="parent-menu" routerLinkActive="active">
+      <a><span class="icon staffing"></span><strong>Staffing</strong>
+      </a>
+    </li> -->
+
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <li class="parent-menu">
+            <a><span class="icon staffing"></span><strong>Staffing</strong> </a>
+          </li>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <ul class="sub_menu">
+        <li class="submenu_list">
+          <a
+            [routerLink]="['USER_JOB' | absolutePath]"
+            [routerLinkActive]="['active']"
+            [queryParams]="{ page: 1, limit: 10,status:1 }"
+            [routerLinkActiveOptions]="{ exact: false }"
+          >
+            <span class="icon"><img src="assets/icons/Staffing.svg" alt="" /></span>
+            <strong>My Jobs</strong>
+          </a>
+        </li>
+        <li class="submenu_list">
+          <a
+            [routerLink]="['SCHEDULE_SIFT' | absolutePath]"
+            [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <span class="icon"><img src="assets/icons/Schedule.svg" alt="" /></span>
+            <strong>Schedule</strong>
+          </a>
+        </li>
+
+        <!-- <li
+          [routerLink]="['CALENDAR' | absolutePath]"
+          [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="submenu_list"
+        >
+          <img src="assets/icons/Calendar-white.svg" alt="" />
+          Calendar
+        </li> -->
+
+        <li class="submenu_list">
+          <a
+            [routerLink]="['TIMESHEET' | absolutePath]"
+            [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{ exact: false }"
+          >
+            <span class="icon"><img src="assets/icons/Working_Hours.svg" alt="" /></span>
+            <strong>Timesheet</strong>
+          </a>
+        </li>
+        <li class="submenu_list">
+          <a
+            [routerLink]="['INVOICE' | absolutePath]"
+            [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{ exact: false }"
+          >
+            <span class="icon"><img src="assets/icons/Working_Hours.svg" alt="" /></span>
+            <strong>Invoices</strong>
+          </a>
+        </li>
+      </ul>
+    </mat-expansion-panel>
+
+    <!-- <li class="parent-menu" routerLinkActive="active" [routerLink]="['SHIFT'|absolutePath]">
+      <a>
+        <span class="icon schedule"></span><strong>Schedule</strong>
+      </a>
+    </li> -->
+    <!-- <li routerLinkActive="active">
+      <a><span class="icon payroll"></span><strong>Payroll</strong> </a>
+    </li>
+    <li routerLinkActive="active">
+      <a><span class="icon reports"></span><strong>Reports</strong> </a>
+    </li> -->
+  </ul>
+</mat-accordion>

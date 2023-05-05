@@ -1,0 +1,44 @@
+:host ::ng-deep{
+    .mat-expansion-panel{
+        box-shadow: none;
+        .mat-expansion-panel-header{
+            padding:0 5px 0 0;
+        }
+    }
+    .search-wrap{
+        mat-icon {
+            position: relative;
+            top: 3px;
+            right: 5px;
+            cursor: pointer;
+        }
+    }
+    .sub-options{
+        padding-left:30px;
+        li{
+            margin-bottom:10px;
+            p{
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 1.29;
+                margin-bottom:0;
+                color:#231e1e;
+            }
+            span{
+                font-size: 12px;
+                font-weight: 500;
+                line-height: 1.5;
+                color:#6e6b6b;
+            }
+        }
+    }
+    .mat-expansion-panel-body {
+        padding: 0 0 16px;
+    }
+    .mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
+        background: transparent;
+    }
+    .mat-checkbox .mat-checkbox-ripple{
+        display: none;
+    }
+}

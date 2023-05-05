@@ -1,0 +1,25 @@
+<div class="popup-wrapper">
+    <div class="popup-inner">
+        <div class="header"><h3><img src="assets/icons/warning_ic.svg" alt="Icon"/>    <span>Warning</span></h3></div>
+    </div>
+    <div class="popup-main">
+        <h3>We found discrepancy on schedule you had entered for few workers</h3>
+        <p class="description">Kindly check on following entries that have issues</p>
+        <div class="warning-msg-list">
+            <div *ngFor="let item of warningData" class="warning-msg">
+                <div class="top-info">
+                    <h3>{{item?.fullName}} <span>{{item?.jobId}}</span></h3>
+                </div>
+                <p *ngIf="item?.totalShiftHours < item?.workingHours?.hours" ><img src="assets/icons/warning_small_ic.svg" alt="Icon"/> <span>Minimum criteria for working hours are not fulfilled </span></p>
+                <p *ngIf="item?.totalWorkingDays < item?.workingHours.days"><img src="assets/icons/warning_small_ic.svg" alt="Icon"/> <span>Minimum criteria for working days are not fulfilled </span></p>
+
+            </div>
+          
+        </div>
+    </div>
+    <div class="popup-footer">
+        <button (click)="close()" type="button" class="btn-primary">Cancel</button>
+        <button (click)="continue()" type="button" class="btn-primary">Continue</button>
+
+    </div>
+</div>

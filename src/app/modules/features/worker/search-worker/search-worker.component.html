@@ -1,0 +1,74 @@
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+  <section class="top_haed">
+    <h3 class="sec_title">
+      Search Worker
+    </h3>
+    <div class="inner_form_wrapper row">
+      <div class="col-sm-12 col-md-6">
+        <mat-label>Worker Name</mat-label>
+        <mat-form-field appearance="outline">
+          <input formControlName="search" matInput placeholder="" autocomplete="off">
+        </mat-form-field>
+      </div>
+
+      <div class="col-sm-12 col-md-6">
+        <mat-label>Work Experience</mat-label>
+        <mat-form-field appearance="outline">
+          <mat-select placeholder="Select experience" formControlName="levelOfExperience">
+            <mat-option *ngFor="let item of experienceData" [value]='item.level'>{{item.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <!-- <div class="col-sm-12">
+                    <mat-label>Skills</mat-label>
+                </div>
+                <div class="bg_white">
+                    <div class="col-sm-12">
+                        <mat-form-field appearance="outline">
+                            <input matInput placeholder="" autocomplete="off">
+                        </mat-form-field>
+                    </div>
+                    <div class="skills_wrapper">
+                        <span class="skill">
+                            Hello word
+                            <img src="assets/images/close.svg" alt="" class="close_icon">
+                        </span>
+
+                        <span class="skill">
+                            Hello word
+                            <img src="assets/images/close.svg" alt="" class="close_icon">
+                        </span>
+
+                        <span class="skill">
+                            Hello word
+                            <img src="assets/images/close.svg" alt="" class="close_icon">
+                        </span>
+
+                        <span class="skill">
+                            Hello word
+                            <img src="assets/images/close.svg" alt="" class="close_icon">
+                        </span>
+
+                        <span class="skill">
+                            Hello word
+                            <img src="assets/images/close.svg" alt="" class="close_icon">
+                        </span>
+                    </div>
+                </div> -->
+
+      <div class="col-sm-12">
+        <mat-label>Skills</mat-label>
+        <app-chip-search-form></app-chip-search-form>
+      </div>
+
+    </div>
+    <div class="btn_wrapper">
+      <button type="submit" class="primary-btn">
+        Search Worker
+      </button>
+      <button type="reset" (click)="onReset()" class="btn_secondry">
+        Reset
+      </button>
+    </div>
+  </section>
+</form>

@@ -1,0 +1,15 @@
+<mat-form-field appearance="none">
+    <!-- <mat-label>Select Date Range</mat-label> -->
+    <mat-date-range-input  [max]="dateRangeConfig?.maxDateRange"  [rangePicker]="picker">
+      <input readonly matStartDate   [formControl]="dateRangeConfig.startDate" placeholder="Start date" #dateRangeStart>
+      <input readonly matEndDate #dateRangeEnd (dateChange)="dateRangeChange(dateRangeStart, dateRangeEnd)"    [formControl]="dateRangeConfig.endDate" placeholder="End date">
+    </mat-date-range-input>
+    <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker [appCalendarMaxRange]='dateRangeConfig?.maxRange||31'   #picker></mat-date-range-picker>
+  
+    <!-- <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+    <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error> -->
+  </mat-form-field>
+  
+  <!-- <p>Selected range: {{range.value | json}}</p> -->
+  

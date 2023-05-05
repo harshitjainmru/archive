@@ -1,0 +1,57 @@
+:host ::ng-deep .cstm_input_wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+
+:host ::ng-deep .cstm_input_wrapper .icon-wrap {
+  width: 45px;
+  padding: 0 3px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-left: solid 1px #f5f6f8;
+  border-right: solid 1px #f5f6f8;
+  margin-left: 5px;
+}
+
+:host ::ng-deep .cstm_input_wrapper .icon-wrap img {
+  width: 30px;
+  height: 20px;
+}
+
+:host ::ng-deep .cstm_input_wrapper .cstm_dropdwn {
+  width: 85px;
+  position: relative;
+}
+
+:host ::ng-deep .cstm_input_wrapper .mat-form-field-subscript-wrapper {
+  position: absolute;
+  top: 100%;
+}
+
+:host ::ng-deep .cstm_input_wrapper .mat-error {
+  top: 100%;
+  margin-top: 3px;
+}
+
+.scroll_y {
+  max-width: 200px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.right-input {
+  width: calc(100% - 85px);
+}
+/*# sourceMappingURL=phone-field.component.css.map */

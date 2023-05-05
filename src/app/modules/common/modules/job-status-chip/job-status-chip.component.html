@@ -1,0 +1,9 @@
+<span
+  *ngIf="status"
+  [ngStyle]="{
+    color: statusColors[status]?.color,
+    'background-color': statusColors[status].background
+  }"
+  class="status"
+  >{{ status }}  </span
+>

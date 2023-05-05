@@ -1,0 +1,4 @@
+<mat-spinner [diameter]="diameter" *ngIf="showLoader;else text"></mat-spinner>
+<ng-template #text>
+    <ng-content></ng-content>
+</ng-template>

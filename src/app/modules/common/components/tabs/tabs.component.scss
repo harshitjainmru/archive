@@ -1,0 +1,47 @@
+.tabbing_chat {
+  display: inline-block;
+  overflow: auto;
+  width: 100%;
+  &.big {
+    .mat-tab-nav-bar {
+      border-top: 1px solid rgba(0, 0, 0, 0.12);
+      background: transparent;
+      .mat-tab-link {
+        height: 80px;
+        font-size: 1.2em;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+.mat-tab-nav-bar {
+  margin-bottom: 0;
+  overflow: auto;
+  .mat-tab-link {
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    min-width: max-content;
+    justify-content: flex-start !important;
+    @media (max-width: 767px) {
+      font-size: 15px;
+    }
+    &.mat-tab-label-active {
+      opacity: 1;
+      color: #14B1BD;
+      font-weight: 700;
+    }
+  }
+}
+
+.badgeNew:empty {
+  display: none;
+}
+.badgeNew {
+  width: 100%;
+  position: absolute;
+  bottom: 6px;
+  font-size: 12px;
+  text-align: center;
+}

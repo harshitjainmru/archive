@@ -1,0 +1,10 @@
+<!-- tabbing section -->
+<div class="tabbing_chat" [ngClass]="{'big': big}">
+  <nav mat-tab-nav-bar>
+    <a  mat-tab-link *ngFor="let link of headerTabs" [routerLink]="link?.link" routerLinkActive  #rla="routerLinkActive" (click)="onClick(link)"
+      [active]="rla.isActive">
+      <span>{{link?.label}} </span>  <span class="badgeNew">{{link?.badge}}</span>
+    </a>
+  </nav>
+</div>
+<!-- /tabbing section -->

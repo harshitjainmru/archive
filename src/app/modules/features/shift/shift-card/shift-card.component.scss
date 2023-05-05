@@ -1,0 +1,62 @@
+.card_main_wrapper {
+  width: 100%;
+  background: #fff;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  padding: 15px;
+  .top_head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .info {
+    margin-bottom: 20px;
+    &:last-of-type{
+        margin-bottom: 0;
+    }
+    .title {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.29;
+      color: #231e1e;
+      margin-bottom: 5px;
+    }
+    .value {
+      color: #6e6b6b;
+      opacity: 0.5;
+      font-weight: 400;
+      margin-bottom: 0;
+    }
+  }
+  .list_wrapper {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 20px;
+    .list {
+      color: #96a5b8;
+      font-size: 11px;
+      border: 1px solid #96a5b8;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 100%;
+      margin-right: 15px;
+      &.active {
+        background: #ff9800;
+        color: #fff !important;
+    }
+    }
+  }
+}
+
+:host ::ng-deep {
+  .card_main_wrapper {
+    .mat-menu-trigger {
+      background: transparent;
+      color: #1d1e2c;
+    }
+  }
+}

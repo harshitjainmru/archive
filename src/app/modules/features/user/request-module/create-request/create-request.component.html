@@ -1,0 +1,73 @@
+<form [formGroup]="requestForm">
+  <div class="popup-wrapper">
+    <div class="popup-inner">
+      <div class="popup-header">
+        <h3>{{ data ? "Report Candidate" : "Create new request" }}</h3>
+      </div>
+      <mat-dialog-content>
+        <div class="popup-main">
+          <mat-label>Subject</mat-label>
+          <mat-form-field class="example-full-width" appearance="outline">
+            <input formControlName="subject" matInput placeholder="Enter subject" />
+            <mat-error>{{
+              requestForm | getControl: ["subject"] | validate: "SUBJECT"
+              }}</mat-error>
+          </mat-form-field>
+          <mat-label>Description</mat-label>
+          <mat-form-field class="textarea_autosize" appearance="outline">
+            <textarea formControlName="description" matTextareaAutosize matInput
+              placeholder="Enter description"></textarea>
+            <mat-error>{{
+              requestForm | getControl: ["description"] | validate: "DESCRIPTION"
+              }}</mat-error>
+          </mat-form-field>
+          <mat-label>Attachment</mat-label>
+          <div class="doc_upload_wrapper">
+            <div (click)="inputSelection.click()" class="doc_upload">
+              <img src="assets/icons/doc-ic.svg" alt="" />
+              <strong>Upload attachments</strong>
+              <span>File Size: 5MB Max </span>
+              <input #inputSelection type="file" id="upload_input" [accept]="documentFormats"
+                (change)="onSelectDocument($event)" class="upload_input" hidden />
+            </div>
+
+            <div class="preview_img_wrapper">
+              <!-- (click)="openUrl(item)" -->
+              <div class="preview-item" *ngFor="let item of documents; let i = index">
+                <!-- {{ item | json }} -->
+                <figure class="preview_img">
+                  <ng-container [ngSwitch]="item.type">
+                    <img *ngSwitchCase="'pdf'" [title]="item.name" src="assets/images/pdf-icon.png" alt=""
+                      class="preview_icon" />
+                    <img *ngSwitchCase="'doc'" [title]="item.name" src="assets/images/doc-icon.png" alt=""
+                      class="preview_icon" />
+                    <img *ngSwitchCase="'docx'" [title]="item.name" src="assets/images/doc-icon.png" alt=""
+                      class="preview_icon" />
+                    <img *ngSwitchDefault [title]="item.name" src="assets/icons/booking_1.svg" alt=""
+                      class="preview_icon" />
+                  </ng-container>
+                  <!-- <img src="assets/images/booking_1.svg" alt="" class="preview_icon"> -->
+                  <p class="file_name">{{ item.name }}</p>
+                  <span (click)="remove(i)" class="delete">
+                    <img src="assets/images/RecycleBin.svg" alt="" />
+                  </span>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-dialog-content>
+      <div class="popup-footer">
+        <div class="btn-wrap">
+          <button (click)="closeDialog()" type="button" class="cancel-btn">
+            Cancel
+          </button>
+          <button (click)="submitRequest()" [disabled]="!formValid" type="submit" class="primary-btn">
+            {{ data ? "Submit" : "Submit request" }}
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</form>

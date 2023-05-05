@@ -1,0 +1,49 @@
+.btn-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding:15px 23px;
+    border-top:solid 2px #f0f0f0;
+    button{
+        min-width:120px;
+        &.cancel-btn{
+            background:#fff;
+        }
+    }
+}
+.popup-wrapper{
+    margin:-24px;
+    .popup-inner{
+        .popup-header{
+            height:64px;
+            padding:15px 20px;
+            background:#F3F3F3;
+            display: flex;
+            align-items: center;
+            border-top-left-radius:4px;
+            border-top-right-radius:4px;
+            h3{
+                display: flex;
+                align-items: center;
+                margin-bottom:0;
+                img{
+                    margin-right:10px;
+                }
+                span{
+                    font-size:20px;
+                    font-weight:700;
+                    line-height:36px;
+                    color:#14B1BD;
+                }
+            }
+        }
+        .popup-main{
+            padding:35px 23px 20px;
+        }
+    }
+}
+
+.disable-btn{
+    background: #eeeeee !important;
+    cursor: no-drop !important;
+}

@@ -1,0 +1,15 @@
+<div class="flex-notification">
+    <div class="left-section">
+      <img
+        src="assets/icons/Notification.svg"
+        alt="Notification Icon"
+      />Allow notifications
+    </div>
+    <div class="toggle-wrap">
+      <mat-slide-toggle
+        [formControl]="notificationToggleControl"
+        (change)="notificationToggle($event)"
+      ></mat-slide-toggle>
+    </div>
+  </div>
+  

@@ -1,0 +1,171 @@
+<div class="header-inner">
+  <div class="left">
+    <!-- <p>Today, 29 Jan 2021 <span>01:30 PM</span></p> -->
+    <p class="date_time">
+      Today, {{ toDay | date: "dd MMM y"
+      }}<span>{{ toDay | date: "h:mm a" }}</span>
+    </p>
+    <figure  [routerLink]="['DASHBOARD' | absolutePath]" class="logo">
+      <!-- <img src="assets/images/Osprey_Logo.svg" alt="" /> -->
+      <!-- <img src="assets/images/Pivvot_Logo.svg" alt="" /> -->
+      <img src="assets/images/Pivvot_Type & Symbol-45.svg" alt="Logo" />
+    </figure>
+    <button [disabled]="addJobBtn" [routerLink]="['JOB_ADD' | absolutePath]" type="button" class="fill-btn web_view">
+      <img src="assets/icons/Add-Job-plus.svg" alt="Icon" /><span>
+        Add new job
+      </span>
+    </button>
+  </div>
+  <div class="right">
+    <div class="wrap-btn">
+      <!-- <button matTooltip="Search Workers" class="search_btn" [routerLink]="['WORKER_LIST'|absolutePath]">
+        <img src="assets/images/Search.svg" alt="">
+      </button> -->
+
+      <!-- <button [routerLink]="['ADD_SHIFT'|absolutePath]" type="button" class="outline-btn web_view"><img
+          src="assets/icons/Add-shift-blue.svg" alt="Icon"><span>Add
+          Shift</span></button> -->
+    </div>
+    <div class="notification-profile">
+      <div class="notification-message-wrap">
+        <!-- <div class="message-icon web_view"><img src="assets/icons/envelop.svg" alt="image" /><span></span></div> -->
+        <div (click)="openQR()" class="notification-icon" >
+          <img src="assets/icons/qr_code.svg" alt="image" />
+        </div>
+
+        <div (click)="onBellIconClick()" class="notification-icon" [ngClass]="{ shadow_animation: newNotification }"
+          [matMenuTriggerFor]="beforeMenuSecond">
+          <img src="assets/icons/bell.svg" alt="image" /><span *ngIf="newNotification"></span>
+        </div>
+
+
+
+        <mat-menu #beforeMenuSecond="matMenu" xPosition="before" class="notification-menu">
+          <div class="notification-wrap">
+            <div class="notification-header">
+              <h3>NOTIFICATION</h3>
+              <a *ngIf="notificationList?.length" (click)="clearAllNotification()">Clear all</a>
+            </div>
+            <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()"
+              [scrollWindow]="false" class="notification-list">
+              <ng-container *ngIf="notificationList?.length; else noNotification">
+                <div *ngFor="let notification of notificationList" class="notification-item"
+                  (click)="openNotificationPopup(notification)">
+                  <div class="ic-notification">
+                    <figure>
+                      <img [src]="notification?.image" alt="Icon" />
+                    </figure>
+                    <span *ngIf="!notification.isRead"></span>
+                  </div>
+                  <div class="notification-info">
+                    <div class="time-title-wrap">
+                      <div class="left-area">
+                        <h3>{{ notification?.title }}</h3>
+                        <span class="time">{{
+                          notification?.createdAt | dateAgo
+                        }}</span>
+                        <div *ngIf="
+                            notification.type ===
+                            NOTIFICATION_TYPE.JOB_ACTION_APPLIED
+                          " class="notification-details">
+                          <div class="details-left">
+                            <p>
+                              {{ notification?.message.split(" \n")[0] }}...
+                            </p>
+                            <!-- <span *ngIf="notification?.jobId" class="notification-id">#JOB233E12</span> -->
+                          </div>
+                        </div>
+                      </div>
+                      <div class="close-time-wrap">
+                        <a (click)="
+                            onDeleteNotification($event, {
+                              notificationId: notification._id
+                            })
+                          "><img src="assets/icons/cross-ic.svg" alt="Icon" /></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-template #noNotification>
+                <div>No notifications.</div>
+              </ng-template>
+            </div>
+          </div>
+        </mat-menu>
+      </div>
+      <div class="profile-wrap">
+        <div class="profile-inner" [matMenuTriggerFor]="beforeMenu">
+          <!-- <figure><img [src]="userDetails?.profilePicture || 'assets/images/user-profile.png'" alt="Image" /></figure> -->
+          <figure><img appImageFallback [src]="userDetails?.companyDetails?.companyLogo" alt="" /></figure>
+          <div class="name-designation">
+            <strong>{{ userDetails?.firstName | titlecase }}</strong>
+          </div>
+          <span class="arrow-down"><img src="assets/icons/arrow-bottom-ic.svg" alt="Icon" /></span>
+        </div>
+        <mat-menu #beforeMenu="matMenu" xPosition="before">
+          <button [routerLink]="['USER_PROFILE' | absolutePath]" mat-menu-item>
+            <span class="menu-link"><img src="assets/icons/user_ic.svg" alt="Icon" />
+              <strong>My Account</strong>
+            </span>
+          </button>
+          <!-- <button (click)="openQR()" mat-menu-item>
+            <span class="menu-link"><img src="assets/icons/qr_code.svg" alt="Icon" />
+              <strong>My QR</strong>
+            </span>
+          </button> -->
+          <button [routerLink]="['USER_SETTING' | absolutePath]" mat-menu-item>
+            <span class="menu-link">
+              <img src="assets/icons/settings_ic.svg" alt="Icon" />
+              <strong>Settings</strong>
+            </span>
+          </button>
+
+          <button [routerLink]="['JOB_ADD' | absolutePath]" mat-menu-item class="mobile_view">
+            <span class="menu-link">
+              <img src="assets/images/Addshift_black.svg" alt="Icon" />
+              <strong>Add Jobs</strong>
+            </span>
+          </button>
+
+          <!-- <button [routerLink]="['ADD_SHIFT'|absolutePath]" mat-menu-item class="mobile_view">
+            <span class="menu-link">
+              <img src="assets/images/Addshift_black.svg" alt="Icon">
+              <strong>Add Shift</strong>
+            </span>
+          </button>
+
+          <button mat-menu-item class="mobile_view">
+            <span class="menu-link">
+              <img src="assets/images/Comment.svg" alt="Icon">
+              <strong>Messages</strong>
+            </span>
+          </button> -->
+
+          <!-- <button mat-menu-item class="mobile_view">
+            <span (click)="onBellIconClick()" class="menu-link">
+              <img src="assets/images/Notification_icon.svg" alt="Icon">
+              <strong>Notification</strong>
+            </span>
+          </button>  -->
+
+          <!-- <button mat-menu-item>
+            <span class="menu-link"
+              ><img src="assets/icons/info_ic.svg" alt="Icon" />
+              <strong>Help</strong></span
+            >
+          </button> -->
+          <button (click)="logout()" mat-menu-item>
+            <span class="menu-link"><img src="assets/icons/power_ic.svg" alt="Icon" />
+              <strong>Logout</strong></span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+    <div (click)="onToggleSideBar()" class="toggle_btn" [ngClass]="{ opensideActive: showSideView }">
+      <span class="line"></span>
+      <span class="line"></span>
+      <span class="line"></span>
+    </div>
+  </div>
+</div>

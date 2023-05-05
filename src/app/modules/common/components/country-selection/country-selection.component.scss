@@ -1,0 +1,50 @@
+.title {
+    color: #000;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 20px;
+    font-weight: 600;
+}
+.counrty_selection_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    img {
+        width: 50px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+    .country {
+        display: flex;
+        cursor: pointer;
+        flex-direction: column;
+        width: 33%;
+        padding: 20px;
+        justify-content: center;
+        align-items: center;
+        font-size: 15px;
+        font-weight: 600;
+        color: #6666;
+        border-radius: 4px;
+        &.active {
+            background: #14B1BD;
+            color: #fff;
+        }
+    }
+   
+}
+.primary-btn {
+    margin: auto;
+    display: flex;
+}
+.closedbtn {
+    position: absolute;
+    top: -11px;
+    right: 0;
+    cursor: pointer;
+}
+
+.popup_main_wrapper {
+    position: relative;
+}

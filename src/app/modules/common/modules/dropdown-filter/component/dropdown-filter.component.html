@@ -1,0 +1,11 @@
+<h4 class="mat-h4 filter_title">{{dropdown?.label}}</h4>
+<mat-form-field appearance="outline">
+  <mat-select #select [placeholder]="dropdown?.label" [formControl]="dropdown?.control" [multiple]="dropdown?.multiple">
+    <mat-option *ngIf="!dropdown?.multiple" [value]="''">All</mat-option>
+   <div class="select_check_wrapper" *ngIf="dropdown?.multiple">
+    <mat-checkbox (change)="toggleAllSelection($event)" class="example-margin">All
+    </mat-checkbox>
+   </div>
+    <mat-option *ngFor="let item of dropdown?.list" [value]="item?.value">{{item?.viewValue}}</mat-option>
+  </mat-select>
+</mat-form-field>

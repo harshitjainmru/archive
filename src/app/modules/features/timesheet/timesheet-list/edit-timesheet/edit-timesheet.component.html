@@ -1,0 +1,12 @@
+<div class="popup-wrapper">
+    <div class="popup-inner">
+        <div class="popup-header"><h3><img src="assets/images/Timesheet.svg" alt="Icon"/><span>Edit timesheet</span></h3></div>
+        <div class="popup-main">
+            <app-owl-time [owlDateTimeConfig]="timesheetConfig"></app-owl-time>
+        </div>
+        <div class="btn-wrap">
+            <button type="button" (click)="cancel()" class="cancel-btn">Cancel</button>
+            <button [ngClass]="{'disable-btn':!timesheetConfig.startTime.valid || !timesheetConfig.endTime.valid}" [disabled]="!timesheetConfig.startTime.valid || !timesheetConfig.endTime.valid" type="button" (click)="saveTimeSheet()" class="primary-btn">Save</button>
+        </div>
+    </div>
+</div>

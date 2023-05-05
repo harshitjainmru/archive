@@ -1,0 +1,29 @@
+
+<ng-container  [ngSwitch]="checkBoxConfig?.type">
+<ng-container class="sub-options" *ngSwitchCase="checkboxTemplate.CALENDAR_CHECKBOX">
+  <mat-label *ngIf="checkBoxConfig.label">{{checkBoxConfig.label}}</mat-label>
+  <div class="all-check">
+    <mat-checkbox #selectAll (change)="selectAllCheckbox($event)" ><p>All</p></mat-checkbox>
+  </div>
+  <div class="filter_col" *ngFor="let item of checkBoxConfig.list; let i=index">
+    <mat-checkbox  #checkbox (change)="onValueChange()"
+      class="example-margin"  [value]="item[checkBoxConfig.valueKey]">
+      <p>{{ item[checkBoxConfig.viewKey] }}</p>
+      <span class="time">{{item.jobSite.timeSlots.startTime | customDate:customDateformat.shortTime}} to {{item.jobSite.timeSlots.endTime | customDate:customDateformat.shortTime}}</span>
+    </mat-checkbox>
+  </div>
+</ng-container>
+
+
+
+<ng-container *ngSwitchDefault>
+  <mat-label *ngIf="checkBoxConfig.label">{{checkBoxConfig.label}}</mat-label>
+  <div class="filter_col" *ngFor="let item of checkBoxConfig.list; let i=index">
+    <mat-checkbox  #checkbox (change)="onValueChange()"
+      class="example-margin"  [value]="item[checkBoxConfig.valueKey]">
+      {{ item[checkBoxConfig.viewKey] }}
+    </mat-checkbox>
+  </div>
+</ng-container>
+</ng-container>
+

@@ -1,0 +1,26 @@
+
+<mat-form-field class="address-select" appearance="outline">
+    <mat-select 
+    [compareWith]="compareObjectIds"
+    #selectElem [formControl]="addressControl" placeholder="Search & select or create new" (valueChange)="onSelect($event)" >
+        <mat-select-trigger> 
+            <div class="address-blk show"> 
+                <div class="title"> {{addressControl?.value?.title}} </div>
+                <div class="address"> {{addressControl?.value?.addressLine}} {{addressControl?.value?.cityName}}  {{addressControl?.value?.zipcode}} </div>
+            </div> 
+        </mat-select-trigger>
+        <div *ngIf="isLoader" class="loader-btn loadersmall"></div>
+        <app-select-search (search)="searchData($event)" placeholder="Search address ..."></app-select-search>
+        <mat-option class="add-address" (click)="addAddress()" >  <span class="text"> + Add new address </span> </mat-option>
+        <mat-option class="notFound" *ngIf="!listItemData?.length && !isLoader">No Data Found</mat-option>
+        <ng-container *ngFor="let catg of listItemData" >
+            <mat-option class="address-item" [value]="catg">
+               <div class="address-blk">
+                   <div class="title"> {{catg?.title}} </div>
+                   <div class="address"> {{catg?.addressLine}} {{catg?.cityName}}  {{catg?.zipcode}} </div>
+               </div> 
+            </mat-option>
+        </ng-container>
+    </mat-select>
+    <mat-error>{{ addressControl | validate: "WORK_LOCATION"}} </mat-error>
+</mat-form-field>

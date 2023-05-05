@@ -1,0 +1,100 @@
+<div class="popup-wrapper">
+  <div [ngSwitch]="parent">
+    <div *ngSwitchCase="parentType.REGISTRATION">
+      <div class="image-wrap">
+        <img src="assets/images/ConfirmationCheckIcon.svg" alt="Image" />
+      </div>
+      <h3>Registration Completed</h3>
+      <p>
+        Thank You for your interest! Your profile is under verification process.
+        Once verified, a mail will be sent on your registered email address
+      </p>
+      <div class="btn-wrap">
+        <button type="button" (click)="goToDashboard()" class="primary-btn">
+          Go to Dashboard
+        </button>
+      </div>
+    </div>
+    <div *ngSwitchCase="parentType.RESET_PASSWORD">
+      <div class="image-wrap">
+        <img src="assets/images/ConfirmationCheckIcon.svg" alt="Image" />
+      </div>
+      <h3>Password Changed</h3>
+      <p>Your password has been changed successfully!</p>
+      <div  class="btn-wrap">
+        <button *ngIf="accountType==USER_TYPE.BUSINESS_CLIENT"
+          (click)="closeMe()"
+          [routerLink]="['LOGIN' | absolutePath]"
+          type="button"
+          class="primary-btn"
+        >
+          {{accountType==USER_TYPE.BUSINESS_CLIENT?'Go to Login':'OK'}}
+        </button>
+      </div>
+    </div>
+    <div *ngSwitchCase="parentType.COMPANY_PROFILE">
+      <div class="image-wrap">
+        <img src="assets/images/ConfirmationCheckIcon.svg" alt="Image" />
+      </div>
+      <h3>Submitted successfully</h3>
+      <p>
+        Your changed request submitted successfully. Your company profile is
+        under verification process. Once verified, a mail will be sent on your
+        registered email address
+      </p>
+      <div class="btn-wrap">
+        <button (click)="closeMe()" type="button" class="primary-btn">
+          Ok
+        </button>
+      </div>
+    </div>
+    <div *ngSwitchCase="parentType.USER_PROFILE">
+      <div class="image-wrap">
+        <img src="assets/images/ConfirmationCheckIcon.svg" alt="Image" />
+      </div>
+      <h3>Submitted verified</h3>
+      <p>
+        Your phone number has been successfully updated and verified. Also, We
+        have sent you a verfication link to verify you e-mail Id.
+        <br />
+        Please check your mail and verfiy.
+      </p>
+      <div class="btn-wrap">
+        <button (click)="closeMe()" type="button" class="primary-btn">
+          Ok
+        </button>
+      </div>
+    </div>
+
+    <div *ngSwitchCase="jobStatus?.PUBLISHED">
+      <div class="image-wrap">
+        <img src="assets/images/ConfirmationCheckIcon.svg" alt="Image" />
+      </div>
+      <h3>Congratulations on posting the job!</h3>
+      <p>Would you like to start searching for candidates who might suit your job?</p>
+      <div class="btn-wrap">
+        <button (click)="goToSearch()" type="button" class="primary-btn">
+          Ok
+        </button>
+        <button [routerLink]="['USER_JOB' | absolutePath]" [routerLinkActive]="['active']" [queryParams]="{ page: 1, limit: 10,status:1 }"
+        [routerLinkActiveOptions]="{ exact: false }" (click)="closeMe(true)" type="button" class="btn_secondry">
+          No, Thanks
+        </button>
+      </div>
+    </div>
+
+    <div *ngSwitchCase="jobStatus?.DRAFT">
+      <div class="image-wrap">
+        <img src="assets/images/ConfirmationCheckIcon.svg" alt="Image" />
+      </div>
+      <h3>Job save as draft successfully</h3>
+      <div class="btn-wrap">
+        <button (click)="closeMe(true)" type="button" class="primary-btn">
+          Ok
+        </button>
+      </div>
+    </div>
+
+    <div *ngSwitchDefault></div>
+  </div>
+</div>

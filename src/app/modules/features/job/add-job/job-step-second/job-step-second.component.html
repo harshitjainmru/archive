@@ -1,0 +1,179 @@
+<div class="add-job-wrapper">
+  <div class="title-header">
+    <div class="icon-title-wrap">
+      <div (click)="onBack()" class="icon">
+        <img src="assets/images/arrow-left.svg" alt="Prev Icon" /> 
+      </div>
+      <h3>Job Details</h3>
+    </div>
+    <!-- {{ isExperience }} --- {{ secondStepForm.invalid }} === {{ (secondStepForm.invalid) || isExperience }} -->
+    <div class="btn-wrap">
+      <button type="button" (click)="onCancelStep()" class="cancel-btn">Cancel</button>
+      <button type="button" (click)="onNextSubmit()" [disabled]="(secondStepForm.invalid) || isExperience"
+        class="primary-btn"> Save & next </button>
+    </div>
+  </div>
+
+  <form [formGroup]="secondStepForm" (ngSubmit)="onSubmit()" #triggerSubmitRef="ngForm">
+    <div class="step-second-form">
+      <div class="flex row_boder job-description">
+        <div class="col-md-6 column-60">
+          <mat-label class="required head">Enter the title of your job post</mat-label>
+          <mat-form-field appearance="outline">
+            <input matInput type="text" formControlName="title" placeholder="Enter job title" [minlength]="LIMIT?.descriptionMinLength"
+              [maxlength]="LIMIT?.nameMaxLength" />
+            <mat-error>{{
+                secondStepForm | getControl: ["title"] | validate: "JOB_TITLE"
+              }}</mat-error>
+          </mat-form-field>
+          <!-- <mat-label class="required head"
+              >Number of workers do you want for this job?</mat-label
+            >
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                formControlName="vacancies"
+                placeholder="Enter number of workers"
+                type="tel"
+                numberOnly
+                appNullifyZero
+                [maxlength]="LIMIT?.maxvacancies"
+              />
+              <mat-error>{{
+                secondStepForm
+                  | getControl: ["vacancies"]
+                  | validate: "NO_OF_WORKERS":"REQUIRED_ERROR2"
+              }}</mat-error>
+            </mat-form-field> -->
+        </div>
+        <div class="col-md-6 column-40">
+          <div class="good-example-wrap">
+            <figure class="box_icon">
+              <img src="assets/images/ic_bulb.svg" alt="" />
+            </figure>
+            <div class="good-example">
+              <h3 class="title">Here’s where you can build your job post</h3>
+              <p>
+                Starting off with a meaningful title: Make sure to keep it simple yet informative here as it will be one
+                of the most eye-catching item in your post. It’s usually the first thing candidates see.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex row_boder job-expertise">
+        <div class="col-md-6 column-60">
+          <div class="skills-expertise">
+            <div class="title-header no-border">
+              <mat-label class="required head">
+                What skills and expertise are most impotant to you in this job
+                role?
+              </mat-label>
+            </div>
+            <mat-label class="">Choose maximum 5 skills</mat-label>
+            <div class="">
+              <app-search-skills [controls]="f['skills']" (selectedItem)="getSelectedSkills($event)">
+              </app-search-skills>
+            </div>
+          </div>
+          <div class="experience-wrap">
+            <div class="title-header no-border">
+              <mat-label class="required head">
+                What level of experience should your worker have?
+              </mat-label>
+            </div>
+            <section class="row">
+              <div class="col-sm-6 exp_box">
+                <mat-checkbox [checked]="noExperience" (change)="onSelectExperience($event, EXPERIENCE_TYPE?.NO_EXP)">
+                  <img src="assets/images/BoxUncheck.svg" alt="" class="uncheck" />
+                  <img src="assets/images/BoxChecked.svg" alt="" class="check" />
+                  No experience
+                </mat-checkbox>
+              </div>
+              <div class="col-sm-6 exp_box">
+                <mat-checkbox [checked]="yesExperience" (change)="onSelectExperience($event, EXPERIENCE_TYPE?.EXP)">
+                  <img src="assets/images/BoxUncheck.svg" alt="" class="uncheck" />
+                  <img src="assets/images/BoxChecked.svg" alt="" class="check" />
+                  Experienced
+                </mat-checkbox>
+              </div>
+              <!-- <div class="col-md-12 exp-error">
+                <div class="mat-error" *ngIf="isExperience" >Experience is required</div>
+              </div> -->
+            </section>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex row_boder job-description">
+        <div class="col-md-6 column-60">
+          <mat-label class="required head">Add some description</mat-label>
+          <!-- <div class="col-md-12 col-sm-12 col-xs-12">
+              <app-quill  *ngIf="quillInputConfig" [quillConfig]="quillInputConfig"></app-quill>
+          </div> -->
+          <mat-form-field appearance="outline" class="textarea_autosize">
+            <textarea matTextareaAutosize #description formControlName="description" matInput
+              [maxlength]="LIMIT?.descriptionMaxLength1200" placeholder="Start writing description here..."></textarea>
+            <mat-error></mat-error>
+            <mat-hint align="end">{{ description.value.length }} /
+              {{ LIMIT?.descriptionMaxLength1200 }}</mat-hint>
+            <mat-error>{{
+                secondStepForm
+                  | getControl: ["description"]
+                  | validate: "JOB_DESCRIPTION"
+              }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 column-40">
+          <div class="good-example-wrap">
+            <figure class="box_icon">
+              <img src="assets/images/ic_bulb.svg" alt="">
+            </figure>
+            <div class="good-example">
+              <h3 class="title">Here’s where you can describe the job</h3>
+              <p>
+                A good job description should contain the following components: job purpose, job duties and
+                responsibilities.
+                <br>
+                The description should inform if, for example, the job involves heavy lifting or exposure to extreme
+                temperatures. Extensive travel and prolonged standing, for example, are also special demands.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex job-description">
+        <div class="col-md-6 column-60">
+          <mat-label class="head">Custom requirements (optional) </mat-label>
+          <mat-form-field appearance="outline" class="textarea_autosize">
+            <textarea matTextareaAutosize #requirement formControlName="requirment" matInput
+              placeholder="Start writing description here..." [maxlength]="LIMIT?.descriptionMaxLength1200"></textarea>
+            <mat-error></mat-error>
+            <mat-hint align="end">{{requirement.value.length}} / {{ LIMIT?.descriptionMaxLength1200 }}</mat-hint>
+            <mat-error>{{ secondStepForm | getControl: ["requirment"] | validate: "CUSTOM_REQUIREMENT" }}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6 column-40">
+          <div class="good-example-wrap">
+            <figure class="box_icon">
+              <img src="assets/images/ic_bulb.svg" alt="">
+            </figure>
+            <div class="good-example">
+              <h3 class="title">Here’s where you can describe requirements you look for </h3>
+              <p>
+                Job requirements are “must haves” and “good-to-haves” that an employer is looking for in a candidate.
+                These usually include education background, knowledge or skills needed for a particular position.
+                <br>
+                This is also great opportunity to showcase your Employer Brand and company culture and attract the best
+                candidates!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,27 @@
+.popup-wrapper{
+    .popup-inner{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        figure{
+            margin-bottom:15px;
+        }
+        h3{
+            font-family: 'Lato', sans-serif;
+            font-weight: 500;
+            font-size:20px;
+            color:#231E1E;
+            text-align: center;
+        }
+        p{
+            font-size:14px;
+            line-height:22px;
+            color:#231E1E;
+            text-align: center;
+        }
+    }
+    .btn-wrap{
+        padding-top:15px;
+    }
+}

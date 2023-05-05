@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "custom-checkbox.component.scss"
+    ],
+    "names": [],
+    "file": "custom-checkbox.component.css"
+}

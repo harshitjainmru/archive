@@ -1,0 +1,7 @@
+<!-- <button (click)="close()">Close</button> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+<a href="javaacript:void(0)" class="link" (click)="previewOpen(galleryEl)">{{label}}</a>
+<ngx-gallery #galleryEl [options]="galleryOptions" [images]="getUrl(images)" class="ngx-gallery"></ngx-gallery>

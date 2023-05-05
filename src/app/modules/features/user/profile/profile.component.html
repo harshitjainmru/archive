@@ -1,0 +1,338 @@
+<div class="profile-wrapper">
+  <div class="flex align-center">
+    <div class="col-6">
+      <div class="breadcrumbs">
+        <ul>
+          <li [routerLink]="['DASHBOARD' | absolutePath]"><a>Home</a></li>
+          <li>My Account</li>
+        </ul>
+      </div>
+      <h3 class="page-title">My Account</h3>
+    </div>
+  </div>
+
+  <div class="inner_main_wrapper">
+    <div class="top_head_sec_wrapper">
+      <div class="cstm_tabs_wrapper">
+        <mat-tab-group>
+          <mat-tab label="Profile">
+            <ng-template matTabContent>
+              <div class="sec_main_wrapper">
+                <!--=======user profile section start here=======-->
+                <div class="sec_wrapper">
+                  <div class="sec_head">
+                    <h3 class="sec_title">User Profile</h3>
+                    <button class="edit_btn" (click)="openUseredit()">
+                      <img src="assets/images/edit.svg" alt="" />
+                    </button>
+                  </div>
+                  <div class="info_wrapper">
+                    <div class="info">
+                      <h4 class="key">
+                        <img src="assets/images/user_grey.svg" alt="" />
+                        User name
+                      </h4>
+                      <p class="value">
+                        {{ profileDetail?.firstName }}
+                        {{ profileDetail?.middleName }}
+                        {{ profileDetail?.lastName }}
+                      </p>
+                    </div>
+
+                    <div class="info">
+                      <h4 class="key">
+                        <img src="assets/images/Phone.svg" alt="" />
+                        Phone Number
+                      </h4>
+                      <p class="value">
+                        {{ profileDetail?.countryCode }}
+                        {{ profileDetail?.phoneNo }}
+                        <img
+                          *ngIf="profileDetail?.isPhoneVerified"
+                          src="assets/images/varified.svg"
+                          alt=""
+                        />
+                      </p>
+                    </div>
+
+                    <div class="info">
+                      <h4 class="key">
+                        <img src="assets/images/Mail.svg" alt="" />
+                        Email address
+                      </h4>
+                      <p class="value">
+                        {{ profileDetail?.email }}
+                        <img
+                          *ngIf="profileDetail?.emailVerified"
+                          src="assets/images/varified.svg"
+                          alt=""
+                        />
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <!--=======user profile section End here=======-->
+              </div>
+            </ng-template>
+          </mat-tab>
+
+          <mat-tab label="Company details">
+            <!--=======Company profile section start here=====-->
+            <ng-template matTabContent>
+              <div class="sec_main_wrapper">
+                <div class="sec_wrapper has-banner">
+                  <div class="company-banner-image">
+                    <div
+                      class="profile-status"
+                      [ngStyle]="{
+                        color:
+                          profileDetail?.profileStatus == clientStatus.VERIFIED
+                            ? '#4caf50'
+                            : '#F44336',
+                        background:
+                          profileDetail?.profileStatus == clientStatus.VERIFIED
+                            ? '#e9ffea'
+                            : '#fdf5f7'
+                      }"
+                    >
+                      {{ profileDetail?.profileStatus }}
+                    </div>
+                    <figure>
+                      <img
+                        (click)="
+                          openPreview(
+                            profileDetail?.companyDetails?.companyPhoto
+                          )
+                        "
+                        [src]="
+                          profileDetail?.companyDetails?.companyPhoto
+                            ? profileDetail?.companyDetails?.companyPhoto
+                            : 'assets/images/company_background.jpg'
+                        "
+                        onerror="this.src='assets/images/company_background.jpg'"
+                        alt="Image"
+                      />
+                    </figure>
+                  </div>
+                  <figure class="company_img">
+                    <img
+                      (click)="
+                        openPreview(profileDetail?.companyDetails?.companyLogo)
+                      "
+                      src="{{
+                        profileDetail?.companyDetails?.companyLogo ||
+                          'assets/images/ic_place holder.svg'
+                      }}"
+                      alt=""
+                    />
+                  </figure>
+                  <div class="section-title">
+                    <h3>Company details</h3>
+                    <button class="edit_btn" (click)="openEditcompany()">
+                      <img src="assets/images/edit.svg" alt="" />
+                    </button>
+                  </div>
+                  <div class="info_wrapper">
+                    <div class="info">
+                      <h4 class="key">
+                        <img src="assets/images/Company.svg" alt="" />
+                        Company’s name
+                      </h4>
+                      <p class="value">
+                        {{ profileDetail?.companyDetails?.companyName }}
+                      </p>
+                    </div>
+                    <div class="info">
+                      <h4 class="key">
+                        <img src="assets/images/Trading.svg" alt="" />
+                        Trading name
+                      </h4>
+                      <p class="value">
+                        {{
+                          profileDetail?.companyDetails?.tradingName
+                            | checkNull: !!profileDetail
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="info_wrapper">
+                    <div class="info">
+                      <h4 class="key">
+                        <img src="assets/images/Building_Sector.svg" alt="" />
+                        UEN number
+                      </h4>
+                      <div class="flex">
+                        <p class="value">
+                          {{ profileDetail?.companyDetails?.uenNumber }}
+                        </p>
+                      </div>
+                    </div>
+                    <div class="info">
+                      <h4 class="key">
+                        <img src="assets/images/world.svg" alt="" />
+                        Company’s website
+                      </h4>
+                      <p class="value">
+                        {{ profileDetail?.companyDetails?.companyWebsite }}
+                      </p>
+                    </div>
+                    <div class="info full_width">
+                      <h4 class="key">
+                        <img src="assets/images/Work_desc.svg" alt="" />
+                        Company’s description
+                      </h4>
+                      <p class="value">
+                        {{ profileDetail?.companyDetails?.companyDescription }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="sec_wrapper">
+                  <div class="sec_head">
+                    <h3 class="sec_title">Company address</h3>
+                    <button class="edit_btn" (click)="openAddress()">
+                      <img src="assets/images/edit.svg" alt="" />
+                    </button>
+                  </div>
+                  <div class="info_wrapper">
+                    <div class="info">
+                      <h4 class="key">
+                        <img src="assets/images/Location_new.svg" alt="" />
+                        Company’s registered location
+                      </h4>
+                      <p class="value">
+                        {{ profileDetail?.location?.name }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <!--=======user profile section end here=======-->
+
+                <!--=======Business Categories section start here=======-->
+                <!-- <div class="sec_wrapper">
+                <div class="sec_head">
+                  <h3 class="sec_title">Business Categories</h3>
+                </div>
+                <div class="chip_wrapper">
+                  <span class="chip" *ngFor="let bCategory of profileDetail?.businessCategories">
+                    {{bCategory?.name}}
+                  </span>
+                </div>
+              </div> -->
+                <!--=======Business Categories section end here=======-->
+
+                <!--=======Company Documents section Start here=======-->
+                <div class="sec_wrapper">
+                  <div class="section-title">
+                    <h3>Business category & documents</h3>
+                    <button
+                      *ngIf="
+                        profileDetail?.profileStatus != clientStatus.VERIFIED
+                      "
+                      class="edit_btn"
+                      (click)="openCategoryDocument()"
+                    >
+                      <img src="assets/images/edit.svg" alt="" />
+                    </button>
+                    <!-- <button (click)="openSuccessPopup()">Success Popup</button> -->
+                  </div>
+                  <div class="info_wrapper">
+                    <div class="info">
+                      <h4 class="key">
+                        <img src="assets/images/Building_Sector.svg" alt="" />
+                        Business category
+                      </h4>
+                      <div class="flex">
+                        <p class="value">
+                          {{ [profileDetail?.businessCategories[0]?.name] }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="chip_wrapper">
+                    <div class="upload-outer">
+                      <p class="text">Verification Documents</p>
+                      <!-- <div class="uploded_box_wrapper"> -->
+                      <!-- <figure class="upload_preview"> -->
+                      <div class="preview_img_wrapper">
+                        <div
+                          class="preview-item"
+                          *ngFor="let item of documents; let i = index"
+                          (click)="openUrl(item)"
+                        >
+                          <figure class="preview_img">
+                            <ng-container [ngSwitch]="item.type">
+                              <img
+                                *ngSwitchCase="'pdf'"
+                                [title]="item.name"
+                                src="assets/images/pdf-icon.png"
+                                alt=""
+                                class="preview_icon"
+                              />
+                              <img
+                                *ngSwitchCase="'doc'"
+                                [title]="item.name"
+                                src="assets/images/doc-icon.png"
+                                alt=""
+                                class="preview_icon"
+                              />
+                              <img
+                                *ngSwitchCase="'docx'"
+                                [title]="item.name"
+                                src="assets/images/doc-icon.png"
+                                alt=""
+                                class="preview_icon"
+                              />
+                              <img
+                                *ngSwitchDefault
+                                [title]="item.name"
+                                src="assets/icons/booking_1.svg"
+                                alt=""
+                                class="preview_icon"
+                              />
+                            </ng-container>
+                            <!-- <img src="assets/images/booking_1.svg" alt="" class="preview_icon"> -->
+                            <p class="file_name">
+                              {{ item.name }}
+                            </p>
+                            <!-- <span (click)="remove(i)" class="delete">
+                                <img src="assets/images/RecycleBin.svg" alt="" />
+                              </span> -->
+                          </figure>
+                        </div>
+                      </div>
+                      <!-- </figure> -->
+                      <!-- </div> -->
+                    </div>
+                  </div>
+                </div>
+                <!--=======Company Documents section end here=======-->
+              </div>
+            </ng-template>
+          </mat-tab>
+
+          <!-- <mat-tab label="Manage addresses">
+            <p class="underdevelopment">Underdevelopment</p>
+          </mat-tab> -->
+          <!-- <mat-tab label="My payments">
+            <p class="underdevelopment">Underdevelopment</p>
+          </mat-tab> -->
+
+          <!-- <mat-tab label="Notifications">
+            <p class="underdevelopment">Underdevelopment</p>
+          </mat-tab> -->
+          <mat-tab label="Help">
+            <ng-template matTabContent>
+              <app-request-list></app-request-list>
+            </ng-template>
+          </mat-tab>
+          <!-- <mat-tab label="My QR">
+            <ng-template matTabContent>
+              <app-qr-code></app-qr-code>
+            </ng-template>
+          </mat-tab> -->
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>
+</div>

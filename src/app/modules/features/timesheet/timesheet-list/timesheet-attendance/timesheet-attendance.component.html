@@ -1,0 +1,27 @@
+<div class="info-list">
+
+    <ul *ngIf="isDateLoaded">
+       <li>
+         <em class="one-time-icon"></em>
+         <div class="count-wrap">
+           <span>On Time</span><strong>{{attendanceData[attendanceEnum.ONTIME] ? attendanceData[attendanceEnum.ONTIME]: 0 }}</strong>
+         </div>
+       </li>
+       <li>
+         <em class="on-leave-icon"></em>
+         <div class="count-wrap">
+           <span>On Leave</span><strong>{{attendanceData[attendanceEnum.LEAVE] ? attendanceData[attendanceEnum.LEAVE] : 0}}</strong>
+         </div>
+       </li>
+       <li>
+         <em class="late-entry-icon"></em>
+         <div class="count-wrap"><span>Late in</span><strong>{{attendanceData[attendanceEnum.LATEIN] ? attendanceData[attendanceEnum.LATEIN] : 0}}</strong></div>
+       </li>
+       <li>
+         <em class="early-out-icon"></em>
+         <div class="count-wrap">
+           <span>Early out</span><strong>{{attendanceData[attendanceEnum.EARLYOUT] ? attendanceData[attendanceEnum.EARLYOUT] : 0}}</strong>
+         </div>
+       </li>
+     </ul> 
+   </div>

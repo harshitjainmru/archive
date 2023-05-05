@@ -1,0 +1,160 @@
+<div class="page_main_wrapper">
+  <div class="breadcrumbs">
+    <ul>
+      <li>
+        <a
+          [routerLink]="['USER_JOB' | absolutePath]"
+          [queryParams]="{ page: 1, limit: 10 }"
+          >Staffing /Jobs</a
+        >
+      </li>
+      <li>Search candidate</li>
+    </ul>
+  </div>
+  <div class="page-header">
+    <h3 class="page-title">Search Candidate</h3>
+    <div class="top-info">
+      <div
+        *ngIf="applicantList?.length || applicantList?.length == 0"
+        class="id-wrap"
+      >
+        <strong
+          >{{ total || 0 }} Candidate found based on your
+          preferences</strong
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="job_tabs_wrapper">
+    <div class="filter_row">
+      <div class="left_col">
+        <app-common-search
+          class="app-common-search"
+          *ngIf="!showCheckbox"
+          [placeholder]="'Search candidate by name'"
+          (setSearch)="searchEvent($event)"
+        ></app-common-search>
+      </div>
+      <div class="right_col">
+        <div class="sort_by_wrapper" style="display: flex; align-items: center">
+          <span *ngIf="showCheckbox" class="count"
+            >{{ this.selectedIds.length }} Candidate(s) selected</span
+          >
+          <button
+            mat-button
+            [matMenuTriggerFor]="checkboxMenu"
+            class="sortby_btn"
+          >
+            <span class="selected_value"> {{ selectionType }} </span>
+            <img src="assets/images/Arrow_Bottom.svg" alt="" />
+          </button>
+          <button
+            [disabled]="this.selectedIds.length == 0"
+            *ngIf="showCheckbox"
+            class="shortlist"
+            (click)="sendInvites({})"
+          >
+            Invite Candidate
+          </button>
+
+          <button
+            [disabled]="this.selectedIds.length == 0"
+            *ngIf="showCheckbox"
+            class="shortlist"
+            (click)="openJobOfferPopup({applicant:'',previousState:''})"
+          >
+            Make Offer
+          </button>
+
+        </div>
+        <!-- <div *ngIf="!showCheckbox" class="sort_by_wrapper">
+          <button mat-button [matMenuTriggerFor]="menu" class="sortby_btn">
+            <img src="assets/images/Sort.svg" alt="" />
+            <span class="selected_value">
+              {{ sorting === "Reset" ? "Sort by" : sorting }}
+            </span>
+            <img src="assets/images/Arrow_Bottom.svg" alt="" />
+          </button>
+        </div> -->
+        <button
+          *ngIf="!showCheckbox"
+          class="filter_btn"
+          (click)="onFilterHandler()"
+        >
+          <div style="position: relative">
+            <img src="assets/images/Filter.svg" alt="" />
+            <span *ngIf="filterCount" class="applied_icon">
+              {{ filterCount }}
+            </span>
+          </div>
+          Filter
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <ng-container *ngFor="let applicant of applicantList">
+          <app-search-applicant-card
+            [showSelection]="showCheckbox"
+            (refreshList)="refreshList($event)"
+            [applicantSet]="applicant"
+            (addRemove)="handleAddRemove($event, applicant._id)"
+            [selectedIds]="selectedIds"
+            (openJobOfferPopup)="openJobOfferPopup($event)"
+            (changeStatus)="changeStatus($event)"
+            (routeToDetails)="routeToDetails($event)"
+            [jobDetails]="jobDetails"
+            (invitePopup)="sendInvites($event, applicant._id)"
+          ></app-search-applicant-card>
+        </ng-container>
+      </div>
+      <div class="col-sm-12" *ngIf="!firstTimeLoading && total === 0">
+        <app-no-record></app-no-record>
+      </div>
+    </div>
+    <div class="job_list_paginator_wrapper">
+      <div class="data_count_wrapper">
+        <span *ngIf="applicantList && applicantList.length">
+          Showing {{ applicantList.length + (this.page - 1) * this.limit }} from
+          {{ total }} total applicant (s)
+        </span>
+      </div>
+      <div class="list_paginator_wrapper">
+        <mat-paginator
+          appStylePagination
+          [length]="total"
+          [pageIndex]="page - 1"
+          [pageSize]="limit"
+          [pageSizeOptions]="pageOptions"
+          (page)="changePage($event)"
+        >
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>
+<mat-menu #menu="matMenu">
+  <button
+    mat-menu-item
+    *ngFor="let item of jobMatMenu"
+    (click)="selectMenu(item)"
+  >
+    <span>{{ item?.name }}</span>
+  </button>
+</mat-menu>
+
+<mat-menu #checkboxMenu="matMenu">
+  <button (click)="changeSelectionType('None', false)" mat-menu-item>
+    <span>None</span>
+  </button>
+  <button
+    (click)="changeSelectionType('Select Individually', true)"
+    mat-menu-item
+  >
+    <span>Select Individually</span>
+  </button>
+  <button (click)="changeSelectionType('Select All', true)" mat-menu-item>
+    <span>Select All</span>
+  </button>
+</mat-menu>

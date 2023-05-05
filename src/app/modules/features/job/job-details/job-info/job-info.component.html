@@ -1,0 +1,149 @@
+<div class="page_main_wrapper">
+  <div class="top_sec">
+    <figure class="campony_backgrnd">
+      <img [src]="jobDetail?.companyDetails?.companyDetails?.companyPhoto || 'assets/images/company_background.jpg'"
+        alt="" class="backgrnd_img">
+      <div class="overlay_wrapper">
+        <img [src]="jobDetail?.companyDetails?.companyDetails?.companyLogo || 'assets/images/temp_main_Logo.svg'" alt=""
+          class="c_logo">
+        <p class="name">{{jobDetail?.title|titlecase}}</p>
+        <p class="subtitle">{{jobDetail?.companyDetails?.companyDetails?.companyName | titlecase}}</p>
+      </div>
+    </figure>
+    <div class="icon_btn_wrap">
+      <button class="icon_btn" (click)="deleteJob($event)">
+        <img src="assets/images/RecycleBin.svg" alt="">
+      </button>
+      <button (click)="onCopyJob(jobDetail?._id)" class="icon_btn">
+        <img src="assets/images/Copy(Reuse).svg" alt="">
+      </button>
+      <button class="icon_btn" (click)="editJobDetail($event)">
+        <img src="assets/images/edit.svg" alt="">
+      </button>
+    </div>
+  </div>
+  <div class="info_wrapper border_bottom">
+    <div class="info">
+      <img src="assets/images/Duration.svg" alt="">
+      <h3 class="key">
+        Job Duration
+        <span class="value">{{jobDetail|timeDuration:'DAY_DIFF'}}</span>
+
+      </h3>
+    </div>
+
+    <div class="info">
+      <img src="assets/images/Vacancy.svg" alt="">
+      <h3 class="key">
+        Vacancy
+        <span class="value"> {{jobDetail?.noOfOpenings}}</span>
+      </h3>
+    </div>
+
+    <div class="info">
+      <img src="assets/images/Calendar.svg" alt="">
+      <h3 class="key">
+        Date
+        <span class="value">
+          {{jobDetail|timeDuration:'DATE_DIFF'}}
+        </span>
+      </h3>
+    </div>
+
+    <div class="info">
+      <img src="assets/images/Addjob.svg" alt="">
+      <h3 class="key">
+        Job Type
+        <span *ngIf="jobDetail?.type==1" class="value"> {{jobType.SORT_TIME}}</span>
+        <span *ngIf="jobDetail?.type==2" class="value"> {{jobType.LONG_TIME}}</span>
+      </h3>
+    </div>
+
+    <div class="info">
+      <img src="assets/images/Payroll.svg" alt="">
+      <h3 class="key">
+        Pay
+        <span class="value">{{jobDetail|constantTrans:'PAY'}}</span>
+      </h3>
+    </div>
+
+    <div class="info">
+      <img src="assets/images/Addshift.svg" alt="">
+      <h3 class="key">
+        Shift
+        <span class="value" *ngFor="let shift of jobDetail?.shifts; let i = index">{{shift}}
+        </span>
+        <span *ngIf="!jobDetail?.shifts?.length">NA</span>
+      </h3>
+    </div>
+
+    <div class="info full_width">
+      <img src="assets/images/Location.svg" alt="">
+      <h3 class="key">
+        Location
+        <span class="value">{{jobDetail?.jobAreaSite?.name}}</span>
+      </h3>
+    </div>
+  </div>
+
+  <div class="sec_wrapper border_bottom">
+    <h3 class="sec_title">
+      Job description
+    </h3>
+    <div class="desc_box_wrapper">
+      <p class="desc">
+        {{jobDetail?.description}}
+      </p>
+      <!-- <h3 class="desc_title">
+                Requiered Candidate Profile
+            </h3>
+            <p class="desc">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam explicabo iure tempore consectetur
+                veniam, nobis debitis quo incidunt magni error eaque eligendi ipsa earum fuga iusto natus, ratione porro
+                laudantium.
+            </p> -->
+    </div>
+    <div class="cat_wrapper">
+      <h3 class="sec_title">
+        Business Category
+      </h3>
+      <p class="key" *ngFor="let business of jobDetail?.businessCategories; let i = index">
+        {{business?.name}}
+      </p>
+      <span *ngIf="!jobDetail?.businessCategories?.length">NA</span>
+    </div>
+  </div>
+
+
+  <div class="sec_wrapper border_bottom">
+    <h3 class="sec_title">
+      Skills
+    </h3>
+    <div class="tag_wrapper">
+      <span class="tag" *ngFor="let skill of jobDetail?.skills; let i = index">
+        {{skill?.name}}<span *ngIf="i < jobDetail?.skills?.length - 1">, </span>
+      </span>
+      <span *ngIf="!jobDetail?.skills?.length">NA</span>
+    </div>
+  </div>
+
+  <div class="sec_wrapper">
+    <h3 class="sec_title">
+      About Company
+    </h3>
+    <div class="desc_box_wrapper">
+      <div class="compnay_info">
+        <figure class="c_icon">
+          <img [src]="jobDetail?.companyDetails?.companyDetails?.companyLogo" alt="">
+        </figure>
+        <div class="info">
+          <h3 class="name">{{jobDetail?.companyDetails?.companyDetails?.companyName}}</h3>
+          <!-- <p class="subtitle">10 Reviews</p> -->
+        </div>
+      </div>
+      <p class="desc">
+        {{jobDetail?.companyDetails?.companyDetails?.companyDescription}}
+      </p>
+    </div>
+  </div>
+</div>

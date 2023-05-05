@@ -1,0 +1,87 @@
+ <div class="filter_main_wrapper">
+  <div class="heading">
+    <h3>FILTER BY</h3>
+    <span class="close_btn" (click)="closeDialog()">
+      <img src="assets/images/filter_close.svg" alt="" />
+    </span>
+  </div>
+  <form [formGroup]="userFilterForm">
+    <div class="filter_body">
+      <div class="row">
+        <div class="filter_col">
+          <mat-accordion>
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>Applied on</mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-radio-group
+              aria-label="Select an option"
+              (change)="radioChange($event?.value)"
+            >
+              <mat-radio-button
+                *ngFor="let applied of appliedOnList"
+                [value]="applied?.value"
+                [checked]="
+                  userFilterForm.controls.appliedOn.value == applied?.value
+                "
+              >
+                {{ applied?.name }}</mat-radio-button
+              >
+            </mat-radio-group>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </div>
+
+      <div class="row">
+        <mat-label>Rating</mat-label>
+        <div
+          class="filter_col"
+          *ngFor="let rating of ratingList; let i = index"
+        >
+          <mat-checkbox
+            [checked]="rating?.isChecked"
+            (change)="onSelectRating($event, i)"
+            [value]="rating?.name"
+            class="example-margin"
+          >
+            {{ rating?.name }}
+            <img src="assets/images/Rating_black.svg" alt="" />
+            & above
+          </mat-checkbox>
+        </div>
+      </div>
+
+      <div class="row">
+        <mat-label>Experience in this Role</mat-label>
+        <div class="filter_col">
+          <mat-radio-group
+            aria-label="Select an option"
+            (change)="expRadioChange($event?.value)"
+          >
+            <mat-radio-button
+              *ngFor="let exp of experienceList"
+              [value]="exp?.value"
+              [checked]="userFilterForm.controls.experience.value == exp?.value"
+            >
+              {{ exp?.name }}</mat-radio-button
+            >
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div class="row">
+        <mat-label>Skills</mat-label>
+        <div class="filter_col">
+          <!-- <app-chip-search-form class="app-chip-search-form" (listienSelection)="onSkillSelection($event)" [dataLists]="skillList"
+              [selectedChip]="skillCtrl.value?skillCtrl.value:[]" [parant]="'job'">
+          </app-chip-search-form> -->
+        </div>
+      </div>
+    </div>
+    <div class="btn_wrap">
+      <button class="primary-btn" (click)="applyFilter()">Apply Filter</button>
+      <button class="btn_secondry" (click)="closeDialog()">Reset</button>
+    </div>
+  </form>
+</div>

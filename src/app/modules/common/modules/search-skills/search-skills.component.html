@@ -1,0 +1,25 @@
+
+<mat-form-field appearance="outline">
+  <mat-select #selectElem [formControl]="controls" 
+    [placeholder]="isLoader ? 'Loading...' : 'Search & select skills'" (selectionChange)="onSelectionChange($event.value)" >
+    <div *ngIf ="isLoader" class="loader-btn loadersmall"></div>
+    <app-select-search (search)="searchSkills($event)" placeholder="Search here ..."></app-select-search>
+    <mat-option class="notFound" *ngIf="!skillData?.length && !isLoader">No Data Found</mat-option>
+    <ng-container >
+      <mat-option *ngFor="let catg of skillData" [value]="catg" >{{catg.name}}</mat-option>
+    </ng-container>
+    <mat-select-trigger>{{"Search & select skills"}}</mat-select-trigger>
+  </mat-select>
+  <mat-error>{{  controls | validate: "SKILL"}}</mat-error>
+</mat-form-field>
+
+
+<div class="mat-chip-wrap">
+  <div class="mat-area-chip">
+    <mat-chip-list>
+      <mat-chip *ngFor="let skill of selectedSkills;let i=index" (removed)="onRemove(skill)">{{skill.name}}
+        <a class="cross-icon"  *ngIf="selectedSkills?.length>=1" matChipRemove><span>x</span></a>
+      </mat-chip>
+    </mat-chip-list>
+  </div>
+</div>

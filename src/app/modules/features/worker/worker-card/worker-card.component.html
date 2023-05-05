@@ -1,0 +1,77 @@
+    <div class="card_main_wrapper">
+      <div class="top_row">
+        <div class="worker_details_wrapper">
+          <figure class="w_img">
+            <img [src]="workerData?.profilePicture || 'assets/images/ic_place holder.svg'" alt="">
+          </figure>
+          <div class="info_wrapper">
+            <div class="wrap">
+              <h3 class="name">{{workerData?.firstName | titlecase}} {{workerData?.middleName | titlecase}}
+                {{workerData?.lastName | titlecase}} </h3>
+              <p class="rating">
+                <img src="assets/images/ic_Star.svg" alt="">
+                3
+              </p>
+              <span class="review_count">10 Reviews</span>
+            </div>
+            <p class="exp">2 years as sales promoter</p>
+          </div>
+          <span class="tag">
+            Previously Hired
+          </span>
+        </div>
+      </div>
+
+      <div class="middile_sec_wrapper">
+        <div class="info_box">
+          <h3 class="key">
+            <img src="assets/images/exp.svg" alt="">
+            Experience
+          </h3>
+          <p class="value">
+            6 Years
+          </p>
+        </div>
+
+        <div class="info_box">
+          <h3 class="key">
+            <img src="assets/images/Building-Sector.svg" alt="">
+            Industry
+          </h3>
+          <p class="value">
+            Retail, Transportation and Consultancy
+          </p>
+        </div>
+
+        <div class="info_box full_width">
+          <h3 class="key">
+            <img src="assets/images/Skills.svg" alt="">
+            Skills
+          </h3>
+          <div class="skills_wrapper">
+            <span class="skill">
+              Hello word
+            </span>
+
+            <span class="skill">
+              Hello word
+            </span>
+
+            <span class="skill">
+              Hello word
+            </span>
+
+            <span class="skill">
+              Hello word
+            </span>
+
+            <span class="skill">
+              Hello word
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="bottom_sec">
+        <button [routerLink]="['WORKER_DETAILS'|absolutePath]" class="primary-btn">View Details</button>
+      </div>
+    </div>

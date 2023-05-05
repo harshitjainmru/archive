@@ -1,0 +1,26 @@
+.mat-dialog-wrap {
+    position: relative;
+    .mat-dialog-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #e02342;
+        margin-top: -10px;
+    }
+    .mat-dialog-actions {
+        padding: 15px 0;
+        button {
+            min-width: 80px;
+        }
+    }
+    .mat-close {
+        position: absolute;
+        top: -45px;
+        right: -70px;
+        color: #ffffff;
+    }
+    .description {
+        font-size: 14px;
+        color: #828282;
+        line-height: 1.7;
+    }
+}

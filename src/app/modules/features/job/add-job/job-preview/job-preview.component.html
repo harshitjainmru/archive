@@ -1,0 +1,318 @@
+<div class="page_main_wrapper">
+  <div class="inner_wrapper">
+    <div class="page-header-info">
+      <h3 class="page-name">Job preview</h3>
+      <div class="btn-wrap">
+        <!-- <button type="button" (click)="onCancelStep()" class="btn cancel-btn">Cancel</button> -->
+        <button
+          type="button"
+          (click)="onNextSubmit(JOB_STATUS?.DRAFT)"
+          class="del-default-btn"
+        >
+          Save as draft
+        </button>
+        <button
+          type="button"
+          [disabled]="profileUnverified"
+          (click)="onNextSubmit(JOB_STATUS?.PUBLISHED)"
+          class="primary-btn"
+        >
+          Publish
+        </button>
+      </div>
+    </div>
+    <div class="info-section">
+      <div class="top-header">
+        <h3>Job details</h3>
+        <a class="edit-icon" (click)="onBack()">
+          <img src="assets/icons/edit_icon.svg" alt="Edit Icon" />
+        </a>
+      </div>
+      <div class="info-wrap">
+        <h3 class="job-title">{{ activeJob?.title | checkNull }}</h3>
+        <div class="info-row row">
+          <div class="col-md-3">
+            <div class="title-icon-wrap">
+              <img src="assets/icons/Add_Job.svg" alt="Icon" />
+              <strong>Job role</strong>
+            </div>
+            <div class="value">
+              <p>{{ activeJob?.jobRole?.name | checkNull }}</p>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="title-icon-wrap">
+              <img src="assets/icons/Building(Sector).svg" alt="Icon" />
+              <strong>Business category</strong>
+            </div>
+            <div class="value">
+              <p>{{ activeJob?.businessCategory?.name | checkNull }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-row row">
+          <div class="col-md-3">
+            <div class="title-icon-wrap">
+              <img src="assets/icons/Vacancy.svg" alt="Icon" />
+              <strong>Position (s)</strong>
+            </div>
+            <div class="value">
+              <p>{{ activeJob?.vacancies | checkNull }}</p>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="title-icon-wrap">
+              <span class="curr_ico">
+                <img src="assets/icons/currency_icon.svg" alt="Icon" />
+              </span>
+              <strong>Base pay</strong>
+            </div>
+            <div class="value">
+              <p class="">
+                {{
+                  activeJob?.baseSalary?.salary
+                    | customCurrency
+                      : (activeJob.baseSalary.currency == 2
+                          ? "MALAYSIA"
+                          : "SINGAPORE")
+                }}
+                /hr
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="title-icon-wrap">
+              <span class="curr_ico">
+                <img src="assets/icons/Clock.svg" alt="Icon" />
+              </span>
+              <strong>Duration of Employment</strong>
+            </div>
+            <div class="value">
+              <p>
+                {{ activeJob?.timeline?.startDate | customDate | checkNull }}
+                to
+                {{ activeJob?.timeline?.endDate | customDate | checkNull }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- end row -->
+
+        <div class="flex">
+          <div class="col-md-12">
+            <div class="title-icon-wrap">
+              <img src="assets/icons/Skills.svg" alt="Icon" />
+              <strong>Skills</strong>
+            </div>
+            <div class="value">
+              <ul
+                class="skills-listing skill"
+                *ngIf="activeJob?.skills; else noSkill"
+              >
+                <li *ngFor="let skill of activeJob?.skills">
+                  {{ skill?.name }}
+                </li>
+              </ul>
+              <ng-template #noSkill> <p>No skill</p> </ng-template>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-row row">
+          <div class="col-md-3">
+            <div class="title-icon-wrap">
+              <img src="assets/icons/Work_Experience.svg" alt="Icon" />
+              <strong>Experience</strong>
+            </div>
+            <div class="value">
+              <ul
+                class="skills-listing"
+                *ngIf="activeJob?.experience?.type; else noExp"
+              >
+                <li
+                  [hidden]="
+                    !(activeJob?.experience?.type[0] == experienceType?.NO_EXP)
+                  "
+                >
+                  No experience
+                </li>
+                <li
+                  [hidden]="
+                    !(activeJob?.experience?.type[1] == experienceType?.EXP)
+                  "
+                >
+                  Experienced
+                </li>
+              </ul>
+              <ng-template #noExp> <p>No data</p> </ng-template>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="title-icon-wrap">
+              <img src="assets/icons/Add_shift.svg" alt="Icon" />
+              <strong>Minimum engagement</strong>
+            </div>
+            <div class="value">
+              <p>
+                {{ activeJob?.workingHours?.hours }} hrs &
+                {{ activeJob?.workingHours?.days }} days /person in week
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-wrap des-content">
+        <h3>Job description</h3>
+        <div class="content-description">
+          <p>{{ activeJob?.description | checkNull }}</p>
+        </div>
+        <ng-container *ngIf="activeJob?.requirment">
+          <h3>Custom requirements</h3>
+          <div class="content-description">
+            <p>{{ activeJob?.requirment | checkNull }}</p>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <div class="top-header">
+        <h3>Salary & Schedule</h3>
+      </div>
+
+      <h4 class="location-shifts">Location & shifts</h4>
+      <mat-accordion class="job-site-group">
+        <ng-container *ngIf="activeJob?.jobSite; else noJobsite">
+          <mat-expansion-panel
+            class="expansion"
+            *ngFor="
+              let jobsite of activeJob?.jobSite;
+              let jobsiteIndex = index;
+              let isFirst = first
+            "
+            [expanded]="isFirst"
+          >
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <div class="title-description">
+                  <h3>
+                    Location {{ jobsiteIndex + 1 }} : ({{
+                      jobsite?.address?.title
+                    }})
+                  </h3>
+                  <p>
+                    {{
+                      jobsite?.address?.addressLine &&
+                      jobsite?.address?.cityName
+                        ? jobsite?.address?.jobArea?.name +
+                          ", " +
+                          jobsite?.address?.addressLine +
+                          ", "
+                        : jobsite?.address?.jobArea?.name +
+                          ", " +
+                          jobsite?.address?.addressLine
+                    }}
+                    {{
+                      jobsite?.address &&
+                      jobsite?.address?.cityName &&
+                      jobsite?.address?.zipcode
+                        ? jobsite?.address?.cityName + ", "
+                        : jobsite?.address?.cityName
+                    }}
+                    {{ jobsite?.address?.zipcode }}
+                  </p>
+                </div>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <table  class="location-info" summary="location info table" >
+                <tr>
+                  <th scope="title" >Title</th>
+                  <th scope="start time" >Start time</th>
+                  <th scope="end time" >End time</th>
+                  <th scope="base time">Base salary</th>
+                  <th scope="additional allowances" >Additional allowances</th>
+              </tr>
+              <ng-container *ngIf="jobsite?.timeSlots; else noTimeslot">
+                <tr *ngFor="let timeslot of jobsite?.timeSlots">
+                  <td>{{ timeslot?.title }}</td>
+                  <td>
+                    {{
+                      timeslot?.startTime
+                        | customDate: dFormat?.ONLY_TIME
+                        | checkNull
+                    }}
+                  </td>
+                  <td>
+                    {{
+                      timeslot?.endTime
+                        | customDate: dFormat?.ONLY_TIME
+                        | checkNull
+                    }}
+                  </td>
+                  <td>
+                    {{ activeJob?.baseSalary?.salary | customCurrency }} /hr
+                  </td>
+                  <td class="allowances">
+                    <span class="curr_ico"
+                      >{{
+                        timeslot?.additionalAllowance?.salary
+                          | customCurrency
+                            : (timeslot.additionalAllowance.currency == 2
+                                ? "MALAYSIA"
+                                : "SINGAPORE")
+                      }}
+                      /hr
+                    </span>
+                  </td>
+                </tr>
+              </ng-container>
+              <ng-template #noTimeslot>
+                <div class="no-timeslot">No time slot found</div>
+              </ng-template>
+            </table>
+          </mat-expansion-panel>
+        </ng-container>
+        <ng-template #noJobsite>
+          <div class="no-jobsite">No job site found</div>
+        </ng-template>
+      </mat-accordion>
+      <div class="info-wrap estimited-invoice">
+        <div class="info-row">
+          <div class="info-left">
+            <div class="title-icon-wrap">
+              <img src="assets/icons/Service_Charge.png" alt="Icon" />
+              <strong>Estimated invoice</strong>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="info-row">
+          <div class="info-left">
+            <p>
+              <span class="">{{ this.minEstimate | customCurrency }}</span> -
+              <span class="">{{ this.maxEstimate | customCurrency }}</span>
+            </p>
+          </div>
+        </div> -->
+        <div class="info-row" style="margin-left: 5px;">
+          <p style="background-color: rgb(237, 244, 255); color: rgb(20, 177, 189); font-style: italic;">
+            The estimated total invoice will be provided to you by our consultants.
+          </p>
+      </div>
+      </div>
+    </div>
+
+    <!-- <div class="publish-by">
+      <ul>
+        <li>Posted by: Rohan Mishra</li>
+        <li>22 Mar 2021</li>
+      </ul>
+    </div> -->
+  </div>
+</div>

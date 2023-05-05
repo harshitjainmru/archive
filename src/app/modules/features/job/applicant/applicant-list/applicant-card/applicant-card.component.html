@@ -1,0 +1,309 @@
+<div class="applicant-card" [ngClass]="{'user-deleted' : applicant?.applicant?.status == 'deleted' }">
+  <div class="applicant-inner">
+    <div class="flex-row pb-15">
+      <div class="col-4">
+        <div class="user-info-wrap">
+          <div class="user-pic">
+            <figure>
+              <img
+                onerror="this.src='assets/icons/placeholder.svg'"
+                [src]="
+                  ( applicant?.applicant?.profilePic && applicant?.applicant?.status!= 'deleted' )
+                    ? applicant?.applicant?.profilePic
+                    : 'assets/icons/user-logo.svg'
+                "
+                alt="User Image"
+              />
+            </figure>
+          </div>
+          <div class="user-basic-details">
+            <div class="user-top-info">
+              <h3 [ngClass]="{'link' : applicant?.applicant?.status != 'deleted' }" (click)="viewApplicantDetails()">{{ applicant?.applicant?.status!= 'deleted' ? applicant?.applicant?.fullName : 'This user does not exist'}}</h3>
+              <span *ngIf="applicant?.isPreviouslyHired && applicant?.applicant?.status!= 'deleted'" class="status-wrap"
+                >Previously hired</span
+              >
+            </div>
+            <div class="exp-rating-wrap">
+              <div class="exp-wrap">
+                <p>
+                  <span
+                    >{{ applicant?.applicantExpierence?.expierenceYear }}
+                    {{
+                      applicant?.applicantExpierence?.expierenceYear > 1
+                        ? "Years"
+                        : "Year"
+                    }}
+                    exp.</span
+                  >
+                  <img src="assets/icons/check-icon.svg" alt="Check Icon" />
+                </p>
+              </div>
+              <span class="circle" *ngIf="applicant?.userData?.rating"></span>
+              <div class="rating-wrap" *ngIf="applicant?.userData?.rating">
+                <img src="assets/icons/start_icon.svg" alt="Start Icon" />
+                <p>
+                  <span
+                    >{{ "" + applicant?.userData?.rating?.avgRating }}
+                  </span>
+                  ({{ "" + applicant?.userData?.rating?.totalRatings }}
+                  reviews)
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="title-wrap">
+          <img src="assets/icons/Add_shift_icon.svg" alt="Skills Icon" />
+          <h3>Preferred shift</h3>
+        </div>
+        <p class="value">
+          {{ applicant?.preferredTimeSlot?.title }} <span class="circle"></span
+          >{{
+            applicant?.preferredTimeSlot?.startTime
+              | customDate: dFormat?.ONLY_TIME
+          }}
+          -
+          {{
+            applicant?.preferredTimeSlot?.endTime
+              | customDate: dFormat?.ONLY_TIME
+          }}
+        </p>
+      </div>
+      <div class="col-4">
+        <div class="top-head">
+          <div class="title-wrap">
+            <img src="assets/icons/location_icon.svg" alt="Skills Icon" />
+            <h3>Preferred location</h3>
+          </div> 
+          <ng-container *ngIf="!this.showCheckbox && applicant?.applicant?.status!= 'deleted'">
+            <a [matMenuTriggerFor]="belowMenu"
+              ><img src="assets/icons/more-icon.svg" alt="Icon"
+            /></a>
+            <mat-menu #belowMenu="matMenu" yPosition="below">
+              <button (click)="viewApplicantDetails()" mat-menu-item>
+                <img src="assets/icons/ic_users.svg" alt="Icon" />View details
+              </button>
+              <button
+                *ngIf="
+                  jobDetails.jobStatus === jobStatus.COMPLETED &&
+                  candidateStatus.CONTRACT_SIGNED ==
+                    applicant?.currentApplicationStatus
+                "
+                (click)="openRatingReviewPopup()"
+                mat-menu-item
+              >
+                <img src="assets/icons/ic_users.svg" alt="Icon" />{{
+                  this.applicant.rating ? "Edit rating" : "Rate candidate"
+                }}
+              </button>
+              <button (click)="reportCandidate()" mat-menu-item>
+                <img src="assets/icons/ic_users.svg" alt="Icon" />Report
+                candidate
+              </button>
+            </mat-menu>
+          </ng-container>
+          <ng-container *ngIf="this.showCheckbox">
+            <mat-checkbox
+              (change)="handleCheckbox($event)"
+              class="example-margin"
+              [checked]="isChecked()"
+            >
+            </mat-checkbox>
+          </ng-container>
+        </div>
+        <p>{{ applicant?.preferredJobSite?.address?.title }}</p>
+      </div>
+    </div>
+
+    <div class="flex-row" *ngIf="applicant?.applicant?.status!= 'deleted'">
+      <div class="col-4">
+        <div class="title-wrap">
+          <img src="assets/icons/ic_Skills.svg" alt="Skills Icon" />
+          <h3>Skills</h3>
+        </div>
+        <ul class="skills-listing">
+          <li
+            *ngFor="
+              let skill of applicant?.userData?.skillsAndExperience?.skills
+                | slice: 0:2
+            "
+          >
+            {{ skill?.name }}
+          </li>
+          <li
+            [matTooltip]="
+              applicant?.userData?.skillsAndExperience?.skills | skillsTooltip
+            "
+            *ngIf="
+              applicant?.userData?.skillsAndExperience?.skills?.length - 2 > 0
+            "
+          >
+            <a
+              >+{{
+                applicant?.userData?.skillsAndExperience?.skills?.length - 2
+              }}</a
+            >
+          </li>
+        </ul>
+      </div>
+      <ng-container
+        *ngIf="
+          jobDetails?.jobStatus != pauseCancelEnum.CANCELED &&
+          jobDetails.jobStatus != pauseCancelEnum.PAUSED &&
+          jobDetails.jobStatus != pauseCancelEnum.COMPLETED
+        "
+      >
+        <div class="col-4 contract-text">
+          <ng-container
+            *ngIf="
+              !(
+                applicant?.currentApplicationStatus ===
+                  candidateStatus.NOT_SUITABLE ||
+                applicant?.currentApplicationStatus ===
+                  candidateStatus.CONTRACT_SIGNED
+              ) &&
+              (jobDetails.jobStatus != pauseCancelEnum.CANCELED ||
+                jobDetails.jobStatus != pauseCancelEnum.PAUSED)
+            "
+          >
+            <div class="title-wrap">
+              <img src="assets/icons/Reports1.svg" alt="Skills Icon" />
+              <h3>Contract status</h3>
+            </div>
+            <!-- <a *ngIf="
+              applicant?.currentApplicationStatus === candidateStatus.APPLIED ||
+              applicant?.currentApplicationStatus ===
+                candidateStatus.SHORTLISTED
+            " (click)="openJobOfferPopup.emit(applicant)" class="">Send Job Offer</a> -->
+            <a
+              *ngIf="
+                applicant?.currentApplicationStatus === candidateStatus.APPLIED
+              "
+              (click)="
+                openJobOfferPopup.emit({
+                  applicant: applicant,
+                  previousState: candidateStatus.APPLIED
+                })
+              "
+              class=""
+              >Send Job Offer</a
+            >
+            <a
+              *ngIf="
+                applicant?.currentApplicationStatus ===
+                candidateStatus.SHORTLISTED
+              "
+              (click)="
+                openJobOfferPopup.emit({
+                  applicant: applicant,
+                  previousState: candidateStatus.SHORTLISTED
+                })
+              "
+              class=""
+              >Send Job Offer</a
+            >
+            <!-- <span
+              *ngIf="
+                applicant?.currentApplicationStatus === candidateStatus.JOB_OFFER_ACCEPTED
+              "
+              >{{ "Offer Accepted | " }}</span
+            >
+            <span *ngIf="
+              applicant?.currentApplicationStatus === candidateStatus.CONTRACT_SEND
+            ">{{ "Offer Sent | " }}</span> -->
+            <a
+              *ngIf="
+                applicant?.currentApplicationStatus ===
+                candidateStatus.CONTRACT_SEND ||  applicant?.currentApplicationStatus ===
+                candidateStatus.JOB_OFFER_ACCEPTED
+              "
+              (click)="updateStatus(candidateStatus.CONTRACT_WITHDRAW)"
+              style="text-decoration: none"
+              >Withdraw contract</a
+            >
+            <span
+              *ngIf="
+                applicant?.currentApplicationStatus === candidateStatus.REJECTED
+              "
+              >{{ "Offer Denied |" }}</span
+            >
+            <a
+              (click)="openJobOfferPopup.emit({ applicant: applicant })"
+              *ngIf="
+                applicant?.currentApplicationStatus ===
+                  candidateStatus.CONTRACT_WITHDRAW ||
+                applicant?.currentApplicationStatus ===
+                  candidateStatus.CANCELED ||
+                applicant?.currentApplicationStatus === candidateStatus.REJECTED
+              "
+              >Resend contract</a
+            >
+          </ng-container>
+        </div>
+        <div
+          *ngIf="
+            !(
+              applicant?.currentApplicationStatus ===
+                candidateStatus.CONTRACT_SEND ||
+              applicant?.currentApplicationStatus ==
+                candidateStatus.CONTRACT_SIGNED ||
+                applicant?.currentApplicationStatus ===
+                candidateStatus.JOB_OFFER_ACCEPTED
+            ) && !this.showCheckbox
+          "
+          class="col-4"
+        >
+          <ul class="bottom-action">
+            <li
+              *ngIf="
+                applicant?.currentApplicationStatus !==
+                  candidateStatus.SHORTLISTED &&
+                (jobDetails.jobStatus != pauseCancelEnum.CANCELED ||
+                  jobDetails.jobStatus != pauseCancelEnum.PAUSED)
+              "
+              (click)="changeStatusEmit(candidateStatus.SHORTLISTED)"
+            >
+              <a>Add to Shortlist</a>
+            </li>
+            <!-- <li
+            *ngIf="
+              applicant?.currentApplicationStatus !== candidateStatus.HIRED &&
+              (jobDetails.jobStatus != pauseCancelEnum.CANCELED ||
+                jobDetails.jobStatus != pauseCancelEnum.PAUSED)
+            "
+            (click)="changeStatusEmit(candidateStatus.HIRED)"
+          >
+            <a>Hire</a>
+          </li> -->
+            <li
+              *ngIf="
+                applicant?.currentApplicationStatus !==
+                  candidateStatus.NOT_SUITABLE &&
+                (jobDetails.jobStatus != pauseCancelEnum.CANCELED ||
+                  jobDetails.jobStatus != pauseCancelEnum.PAUSED)
+              "
+              (click)="changeStatusEmit(candidateStatus.NOT_SUITABLE)"
+            >
+              <a class="not-suitable">Not suitable</a>
+            </li>
+          </ul>
+        </div>
+      </ng-container>
+    </div>
+    <ng-container *ngIf="
+    applicant?.currentApplicationStatus ===
+    candidateStatus.CONTRACT_SIGNED && applicant?.applicant?.status!= 'deleted'">
+    <div class="schedule-shift">
+      <a (click)="viewSchedule(applicant?.applicant?._id)">View Schedule</a>
+    </div> 
+  </ng-container>
+    <div class="applied-date">
+      <span
+        >Applied On:
+        {{ applicant?.createdAt | customDate: dFormat.ONLY_DATE }}</span
+      >
+    </div>
+  </div>
+</div>

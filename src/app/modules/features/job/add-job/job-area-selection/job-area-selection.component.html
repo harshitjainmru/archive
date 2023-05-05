@@ -1,0 +1,19 @@
+<mat-label>Area &nbsp; <span class="mandatory_field">*</span></mat-label>
+<mat-form-field class="example-full-width cstm_dropdwn" appearance="outline">
+  <mat-select #select (openedChange)="onClearSearch()" [formControl]="jobAreaCtrl" placeholder="Select Area"
+    (selectionChange)="onJobAreaSelection($event)">
+    <app-select-search (search)="search=$event">
+    </app-select-search>
+    <ng-container *ngFor="let stateCity of stateCityLists|selectFilter:'name':search">
+      <p class="notFound" *ngIf="stateCity?.found">No result found</p>
+      <mat-option *ngIf="!stateCity.found" [value]="stateCity">
+        <div class="country-info">
+          <strong>{{stateCity.name}}</strong>
+        </div>
+      </mat-option>
+    </ng-container>
+    <!-- ................................................................................................ -->
+    <!-- <mat-select-trigger>{{phoneForm.controls.countryCode.value}}</mat-select-trigger> -->
+  </mat-select>
+  <mat-error>Area is Required</mat-error>
+</mat-form-field>

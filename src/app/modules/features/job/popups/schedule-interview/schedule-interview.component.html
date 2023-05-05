@@ -1,0 +1,43 @@
+<div class="popup_main_wrapper">
+    <div class="heading">
+        <h3>Schedule interview</h3>
+    </div>
+    <div class="form_group_wrapper">
+        <div class="form_group">
+            <mat-label>Title of interview</mat-label>
+            <mat-form-field appearance="outline">               
+                <input matInput placeholder="Enter Interview title">
+            </mat-form-field>
+        </div>
+
+        <div class="form_group">
+            <mat-label>Set date of interview</mat-label>
+            <mat-form-field appearance="outline">               
+                <input matInput [matDatepicker]="picker">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <div class="form_group">
+            <mat-label>Set time preference of interview</mat-label>
+            <div class="append_row">
+                    <div class="inner_row">
+                        <app-time-picker class="app-time-picker" ></app-time-picker>
+                        <img src="assets/images/add_row.svg" alt="">
+                        <!-- <img src="assets/images/delete_row.svg" alt=""> -->
+                    </div>
+                    <!-- <div class="inner_row">
+                        <app-time-picker></app-time-picker>
+                        <img src="assets/images/delete_row.svg" alt="">
+                    </div> -->
+            </div>
+            
+        </div>
+
+        <div class="btn_wrap">
+            <button class="btn_secondry">Later</button>
+            <button class="primary-btn">Send invite</button>
+        </div>
+    </div>
+</div>

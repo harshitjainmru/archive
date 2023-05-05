@@ -1,0 +1,107 @@
+<div class="popup_main_wrapper" *ngIf="!showOtpScreen; else otp">
+  <div class="heading">
+    <h3>Edit User Profile</h3>
+  </div>
+  <form [formGroup]="userForm">
+    <div class="content_wrapper row">
+      <div class="col-sm-4">
+        <mat-label>First Name</mat-label>
+        <mat-form-field appearance="outline">
+          <input
+            preventStartingSpace
+            matInput
+            placeholder="Enter Firstname"
+            formControlName="firstName"
+          />
+          <mat-error
+            >{{ userForm | getControl: ["firstName"] | validate: "FIRST_NAME" }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-sm-4">
+        <mat-label>Middle Name</mat-label>
+        <mat-form-field appearance="outline">
+          <input
+            preventStartingSpace
+            matInput
+            placeholder="Enter Middlename"
+            formControlName="middleName"
+          />
+          <mat-error
+            >{{
+              userForm | getControl: ["middleName"] | validate: "MIDDLE_NAME"
+            }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-label>Last Name</mat-label>
+        <mat-form-field appearance="outline">
+          <input
+            preventStartingSpace
+            matInput
+            placeholder="Enter Lastname"
+            formControlName="lastName"
+          />
+          <mat-error
+            >{{ userForm | getControl: ["lastName"] | validate: "LAST_NAME" }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-sm-6">
+        <mat-label>Email Address</mat-label>
+        <mat-form-field appearance="outline">
+          <input
+            [readonly]="detail?.emailVerified"
+            matInput
+            placeholder="Enter Email"
+            formControlName="email"
+          />
+          <mat-error
+            >{{ userForm | getControl: ["email"] | validate: "EMAIL" }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <app-phone-field [autoSelect]="false" [phoneForm]="userForm">
+        </app-phone-field>
+        <app-data-loader *ngIf="showLoader"></app-data-loader>
+        <span
+          *ngIf="errorType == 1 || errorType == 2 || errorType == 9"
+          class="mat-error custom-validation backend-err"
+          >{{ errormsg }}</span
+        >
+      </div>
+      <div class="col-sm-12">
+        <div class="btn_wrap">
+          <button type="button" class="btn_secondry" (click)="closeDialog()">
+            Cancel
+          </button>
+          <button
+            type="submit"
+            class="primary-btn"
+            [disabled]="!firstStepStatus"
+            (click)="onSubmitForm()"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<ng-template #otp>
+  <app-otp-verification
+    [otpAttemptLeft]="attemptLeft"
+    [phoneData]="userForm.value"
+    (customResend)="onCustomResend($event)"
+    (onBack)="showOtpScreen = false"
+    [canResend]="false"
+    (verifyOtp)="verifyOtp($event)"
+    [viewType]="'editUser'"
+  >
+  </app-otp-verification>
+</ng-template>

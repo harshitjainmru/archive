@@ -1,0 +1,26 @@
+<ng-container [ngSwitch]="dayName">
+  <ng-container *ngSwitchCase="'early'">
+    <figure class="time-preference-icon">
+      <img src="assets/icons/Early-Shift-icon.svg" alt="Icon"/>
+    </figure>
+    <span>Early</span>
+  </ng-container>
+  <ng-container *ngSwitchCase="'night'">
+    <figure class="time-preference-icon">
+      <img src="assets/icons/Night-Shift-icon.svg" alt="Icon"/>
+    </figure>
+    <span>Night</span>
+  </ng-container>
+  <ng-container *ngSwitchCase="'day'">
+    <figure class="time-preference-icon">
+      <img src="assets/icons/Day-Shift-icon.svg" alt="Icon"/>
+    </figure>
+    <span>Day</span>
+  </ng-container>
+  <ng-container *ngSwitchCase="'all'">
+    <figure class="time-preference-icon">
+      <img src="assets/icons/Group.svg" alt="Icon"/>
+    </figure>
+    <span>All</span>
+  </ng-container>
+</ng-container>

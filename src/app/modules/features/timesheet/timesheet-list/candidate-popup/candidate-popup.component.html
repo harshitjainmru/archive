@@ -1,0 +1,52 @@
+<div class="candidate-popup-content">
+    <div class="candidate-popup-header">
+        <div class="image-area">
+            <img appImageFallback [src]="candidateData?.userData?.profilePic" alt=""  />
+        </div>
+        <ng-container *ngIf="candidateData?.status != 'deleted'; else deletedUser">
+            <div class="candidate-popup-header-content">
+                <h3>{{candidateData?.jobData[0]?.userData?.fullName | checkNull}}</h3>
+                <p>Job id: {{candidateData?.jobId | checkNull}}</p>
+            </div>
+        </ng-container>
+        <ng-template #deletedUser>
+            <h3>User Deleted</h3>
+        </ng-template>
+        <div (click)="close()" class="close-icon">
+            <a href="javascript:void(0)">
+                <img src="assets/icons/close.svg" alt="Icon" />
+            </a>
+        </div>
+    </div>
+    <div class="candidate-popup-body">
+        <ul>
+            <li>
+                <img src="assets/icons/ic_time.svg" alt="" class="filter_icon" />
+                <label>Job name</label> 
+            </li>
+            <li class="event-text">
+                <a href="javascript:void(0)">{{candidateData?.jobData[0]?.title | checkNull}}</a>
+            </li>
+            <li>
+                <img src="assets/icons/ic_job.svg" alt="" class="filter_icon" />
+                <label>Job role</label>
+            </li>
+            <li class="event-text">
+                <strong> {{candidateData?.jobData[0].jobRole?.jobCategory?.name}}</strong><span>&nbsp;- {{candidateData?.jobData[0]?.jobRole?.name}}</span>
+            </li>
+            <li>
+                <img src="assets/icons/ic_shift.svg" alt="" class="filter_icon" />
+                <label>Shift name & time</label>
+            </li>
+            <li class="event-text">
+                <span>{{candidateData?.shift?.title}} ({{candidateData?.shift?.startTime | customDate:customDateFormat.shortTime}} to {{candidateData?.shift?.endTime | customDate:customDateFormat.shortTime}})</span>
+            </li>
+        </ul>
+    </div>
+    <div class="candidate-popup-footer" >
+        <ng-container *ngIf="candidateData?.status != 'deleted' ">
+        <button type="button" (click)="viewProfile()" class="view-profile-btn">View profile</button>
+        <button type="button" (click)="viewTimesheet()" class="view-timesheet-btn">View timesheet</button>
+        </ng-container>
+    </div>
+</div>

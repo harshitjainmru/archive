@@ -1,0 +1,15 @@
+<mat-form-field appearance="outline">
+    <mat-select 
+    [compareWith]="compareObjectIds"
+    #selectElem [formControl]="controls" [disabled]="isLoader" [placeholder]="isLoader? 'Loading': selectPlaceholder" >
+        <div *ngIf="isLoader" class="loader-btn loadersmall"></div>
+        <app-select-search (search)="searchAreas($event)" [placeholder]="placeholder"></app-select-search>
+        <mat-option class="notFound" *ngIf="!jobArea?.length && !isLoader">No Data Found</mat-option>
+        <ng-container>
+            <mat-option *ngFor="let catg of jobArea" [value]="catg">{{catg.name}}</mat-option>
+        </ng-container>
+        <!-- <mat-select-trigger>{{"Search & select skills"}}</mat-select-trigger> -->
+    </mat-select>
+    
+    <mat-error>{{ controls | validate: validateKey}} </mat-error>
+</mat-form-field>

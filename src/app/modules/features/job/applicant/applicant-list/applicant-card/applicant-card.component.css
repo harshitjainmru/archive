@@ -1,0 +1,442 @@
+.applicant-card {
+  padding: 24px 24px 16px;
+  border-radius: 10px;
+  border: solid 1px #dbe2ea;
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 767px) {
+  .applicant-card {
+    margin-bottom: 15px;
+  }
+}
+
+.applicant-card .applicant-inner .applied-date {
+  text-align: right;
+}
+
+.applicant-card .applicant-inner .applied-date span {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #96a5b8;
+}
+
+.applicant-card .applicant-inner .title-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 767px) {
+  .applicant-card .applicant-inner .title-wrap {
+    margin-bottom: 0;
+    margin-right: auto;
+  }
+}
+
+.applicant-card .applicant-inner .title-wrap h3 {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.57;
+  color: #96a5b8;
+  margin: 0 0 0 5px;
+}
+
+@media (max-width: 767px) {
+  .applicant-card .applicant-inner .title-wrap {
+    margin: 0 auto 0 3px;
+    font-size: 13px;
+  }
+}
+
+.applicant-card .applicant-inner .flex-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 0 -15px;
+}
+
+@media (max-width: 767px) {
+  .applicant-card .applicant-inner .flex-row {
+    padding-bottom: 0px;
+  }
+}
+
+.applicant-card .applicant-inner .flex-row .col-4 {
+  width: 33.33%;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 33.33%;
+          flex: 0 33.33%;
+  padding: 0 15px;
+}
+
+@media (max-width: 767px) {
+  .applicant-card .applicant-inner .flex-row .col-4 {
+    max-width: 100%;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 100%;
+            flex: 0 100%;
+  }
+}
+
+.applicant-card .applicant-inner .flex-row .col-8 {
+  width: 66.66%;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 66.66%;
+          flex: 0 66.66%;
+  padding: 0 15px;
+}
+
+@media (max-width: 767px) {
+  .applicant-card .applicant-inner .flex-row .col-8 {
+    max-width: 100%;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 100%;
+            flex: 0 100%;
+  }
+}
+
+.applicant-card .applicant-inner .skills-listing {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+@media (max-width: 767px) {
+  .applicant-card .applicant-inner .skills-listing {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    margin: 10px 0 15px 0;
+  }
+}
+
+.applicant-card .applicant-inner .skills-listing li {
+  height: 32px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 6px 8px;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.29;
+  color: #231e1e;
+  margin: 0 6px 6px 0;
+}
+
+@media (max-width: 767px) {
+  .applicant-card .applicant-inner .skills-listing li {
+    margin: 0;
+    font-size: 13px;
+    padding: 4px 6px;
+    font-size: 13px;
+  }
+}
+
+.applicant-card .applicant-inner .skills-listing li a {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.29;
+  color: #14B1BD;
+}
+
+.applicant-card .applicant-inner .bottom-action {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin: 0 -10px;
+}
+
+@media (max-width: 767px) {
+  .applicant-card .applicant-inner .bottom-action {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    margin-bottom: 5px;
+  }
+}
+
+.applicant-card .applicant-inner .bottom-action li {
+  padding: 0 10px;
+}
+
+@media (max-width: 767px) {
+  .applicant-card .applicant-inner .bottom-action li {
+    padding: 0;
+  }
+}
+
+.applicant-card .applicant-inner .bottom-action li a {
+  font-size: 16px;
+  font-weight: 600;
+  color: #14B1BD;
+}
+
+.applicant-card .applicant-inner .bottom-action li a.not-suitable {
+  color: #f44336;
+}
+
+@media (max-width: 767px) {
+  .applicant-card .applicant-inner .bottom-action li a {
+    font-size: 14px;
+  }
+}
+
+.applicant-card .top-head {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+@media (max-width: 767px) {
+  .applicant-card .top-head {
+    -webkit-box-pack: inherit;
+        -ms-flex-pack: inherit;
+            justify-content: inherit;
+  }
+}
+
+.applicant-card .value {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #231e1e;
+}
+
+@media (max-width: 767px) {
+  .applicant-card .value {
+    margin: 8px 0;
+    font-size: 14px;
+  }
+}
+
+.applicant-card .value .circle {
+  width: 5px;
+  height: 5px;
+  margin: 0 10px;
+  border-radius: 50%;
+  background-color: #c4c4c4;
+  display: inline-block;
+}
+
+.applicant-card .user-info-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (max-width: 767px) {
+  .applicant-card .user-info-wrap {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.applicant-card .user-info-wrap .user-pic {
+  width: 56px;
+  height: 56px;
+}
+
+.applicant-card .user-info-wrap .user-pic figure {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.applicant-card .user-info-wrap .user-pic figure img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+}
+
+.applicant-card .user-info-wrap .user-basic-details {
+  width: calc(100% - 56px);
+  padding-left: 15px;
+}
+
+@media (max-width: 767px) {
+  .applicant-card .user-info-wrap .user-basic-details {
+    padding-left: 0;
+    width: 100%;
+  }
+}
+
+.applicant-card .user-info-wrap .user-basic-details .user-top-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 0 0 10px;
+}
+
+@media (max-width: 767px) {
+  .applicant-card .user-info-wrap .user-basic-details .user-top-info {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+.applicant-card .user-info-wrap .user-basic-details .user-top-info h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+  margin: 0 10px 10px 0;
+}
+
+@media (max-width: 767px) {
+  .applicant-card .user-info-wrap .user-basic-details .user-top-info h3 {
+    margin: 8px 0;
+    font-size: 16px;
+  }
+}
+
+.applicant-card .user-info-wrap .user-basic-details .user-top-info .status-wrap {
+  height: 28px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 6px 8px;
+  border-radius: 4px;
+  background-color: #edf4ff;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #14B1BD;
+}
+
+@media (max-width: 767px) {
+  .applicant-card .user-info-wrap .user-basic-details .user-top-info .status-wrap {
+    height: 25px;
+    padding: 5px 7px;
+  }
+}
+
+.applicant-card .exp-rating-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.applicant-card .exp-rating-wrap .circle {
+  width: 5px;
+  height: 5px;
+  margin: 0 10px;
+  border-radius: 50%;
+  background-color: #c4c4c4;
+  display: inline-block;
+}
+
+.applicant-card .exp-rating-wrap .exp-wrap p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.57;
+  color: #6e6b6b;
+}
+
+@media (max-width: 767px) {
+  .applicant-card .exp-rating-wrap .exp-wrap p {
+    font-size: 13px;
+  }
+}
+
+.applicant-card .exp-rating-wrap .rating-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.applicant-card .exp-rating-wrap .rating-wrap p {
+  font-size: 12px;
+  color: #858585;
+  margin: 0;
+}
+
+.applicant-card .exp-rating-wrap .rating-wrap p span {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #231e1e;
+}
+
+.applicant-card .pb-15 {
+  padding-bottom: 20px;
+}
+/*# sourceMappingURL=applicant-card.component.css.map */

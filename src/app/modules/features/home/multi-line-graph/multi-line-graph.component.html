@@ -1,0 +1,43 @@
+<div class="cart-column">
+  <div class="header-section">
+    <div class="inner-header-section">
+      <h3>Productivity</h3>
+      <div class="date-filter">
+        <div class="filter_row">
+          <div class="date-selector">
+            <a type="button" (click)="backWeek()" class="prev-icon"></a>
+
+            <div class="calendar-wrap">
+              <div class="left-calendar">
+                <p>
+                  {{ searchSortFilter?.value | displayMonth: true }}
+                </p>
+              </div>
+              <div class="right-calendar">
+                <app-weekly-calender-graph
+                  [forGraph]="true"
+                  [dateRangeConfig]="dateRangeConfig"
+                  (_emitDateChanged)="listenFormValueChanges($event)"
+                  #weeklyCalendarRef
+                ></app-weekly-calender-graph>
+              </div>
+            </div>
+
+            <a type="button" class="next-icon" (click)="nextWeek()"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="line-graph-wrap">
+    <div style="width: 100%; height: 100%">
+      <canvas #canvasElement></canvas>
+    </div>
+  </div>
+  <div class="hiring-statistics-status">
+    <ul>
+      <li><span class="ic-circle"></span>Number of hours</li>
+      <!-- <li><span class="green-circle"></span>Employee hired</li> -->
+    </ul>
+  </div>
+</div>

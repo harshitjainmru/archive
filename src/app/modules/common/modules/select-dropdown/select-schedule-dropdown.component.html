@@ -1,0 +1,30 @@
+<mat-form-field appearance="outline">
+    <mat-select [ngClass]="{'disabled-drop':(dropdownConfig | getControl:['isDisabled']).value}"  [disabled]="(dropdownConfig | getControl:['isDisabled']).value"  [compareWith]="compareValues" (selectionChange)="optionChanged($event)" [formControl]="selectedControl">
+      <!-- <mat-option>{{dropdownConfig?.placeholder}}</mat-option> -->
+
+      <mat-select-trigger class="blue-text">
+
+        <span *ngIf="selectedControl.value.status != SCHEDULE_JOB_STATUS.REST">
+          {{selectedControl?.value.startTime | customDate:'h:mm a'}} - {{selectedControl?.value.endTime | customDate:'h:mm a'}}
+        </span>
+        <span *ngIf="selectedControl.value.status === SCHEDULE_JOB_STATUS.REST">
+          {{selectedControl?.value.title}}
+
+        </span>
+        
+        
+        </mat-select-trigger>
+
+      <mat-option style="min-height: 48px; line-height: normal; height: auto; padding: 10px 20px;" [value]="item"  *ngFor="let item of dropdownConfig?.get('list').value; let i= index;">
+          <strong mat-line><p class="first-line" [ngClass]="{'blue-text':item.status === SCHEDULE_JOB_STATUS.REST}">{{item?.title}} <span *ngIf="item.isPreferredTimeSlot" class="status">Preferred</span> </p></strong>
+          <ng-container *ngIf="item.status != SCHEDULE_JOB_STATUS.REST">
+           <p class="second-line" mat-line>
+            {{item?.startTime | customDate:'h:mm a'}} - {{item?.endTime | customDate:'h:mm a'}}
+           </p>
+          </ng-container>
+           
+
+      </mat-option>
+
+    </mat-select>
+  </mat-form-field>

@@ -1,0 +1,166 @@
+:host ::ng-deep {
+  .ngx-charts .grid-panel rect {
+    fill: none !important;
+  }
+}
+.cart-column {
+  padding: 15px;
+  background: #ffffff;
+  border: 1px solid #dbe2ea;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .header-section {
+    margin-bottom: 20px;
+    .inner-header-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      @media (max-width: 576px) {
+        flex-direction: column;
+      }
+      .date-filter-graph-area {
+        display: flex;
+        align-items: center;
+        @media (max-width: 576px) {
+          flex-direction: column;
+        }
+        .monthly-calender-wrap {
+          max-width: 250px;
+          padding-left: 10px;
+          position: relative;
+          top: 5px;
+        }
+      }
+      .date-filter {
+        padding: 8px;
+        min-width: 143px;
+        height: 40px;
+        border: 1px solid #ebdcff;
+        border-radius: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        @media (max-width: 576px) {
+          margin: 10px 0 5px;
+        }
+        .prev-icon,
+        .next-icon {
+          width: 24px;
+          height: 24px;
+        }
+        .prev-icon {
+          background: url("../../../../../assets/icons/Arrow_Left_Blue.png");
+          background-size: 100%;
+          &.disabled {
+            background: url("../../../../../assets/icons/Arrow_Left_Grey.png");
+            background-size: 100%;
+            cursor: default;
+          }
+        }
+        .next-icon {
+          background: url("../../../../../assets/icons/Arrow_Right_Blue.png");
+          background-size: 100%;
+          &.disabled {
+            background: url("../../../../../assets/icons/Arrow_Left_Grey.png");
+            background-size: 100%;
+            cursor: default;
+          }
+        }
+        span {
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 18px;
+          color: #231e1e;
+        }
+      }
+    }
+    h3 {
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
+      color: #231e1e;
+      margin: 0;
+    }
+  }
+}
+
+.hiring-statistics-status {
+  ul {
+    display: flex;
+    align-items: center;
+    margin: 0 -10px;
+    li {
+      display: flex;
+      padding: 0 10px;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 18px;
+      color: #6e6b6b;
+      span {
+        width: 17px;
+        height: 17px;
+        margin-right: 5px;
+        border-radius: 50%;
+        &.grey-circle {
+          background: #bfc9d4;
+        }
+        &.yellow-circle {
+          background: #ff9800;
+        }
+        &.green-circle {
+          background: #4caf50;
+        }
+        &.ic-circle {
+          background: #8676ff;
+        }
+      }
+    }
+  }
+}
+.date-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.calendar-wrap {
+  display: flex;
+  align-items: center;
+  .left-calendar {
+    padding: 0 20px 0 10px;
+    position: relative;
+  }
+  .right-calendar {
+    padding: 0 5px;
+  }
+  .left-calendar {
+    position: relative;
+    &::before {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      opacity: 0.5;
+      background-color: #6e6b6b;
+      position: absolute;
+      content: "";
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    p {
+      margin-bottom: 0;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.5;
+      color: #14B1BD;
+      white-space: nowrap;
+    }
+  }
+}
+
+.cart-column{
+  h3{
+    white-space:nowrap;
+  }
+}

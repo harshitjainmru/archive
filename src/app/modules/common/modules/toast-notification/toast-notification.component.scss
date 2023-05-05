@@ -1,0 +1,60 @@
+@import 'var';
+
+.toast-content{
+    position: fixed;
+    left: 50%;
+    pointer-events: none;
+    -webkit-transform: translate(-50%,-100px);
+    transform: translate(-50%,-100px);
+    max-width: 640px;
+    z-index: 1010;
+    visibility: hidden;
+    opacity: 0;
+    letter-spacing: .5px;
+    -webkit-transition: visibility 0s linear .7s,opacity .7s,-webkit-transform .7s;
+    transition: visibility 0s linear .7s,opacity .7s,-webkit-transform .7s;
+    transition: transform .7s,visibility 0s linear .7s,opacity .7s;
+    transition: transform .7s,visibility 0s linear .7s,opacity .7s,-webkit-transform .7s;
+    .toast-message{
+        pointer-events: auto;
+        padding: 12px 25px;
+        box-shadow: 0 1px 1px rgba(0,0,0,.25), 0 0 1px rgba(0,0,0,.35);
+        border-radius: 0 0 4px 4px;
+    }
+
+    /*---Run Time Add Class---*/
+    ._error,._success,._info{
+      color: $white;
+  }
+  ._error{
+      background-color: $red;
+  }
+  ._success{
+      background-color: $green;
+  }
+  ._info{
+      background-color: $info;
+  }
+  ._warning{
+      background-color: $warning;
+  }
+  /*--END--*/
+}
+
+.toastAction{
+    -webkit-transform: translate(-50%,0);
+    transform: translate(-50%,0);
+    visibility: visible;
+    opacity: 1;
+    -webkit-transition-delay: 0s;
+    top: 0;
+    transition-delay: 0s;
+}
+
+
+/*--------------For Mobile--------*/
+@media screen and (max-width:40em) {
+    .toast-content{
+        width: 90%;
+    }
+}

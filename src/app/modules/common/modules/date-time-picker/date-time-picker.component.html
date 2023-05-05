@@ -1,0 +1,10 @@
+<ng-container *ngIf="dataTimeCtrl">
+  <mat-form-field appearance="outline" class="time-picker" >
+    <input [owlDateTime]="dt1" readonly [owlDateTimeTrigger]="dt1" matInput [max]="maxDate" [min]="minDate"
+      [formControl]="dataTimeCtrl" [placeholder]="placeholder" autocomplete="off">
+    <mat-error *ngIf="pickerTitle">{{ dataTimeCtrl | validate: pickerTitle }}</mat-error>
+    <img class="watch" matSuffix src="./assets/icons/ic_clock.svg" alt="">
+  </mat-form-field>
+  <owl-date-time #dt1 [pickerType]="pickerType" (afterPickerClosed)="onPickerClosed($event)" [hour12Timer]="true">
+  </owl-date-time>
+</ng-container>

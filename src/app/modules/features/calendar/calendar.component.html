@@ -1,0 +1,37 @@
+<div class="page_main_wrapper">
+    <div class="calender_tabs_wrapper">
+      <!-- tabs for calendar  -->
+        <!-- <app-header-tabs *ngIf="tabs.length" [tabs]="tabs" (tabClicked)="tabClicked($event)"></app-header-tabs>
+        <app-schedule-checkbox  [checkboxObject]="categoryFilter" (subCategory)="subCategoryUpdated($event)" [unCheck]="unCheckCategory" [clearAll]="clearAll"></app-schedule-checkbox>
+        <app-schedule-subcategory [checkboxObject]="categoryFilter" (deleteCategory)="deleteCategory($event)">
+        </app-schedule-subcategory> -->
+
+
+        <!-- Calendar start here -->
+        <div class="calendar-section">
+          <div class="left-section">
+            <div class="title-wrap">
+              <h3>My Calendar</h3>
+            </div>
+            <div class="filter-section">
+                <app-shifts-selection
+                *ngIf="searchSortFilter"
+                [searchSortFilter]="searchSortFilter"
+                (_emitshiftsChanges)="listenFormValueChanges($event)"
+                ></app-shifts-selection>  
+            </div>
+          </div>
+          <div class="right-section">
+            <div class="inner-section">
+              <app-schedule-calender  
+              (_emitshiftsChanges)="listenFormValueChanges($event)"
+              (_emitMonthChanged)="listenFormValueChanges($event)"
+              [dateRangeConfig]="dateRangeConfig"
+              [scheduleData]="calendarData"></app-schedule-calender>
+            </div>
+          </div>
+        </div>
+        <!-- When No Data Found (component start here) -->
+        <!-- <app-no-data-found [content]="'BOOKING' | translate:'LOWER'" *ngIf="fullScheduleData && fullScheduleData.length === 0"></app-no-data-found> -->
+    </div>
+</div>

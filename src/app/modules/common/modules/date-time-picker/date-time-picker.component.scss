@@ -1,0 +1,26 @@
+// :host ::ng-deep {
+//     .owl-dt-container-buttons {
+//         display: flex;
+//         width: 100%;
+//         height: auto;
+//         color: #14B1BD;
+//       }
+//       .owl-dt-container-control-button {
+//         width: 50%;
+//         height: 100%;
+//         border-radius: 0;
+//         font-family: 'lato';
+//         font-size: 15px;
+//         font-weight: 600;
+//         padding: 14px 20px;
+//         border-right: 1px solid #eee;
+//     }      
+// }
+
+.time-picker {
+    .watch {
+        position: relative;
+        top: 5px;
+        right: 5px;
+    }
+}
